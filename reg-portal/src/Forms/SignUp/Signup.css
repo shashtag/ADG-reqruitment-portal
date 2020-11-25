@@ -1,0 +1,97 @@
+* {
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color:black;
+}
+.sign-wrap {
+  background-color: #1b1b1b;
+  margin:auto;
+  margin-top:5% ;
+  width:45vh;
+  height:75vh;
+  padding:2%;
+  border-radius: 20px;
+  background: #212324;
+  color:#ffffff;
+}
+
+p
+{
+    font-size:25px;
+    font-weight: 200;
+}
+#reg
+{
+    margin-left:-40%;
+}
+#namee
+{
+    margin-left:-75%;
+}
+#passs
+{
+    margin-left:-63%;
+}
+#pass2
+{
+  margin-left:-47%;
+}
+label 
+{
+  font-size: 14px;
+  color: rgb(241, 232, 232);
+  font-weight: lighter;
+}
+
+input {
+  padding: 10px 10px;
+  border-radius: 5px;
+  outline: none;
+  width:80%;
+  border: 1px solid #cfcfcf;
+}
+.myButton
+{
+   background-color: #027AFF;
+    border-radius:10px;
+    border: solid 2px #027AFF;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:20px;
+	font-weight:bold;
+	padding:3% 30%;
+	text-decoration:none;
+}
+button
+{
+  background-color: #027AFF;
+  border-radius:10px;
+  border: solid 2px #027AFF;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-size:20px;
+	font-weight:bold;
+	padding:3% 30%;
+	text-decoration:none;
+}
+.myButton:hover
+{
+  background-color:#212324 ;
+}
+.second
+{
+  color:#027AFF;
+}
+.second:visited
+{
+  color: rgb(75, 85, 180);
+}
+span
+{
+  text-decoration: none;
+}
