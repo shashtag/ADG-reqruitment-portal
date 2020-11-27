@@ -1,0 +1,7 @@
+#back-img {
+  position: absolute;
+  background-image: url("../../assets/img/back-img.png");
+  width: 100vw;
+  height: 100vh;
+  z-index: -100;
+}

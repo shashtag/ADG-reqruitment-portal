@@ -1,10 +1,12 @@
 import React from 'react';
 import './Landing.css';
 import { Link } from "react-router-dom";
+import Background from '../../../hoc/Background/Background'
 
 const Landing = () => {
     return (
-      <div>
+
+      <Background>
         <div className="land-wrap">
           <p id="head">Recruitment Portal</p>
           <br></br>
@@ -15,17 +17,17 @@ const Landing = () => {
           <br></br>
           <p id="two">Sign up to get started</p>
           <br></br>
-          <Link to = "/signup">
-            <a id="signup">Sign Up</a>
+          <Link to = "/signup" id="signup">
+            Sign Up
           </Link>
     
           <br></br>
           <br></br>
-          <Link to = "/login">
-          <a id="login">Login</a>
+          <Link to = "/login" id="login">
+          Login
           </Link>
         </div>
-      </div>
+      </Background>
     );
 }
 export default Landing;
