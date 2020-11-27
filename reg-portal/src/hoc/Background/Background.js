@@ -6,6 +6,7 @@ import adglogo from "../../assets/img/adglogo.png";
 const Background = (props) => {
   return (
     <Aux>
+      <div id='back-img' />
       <div id='adglogo-cont'>
         <img src={adglogo} alt='ADG Logo' />
       </div>

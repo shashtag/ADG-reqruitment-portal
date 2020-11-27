@@ -65,9 +65,10 @@ export const SignUp = () => {
     <Background>
       <form onSubmit={onSubmit}>
         <div className='heading'>Sign Up</div>
-        <div className='Name'>
-          <label id='namee'>Name</label>
+        <div className='input-grp'>
+          <label>Name</label>
           <input
+            className='input'
             type='text'
             value={name}
             placeholder='Enter your name'
@@ -79,11 +80,10 @@ export const SignUp = () => {
             return <div style={{ color: "red" }}>{nameErr[key]}</div>;
           })}
         </div>
-        <br></br>
-        <div className='regno'>
-          <label id='reg'>Registration Number</label>
-          <br></br>
+        <div className='input-grp'>
+          <label>Registration Number</label>
           <input
+            className='input'
             type='text'
             value={regno}
             placeholder='Enter Registration number'
@@ -91,16 +91,14 @@ export const SignUp = () => {
               setRegno(e.target.value);
             }}
           />
-          <br></br>
           {Object.keys(regnoErr).map((key) => {
             return <div style={{ color: "red" }}>{regnoErr[key]}</div>;
           })}
         </div>
-        <br></br>
-        <div className='pass'>
-          <label id='passs'>Password</label>
-          <br></br>
+        <div className='input-grp'>
+          <label>Password</label>
           <input
+            className='input'
             type='password'
             value={pass1}
             placeholder='Enter your password'
@@ -112,11 +110,10 @@ export const SignUp = () => {
             return <div style={{ color: "red" }}>{pass1Err[key]}</div>;
           })}
         </div>
-        <br></br>
-        <div className='pass'>
-          <label id='pass2'>Confirm password</label>
-          <br></br>
+        <div className='input-grp'>
+          <label>Confirm password</label>
           <input
+            className='input'
             type='password'
             value={pass2}
             placeholder='Confirm password'
@@ -128,20 +125,14 @@ export const SignUp = () => {
             return <div style={{ color: "red" }}>{pass2Err[key]}</div>;
           })}
         </div>
-        <br></br>
-        <br></br>
-        <button type='submit'>Submit</button>
+        <button className='sub-btn' type='submit'>
+          Create account
+        </button>
+
         {/*<a className="myButton">Submit</a>*/}
-        <br></br>
-        <br></br>
+
         <Link to='/signup2'>
-          <a className='second'>
-            Click here if you're an applicant in 2
-            <span>
-              <sup>nd</sup>
-            </span>
-            Year
-          </a>
+          Click here if you're an applicant in 2<sup>nd</sup> Year
         </Link>
       </form>
     </Background>

@@ -1,32 +1,41 @@
 import React from "react";
 import "./SignUp2.css";
+import Background from "../../../../hoc/Background/Background";
 
 export const SignUp2 = () => {
   return (
-    <div className="sign2-wrap">
-      <p>Sign Up</p>
-      <br></br>
-      <div className="Phone">
-        <label id="phone">Phone</label>
-        <br></br>
-        <input type="text" placeholder="Enter your phone no." />
-      </div>
-      <br></br>
-      <div className="VIT-Email">
-        <label id="vit">VIT-Email</label>
-        <br></br>
-        <input type="text" placeholder="Enter your VIT Email" />
-      </div>
-      <br></br>
-      <div className="Github">
-        <label id="git">Github</label>
-        <br></br>
-        <input type="text" placeholder="Enter your github handle" />
-        <br></br>
-        <br></br>
-        <a className="myButton3">Submit</a>
-      </div>
-    </div>
+    <Background>
+      <from>
+        <div className='heading'>Sign Up</div>
+        <div className='input-grp'>
+          <label>Phone</label>
+          <input
+            className='input'
+            type='text'
+            placeholder='Enter your phone no.'
+          />
+        </div>
+        <div className='input-grp'>
+          <label>VIT-Email</label>
+          <input
+            className='input'
+            type='text'
+            placeholder='Enter your VIT Email'
+          />
+        </div>
+        <div className='input-grp'>
+          <label>Github</label>
+          <input
+            className='input'
+            type='text'
+            placeholder='Enter your github handle'
+          />
+        </div>
+        <button className='sub-btn' type='submit'>
+          Sign Up
+        </button>
+      </from>
+    </Background>
   );
 };
 export default SignUp2;

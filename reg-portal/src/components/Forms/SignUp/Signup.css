@@ -1,36 +1,11 @@
-/* .sign-wrap {
-  background-color: #1b1b1b;
-  margin:auto;
-  margin-top:5% ;
-  width:45vh;
-  height:92vh;
-  padding:2%;
-  border-radius: 20px;
-  background: #212324;
-  color:#ffffff;
-} */
-
-p
-{
-    font-size:25px;
-    font-weight: 200;
-}
+/* 
 #reg
 {
     margin-left:-40%;
 }
-#namee
-{
-    margin-left:-75%;
-}
-#passs
-{
-    margin-left:-63%;
-}
-#pass2
-{
-  margin-left:-47%;
-}
+
+
+
 label 
 {
   font-size: 14px;
@@ -93,25 +68,4 @@ span
   {
     height:100vh;
   }
-}
-@media screen and (max-width:375px)
-{
-  .sign-wrap
-  {
-    height:85vh;
-    width:40vh;
-  }
- /* #reg
-{
-    margin-left:-61%;
-}
-#passs
-{
-    margin-left:-70%;
-}
-#pass2
-{
-  margin-left:-60%;
-}
-*/
-}
+} */

@@ -1,6 +1,14 @@
 body {
   background-image: url("../../assets/img/back-img.png");
 }
+#back-img {
+  position: fixed;
+  background-image: url("../../assets/img/back-img.png");
+  width: 100vw;
+  height: 160vh;
+  z-index: -100;
+  top: -20vh;
+}
 #adglogo-cont {
   padding-top: 44px;
   padding-bottom: 64px;
@@ -12,8 +20,9 @@ body {
   margin: auto;
   color: #ffffff;
   border-radius: 56px;
-  padding: 36px 0;
+  padding: 36px 44px;
 }
+/* landing */
 .heading {
   font-family: SF Pro Display;
   font-style: normal;
@@ -60,6 +69,7 @@ body {
 .btn-blue {
   background: #027aff;
   border: transparent 2px solid;
+  transition: background 0.2s;
 }
 .btn-blue:hover {
   background: transparent;
@@ -67,8 +77,55 @@ body {
 }
 .btn-trans {
   border: #027aff 2px solid;
+  transition: background 0.2s;
 }
 .btn-trans:hover {
   background: #027aff;
   border: transparent 2px solid;
+}
+
+/* signup */
+.input-grp {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+.input {
+  margin: auto;
+  background: #1e1e1e;
+  border: 1px solid #121212;
+  box-sizing: border-box;
+  border-radius: 10px;
+  width: 100%;
+  padding: 16px 14px;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 17px;
+  color: #434343;
+}
+label {
+  text-align: start;
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+  margin-bottom: 10px;
+}
+.sub-btn {
+  display: block;
+  margin: auto;
+  width: 90%;
+  padding: 16px;
+  border-radius: 20px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 43px;
+  border: none;
+  text-align: center;
+  background: #027aff;
+  color: #ffffff;
+  margin-bottom: 10px;
 }

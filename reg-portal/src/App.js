@@ -4,7 +4,7 @@ import SignUp from "./components/Forms/SignUp/SignUp";
 import Login from "./components/Forms/SignUp/Login/Login";
 import SignUp2 from "./components/Forms/SignUp/SignUp2/SignUp2";
 import { Route, BrowserRouter as Router } from "react-router-dom";
-import Quiz from "./Quiz/Quiz";
+import Quiz from "./components/Quiz/Quiz";
 
 
 function App() {
