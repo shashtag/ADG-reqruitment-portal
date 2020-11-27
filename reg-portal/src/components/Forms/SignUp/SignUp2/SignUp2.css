@@ -1,13 +1,4 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color:black;
-}
 .sign2-wrap {
-  background-color: #1b1b1b;
   margin:auto;
   margin-top:10% ;
   width:45vh;
@@ -15,7 +6,7 @@ body {
   padding:2%;
   border-radius: 20px;
   background: #212324;
-  color:#ffffff;
+  
 }
 
 p

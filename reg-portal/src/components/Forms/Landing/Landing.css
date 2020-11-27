@@ -1,15 +1,6 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color:black;
-}
-.land-wrap {
+/* .land-wrap {
   background-color: #1b1b1b;
   margin:auto;
-  margin-top:10%;
   width:45vh;
   height:55vh;
   padding:3%;
@@ -85,4 +76,4 @@ body {
         width: 40vh;
     }
 
-}
+} */

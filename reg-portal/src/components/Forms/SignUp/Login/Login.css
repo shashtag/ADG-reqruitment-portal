@@ -1,12 +1,4 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
-body {
-  font-family: 'Poppins', sans-serif;
-  background-color:black;
-}
-.log-wrap {
+/* .log-wrap {
   background-color: #1b1b1b;
   margin:auto;
   margin-top:10% ;
@@ -76,4 +68,4 @@ input {
         width:35vh;
     }
 
-}
+} */

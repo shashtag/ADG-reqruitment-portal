@@ -3,4 +3,10 @@
 }
 body {
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  background-color:black;
+  margin: 0;
+  padding: 0;
+
 }
+
