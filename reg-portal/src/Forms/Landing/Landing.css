@@ -12,7 +12,7 @@ body {
   margin-top:10% ;
   width:45vh;
   height:55vh;
-  padding:2%;
+  padding:3%;
   border-radius: 20px;
   background: #212324;
   color:#ffffff;
@@ -42,7 +42,7 @@ body {
 	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
-	padding:5% 28%;
+	padding:2% 23%;
 	text-decoration:none;
 }
 #signup:hover
@@ -59,10 +59,30 @@ body {
 	color:#ffffff;
 	font-size:20px;
 	font-weight:bold;
-    padding:5% 31%;
+    padding:2% 27%;
 	text-decoration:none;
 }
 #login:hover
 {
     background-color:#212324 ;
+}
+@media screen and (max-width : 360px)
+{   
+    .land-wrap
+    {
+        padding: 8%;
+        height:120vh;
+        width:40vh;
+    }
+
+}
+@media screen and (max-width : 375px)
+{
+    .land-wrap
+    {
+        margin-top:40%;
+        height: 50vh;
+        width: 40vh;
+    }
+
 }

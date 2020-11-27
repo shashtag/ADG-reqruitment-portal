@@ -13,7 +13,6 @@ const Landing = () => {
             Apple Developer's Group
           </p>
           <br></br>
-          <br></br>
           <p id="two">Sign up to get started</p>
           <br></br>
           <Link to = "/signup">

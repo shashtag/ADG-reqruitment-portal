@@ -11,7 +11,7 @@ body {
   margin:auto;
   margin-top:10% ;
   width:45vh;
-  height:55vh;
+  height:67vh;
   padding:2%;
   border-radius: 20px;
   background: #212324;
@@ -65,4 +65,22 @@ input {
 .myButton3:hover
 {
     background-color:#212324 ;
+}
+
+@media screen and (min-width:1024px)
+{
+  .sign2-wrap
+  {
+    height:50vh;
+  }
+}
+
+@media screen and (min-width:375px)
+{
+  .sign2-wrap
+  {
+    width:40vh;
+    height:60vh;
+    
+  }
 }

@@ -10,8 +10,8 @@ body {
   background-color: #1b1b1b;
   margin:auto;
   margin-top:10% ;
-  width:50vh;
-  height:45vh;
+  width:45vh;
+  height:50vh;
   padding:2%;
   border-radius: 20px;
   background: #212324;
@@ -23,7 +23,7 @@ body {
 }
 #p2
 {
-    margin-left:-45%;
+    margin-left:-40%;
 }
 p
 {
@@ -60,4 +60,20 @@ input {
 .myButton-log:hover
 {
     background-color:#212324 ;
+}
+@media screen and (max-width : 360px)
+{   
+    
+  #p2
+        {
+          margin-left:-30%;
+        } 
+        .log-wrap
+    {
+              
+        padding: 8%;
+        height:50vh;
+        width:35vh;
+    }
+
 }

@@ -11,7 +11,7 @@ body {
   margin:auto;
   margin-top:5% ;
   width:45vh;
-  height:75vh;
+  height:92vh;
   padding:2%;
   border-radius: 20px;
   background: #212324;
@@ -94,4 +94,32 @@ button
 span
 {
   text-decoration: none;
+}
+@media screen and (max-width:320px)
+{
+  .sign-wrap
+  {
+    height:100vh;
+  }
+}
+@media screen and (max-width:375px)
+{
+  .sign-wrap
+  {
+    height:85vh;
+    width:40vh;
+  }
+ /* #reg
+{
+    margin-left:-61%;
+}
+#passs
+{
+    margin-left:-70%;
+}
+#pass2
+{
+  margin-left:-60%;
+}
+*/
 }
