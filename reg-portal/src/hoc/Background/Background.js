@@ -7,11 +7,13 @@ const Background = (props) => {
   return (
     <Aux>
       <div id='back-img' />
-      <div id='adglogo-cont'>
-        <img src={adglogo} alt='ADG Logo' />
-      </div>
+      <div className='container'>
+        <div id='adglogo-cont'>
+          <img id='adglogo' src={adglogo} alt='ADG Logo' />
+        </div>
 
-      <div id='cont-box'>{props.children}</div>
+        <div id='cont-box'>{props.children}</div>
+      </div>
     </Aux>
   );
 };
