@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./Signup.css";
 import { Link } from "react-router-dom";
 import Background from "../../../hoc/Background/Background";
 
@@ -93,6 +92,11 @@ import Background from "../../../hoc/Background/Background";
 
 
 export class SignUp extends Component {
+  state={
+    raw:{
+      
+    }
+  }
   render() {
     return (
       <Background>

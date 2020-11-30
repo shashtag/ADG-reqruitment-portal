@@ -1,5 +1,4 @@
 import React from "react";
-import "./SignUp2.css";
 import Background from "../../../../hoc/Background/Background";
 
 export const SignUp2 = () => {
