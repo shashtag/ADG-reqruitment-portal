@@ -1,0 +1,18 @@
+.top{
+    display:flex;
+    justify-content: space-between;
+}
+.addBtn{
+    margin-top: 3%;
+    background-color: rgba(0,0,0,0.5);
+    outline:none;
+    border:1px solid dodgerblue;
+    color:dodgerblue;
+    border-radius: 5px;
+    width:20%;
+    height:40px;
+    padding:3px;
+}
+.addBtn:active{
+    transform: scale(0.95);
+}
