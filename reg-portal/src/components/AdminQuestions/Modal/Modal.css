@@ -69,3 +69,10 @@ textarea{
 .radio{
     display:flex;
 }
+.drop-down{
+    float:right;
+    padding:5px;
+}
+.drop-down > label{
+    margin-right:3px;
+}

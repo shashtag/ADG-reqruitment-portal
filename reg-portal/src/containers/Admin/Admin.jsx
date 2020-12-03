@@ -1,42 +1,71 @@
 import React,{ useState } from "react";
-import AdminQuestions from '../../components/AdminQuestions/AdminQuestions';
+import { v4 as uuid } from "uuid";
 import Background from '../../hoc/Background/Background';
-// import TechQuestions from '../../components/AdminQuestions/TechnicalQuestions';
-// import DesignQuestions from '../../components/AdminQuestions/DesignQuestions';
-// import MgmtQuestions from '../../components/AdminQuestions/MgmtQuestions';
+import TechQuestions from '../../components/AdminQuestions/Questions/TechnicalQuestions';
+import DesignQuestions from '../../components/AdminQuestions/Questions/DesignQuestions';
+import MgmtQuestions from '../../components/AdminQuestions/Questions/MgmtQuestions';
 
 import classes from './Admin.module.css';
-// let value;
-const Admin = ()=>{
-    // const [techQuestions,setTechQuestions]=useState([
-    //     {
-    //         "questionDescription": "What is your name?",
-    //         "options" : {
-    //            "a":"anuj",
-    //            "b":"bharat",
-    //            "c":"rahul",
-    //            "d":"preetham"
-    //                    },
-    //            "correctOption" :"c",
-    //            "yearofstudy":1
-    //        }
-    // ]);
+const Admin = (props)=>{
+    const [techQuestions,setTechQuestions]=useState([
+        {
+            id:uuid(),
+            questionDescription: "What is your name?",
+            options : {
+               a:"anuj",
+               b:"bharat",
+               c:"rahul",
+               d:"preetham"
+                       },
+               correctOption :"c",
+               yearofstudy:1
+           }
+        ]);
+    const [designQuestions,setDesignQuestions]=useState([
+        {
+            id:uuid(),
+            questionDescription:"hello bro", 
+            yearofstudy:1          
+        }
+    ]);
+    const [mgmtQuestions,setMgmtQuestions]=useState([
+        {
+            id:uuid(),
+            questionDescription:"hello bro",  
+            yearofstudy:1         
+        }
+    ]);
+    // function addMgmtQuestion(){
+    //     let description="xyx";
+    //     let year=1;
+    //     setDesignQuestions(prevQ=>{
+    //         return [...prevQ,{id:uuid(),questionDescription:description,yearofstudy:year}]
+    //     });
+    // }
+    function addDesignQuestion(){
+        let description="xyx";
+        let year=1;
+        setDesignQuestions(prevQ=>{
+            return [...prevQ,{id:uuid(),questionDescription:description,yearofstudy:year}]
+        });
+        console.log(designQuestions);
+    }
+    // function deleteMgmtQuestion(){
+
+    // }
+    // function deleteDesignQuestion(){
+        
+    // }
+    // function addTechQuestion(){
+    //     setTechQuestions((prevQ)=>{
+    //         let description="xyz";
+    //         return {...prevQ,{id:uuid(),questionDescription: description}};
+    //     });}
     const [checkVal,setCheckVal]=useState("");
     function getSelectedVal(event){
         // console.log(event.target.value);
         setCheckVal(event.target.value);
-        // value=event.target.value;
-        // console.log(value);
     } 
-    // function display(){
-    //     console.log(value);
-    //     if(value==='technical') return "TechQuestions"
-    //     else if (value==='design') return "DesignQuestions"
-    //     else return "MgmtQuestions"
-    // }
-    // var MyComponent=display();
-    // MyComponent=()=>{return <div></div>}
-    // console.log(MyComponent);
     return(
     <Background>
         <div className={classes.heading}>
@@ -52,9 +81,14 @@ const Admin = ()=>{
             <input type="radio" value="management" name="selection" id="management" visibility="hidden" className={classes.input} ></input>
             <label htmlFor="management" className={classes.label}>Management</label>
             </div>
-            <AdminQuestions selectedValue={checkVal}/>
         </form>
-        {/* {React.createElement(MyComponent, {})} */}
+       <TechQuestions 
+       selectedValue={checkVal}/>
+       <DesignQuestions 
+       selectedValue={checkVal}
+       onAdd={addDesignQuestion}/>
+       <MgmtQuestions 
+       selectedValue={checkVal}/>
     </Background>
     )};
 export default Admin;

@@ -16,3 +16,11 @@
 .addBtn:active{
     transform: scale(0.95);
 }
+.technical,
+.design,
+.management{
+    background:green;
+}
+.display-none{
+    background-color: red;
+}

@@ -3,7 +3,7 @@ import "./Modal.css";
 
 const Modal = (props) => {
   const modalClass = props.show ? "modal display-block" : "modal display-none";
-  console.log(modalClass,props.show)
+  // console.log(modalClass,props.show)
   return (
     <div className={modalClass}>
       <div className="modal-main">
@@ -15,7 +15,7 @@ const Modal = (props) => {
           <label htmlFor="stmt" className="label">Statement:</label>
           <textarea id="stmt" />
         </div>
-        <div className="type">
+        <div className="type" >
           <div>Type:</div>
           <div className="radio">
             <input type="radio" value="subjective" name="qtype" id="subjective" ></input>
@@ -25,6 +25,13 @@ const Modal = (props) => {
             <input type="radio" value="objective" name="qtype" id="objective" ></input>
             <label htmlFor="objective">Objective</label>
           </div>
+        </div>
+        <div className="drop-down">
+          <label htmlFor="yearofstudy">Choose year:</label>
+              <select name="yearofstudy" id="yearofstudy">
+                <option value="First">1</option>
+                <option value="Second">2</option>
+              </select>
         </div>
         <button onClick={props.onHide}>Close</button>
       </div>
