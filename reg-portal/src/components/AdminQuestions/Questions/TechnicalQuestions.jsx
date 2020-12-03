@@ -11,7 +11,7 @@ const TechQuestions = (props)=>{
     // console.log(showQuestions);
     return(
         <div className={showQuestions}>
-            {props.selectedValue}
+            {/* {props.selectedValue} */}
             <div className={classes.top}>
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={toggle}>Add Question</button>

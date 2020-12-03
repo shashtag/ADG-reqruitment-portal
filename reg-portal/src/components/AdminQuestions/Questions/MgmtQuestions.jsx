@@ -1,8 +1,28 @@
 import React,{ useState } from "react";
+import {v4 as uuid } from "uuid";
 import Modal from '../Modal/Modal';
 import classes from "./Questions.module.css";
 
 const MgmtQuestions = (props)=>{
+    const [mgmtQuestions,setMgmtQuestions]=useState([
+        {
+            id:uuid(),
+            questionDescription:"hello bro", 
+            yearofstudy:1          
+        }
+    ]);
+    function addMgmtQuestion(){
+        setMgmtQuestions(prevQ=>{
+            return [...prevQ,{id:uuid(),questionDescription:props.inputText,yearofstudy:props.inputYear}]
+        });
+    }
+    function deleteMgmtQuestion(id){
+        setMgmtQuestions((prevQ)=>{
+            return prevQ.filter((question,index)=>{
+                return question.id !==id;
+            })
+        })
+    }
     const [showModal,setShowModal]=useState(false);
     function toggle(){
         setShowModal(!showModal);
@@ -11,14 +31,19 @@ const MgmtQuestions = (props)=>{
     // console.log(showQuestions);
     return(
         <div className={showQuestions}>
-            {props.selectedValue}
+            {/* {props.selectedValue} */}
             <div className={classes.top}>
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={toggle}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={toggle} />
-        <div>Hi iam a question:management</div>
-        {/* <button onClick={props.onAdd}>Add me</button> */}
+            <Modal show={showModal} onHide={toggle} inputText={props.text} inputYear={props.year} addQuestion={addMgmtQuestion}/>
+            <div>Hi iam a question:Mgmt</div>
+                {mgmtQuestions.map((question,index)=>(
+                    <div className={classes.questions}>
+                    <div>{question.questionDescription}</div>
+                    <button onClick={()=>deleteMgmtQuestion(question.id)}>Delete</button>
+                    </div>
+                ))}
         </div>
     );
 }
