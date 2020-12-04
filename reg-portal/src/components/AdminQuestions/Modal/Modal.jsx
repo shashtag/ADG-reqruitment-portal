@@ -1,9 +1,18 @@
 import React from "react";
+import { OptionsDisplay } from "../Questions/TechnicalQuestions";
 import "./Modal.css";
 
 const Modal = (props) => {
+  function handleAddOptions(){
+    props.addOption(props.inputOptionVal,props.id);
+    console.log(props.options)
+  }
+  function handleClick(){
+    props.onHide();
+    props.addQuestion();
+  }
   const modalClass = props.show ? "modal display-block" : "modal display-none";
-  // console.log(modalClass,props.show)
+  const showOptionsClass=props.selected==='technical' ? "display-options" : "hide-options";
   return (
     <div className={modalClass}>
       <div className="modal-main">
@@ -18,7 +27,7 @@ const Modal = (props) => {
         <div className="type">
           <div>Type:</div>
           <div className="radio">
-            <input type="radio" value="subjective" name="qtype" id="subjective" ></input>
+            <input type="radio" value="subjective" name="qtype" id="subjective"></input>
             <label htmlFor="subjective">Subjective</label>
           </div>
           <div className="radio">
@@ -33,8 +42,15 @@ const Modal = (props) => {
                 <option value="">2</option>
               </select>
         </div>
-        <button onClick={props.onHide}>Close</button>
-        <button onClick={props.addQuestion}>Add Question</button>
+        <div className={showOptionsClass}>
+            <div className="option">Options :</div>
+            <OptionsDisplay questions={props.options} />
+            <div>
+            <button onClick={handleAddOptions} className="btn-blue">+ Add</button>
+            <input placeholder="Add Option" onChange={props.inputOption} className="input-option"></input>
+            </div>
+        </div>
+        <button onClick={handleClick} className="submit-btn">Post Question</button>
       </div>
     </div>
   );

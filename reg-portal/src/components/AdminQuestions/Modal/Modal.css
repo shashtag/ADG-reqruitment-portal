@@ -8,16 +8,17 @@
 }
   
 .modal-main {
-    z-index:20;
+    z-index:25;
     position:fixed;
-    background: rgba(31, 30, 30, 0.5);
+    background: rgb(17, 17, 17);
     width: 30%;
     height: auto;
     top:50%;
     left:50%;
     transform: translate(-50%,-50%);
-    border-radius: 5px;
-    padding:1%;
+    border-radius: 15px;
+    padding:2%;
+    box-sizing: border-box;
 }
   
 .display-block {
@@ -43,24 +44,25 @@
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 .input-field{
-    padding:3%;
-    text-align: center;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom:10px;
 }
 .label{
     all:unset;
-    vertical-align: 140%;
     margin-right: 5px;
 }
 textarea{
     margin:auto;
     width:65%;
     height:4rem;
-    padding:2%;
-    background: black;
+    padding:3%;
+    background: rgba(2, 2, 2, 0.7);
     color:white;
     outline:none;
-    border:1px solid grey;
+    border:0.1px solid grey;
     resize:none;
+    border-radius: 5px;
 }
 .type{
     display: flex;
@@ -75,4 +77,69 @@ textarea{
 }
 .drop-down > label{
     margin-right:3px;
+}
+select{
+    background: transparent;
+    outline:none;
+    border:none;
+    color:white;
+}
+option{
+    color:dodgerblue;
+}
+.display-options{
+    display:flex;
+    flex-direction: column;
+    margin-top:35px;
+}
+.option{
+    display:flex;
+    justify-content: flex-start;
+}
+.input-option{
+    padding:2%;
+    width:90%;
+    height:20px;
+    background:rgba(8, 8, 8, 0.7);
+    border:1px solid grey;
+    outline:none;
+    border-radius: 5px;
+    color:white;
+}
+.input-option::placeholder{
+    color:dodgerblue;
+}
+.btn-blue{
+    background-color: transparent;
+    outline:none;
+    border:none;
+    color:dodgerblue;
+    border-radius: 5px;
+    width:20%;
+    float:right;
+    margin:2%;
+    padding:1%;
+}
+.btn-blue:hover{
+    transform: scale(0.98);
+    border:1px solid dodgerblue;
+    outline:none;
+}
+.btn-blue:focus{
+    border:none;
+    outline:none;
+}
+.hide-options{
+    display:none;
+}
+.submit-btn{
+    width:80%;
+    height: 45px;
+    background: #027AFF;
+    color:white;
+    outline:none;
+    border:none;
+    border-radius: 10px;
+    font-size:1.25rem;
+    margin:5%;
 }

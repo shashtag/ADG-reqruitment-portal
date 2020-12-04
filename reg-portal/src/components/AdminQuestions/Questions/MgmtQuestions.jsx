@@ -39,7 +39,7 @@ const MgmtQuestions = (props)=>{
             <Modal show={showModal} onHide={toggle} inputText={props.text} inputYear={props.year} addQuestion={addMgmtQuestion}/>
             <div>Hi iam a question:Mgmt</div>
                 {mgmtQuestions.map((question,index)=>(
-                    <div className={classes.questions}>
+                    <div className={classes.questions} key={index}>
                     <div>{question.questionDescription}</div>
                     <button onClick={()=>deleteMgmtQuestion(question.id)}>Delete</button>
                     </div>
