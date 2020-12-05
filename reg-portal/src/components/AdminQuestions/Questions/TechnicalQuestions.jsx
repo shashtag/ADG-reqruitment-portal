@@ -6,6 +6,20 @@ import classes from "./Questions.module.css";
 let questionid;
 let index=0;
 const TechQuestions = (props)=>{
+        const [inputText,setInputText]=useState("");
+        function inputValue(event){
+            var newItem=event.target.value;
+            setInputText(newItem);
+        }
+        const [selectYear,setSelectYear]=useState(1);
+        function yearValue(event){
+            var newItem=event.target.value;
+            setSelectYear(newItem);
+        }
+        const [files, setFiles] = useState({});
+        function getFile(file){
+            setFiles(file);
+        }
         const [inputOption,setInputOption]=useState("");
         function optionValue(event){
             const newOption=event.target.value;
@@ -14,6 +28,7 @@ const TechQuestions = (props)=>{
         const [options,setOptions]=useState({});
         function addOption(inputText){
             setOptions((prevOptions)=>{
+                setInputOption("");
                 return {...prevOptions,[index]:inputText}});
             // console.log(options);
             index++;
@@ -32,16 +47,19 @@ const TechQuestions = (props)=>{
         //        4:"join()"
         //     },
         //     correctOption :"c",
-        //     yearofstudy:1
+        //     yearofstudy:1,
+        //     file:{}
         //    }
         ]);
         function addTechQuestion(){
             setTechQuestions((prevQ)=>{
-                return [...prevQ,{id:questionid,questionDescription:props.inputText,yearofstudy:props.inputYear,options:options}]
+                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files}]
             })
-            setOptions({});
-            index=0;
             console.log(techQuestions);
+            setInputText("");
+            setOptions({});
+            setFiles({});
+            index=0;
         }
         function deleteTechQuestion(id){
             setTechQuestions((prevQ)=>{
@@ -59,32 +77,27 @@ const TechQuestions = (props)=>{
         generateId();
     }
     let showQuestions=props.selectedValue==="technical" ? "technical": "display-none";
-    // console.log(showQuestions);
     return(
         <div className={showQuestions}>
             <div className={classes.top}>
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={multipleFunctions}>Add Question</button>
             </div>
-            <Modal 
-            show={showModal} 
-            onHide={toggle} 
-            genId={generateId} 
-            selected={props.selectedValue} 
-            inputText={props.text} 
-            inputYear={props.year} 
-            addQuestion={addTechQuestion} 
-            addOption={addOption} 
-            id={questionid} 
-            inputOption={optionValue} 
-            inputOptionVal={inputOption}
-            options={options}/>
+            <Modal show={showModal} onHide={toggle} genId={generateId} selected={props.selectedValue} 
+            inputText={inputValue} inputYear={yearValue} text={inputText} optionText={inputOption}
+            addQuestion={addTechQuestion} id={questionid} 
+            addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options}
+            getFile={getFile}
+            />
                 {techQuestions.map((question,index)=>(
                     <div className={classes.questions} key={index}>
                         <div>
                             <div className={classes.options}>
-                                <div>({index+1})</div>
+                                <div>{index+1}.</div>
                                 <div className={classes.questionDescrip}>{question.questionDescription}</div>
+                                <div className={Object.keys(question.file).includes('base64') ? "display-image" :"display-none"}>
+                                <img src={question.file.base64} alt="Q.img" className={classes.image}></img>
+                                </div>
                             </div>
                             <OptionsDisplay questions={question.options}/>
                         </div>
@@ -102,7 +115,7 @@ export const OptionsDisplay = (props)=>{
     return(
         <div>
             {Object.keys(questions).map((index)=>(
-                <div className={classes.options} key={index}>
+                <div className={classes.optionsContainer} key={index}>
                     <div className={classes.index}>{index}.</div>
                     <div key={index}>{questions[index]}</div>
                 </div>

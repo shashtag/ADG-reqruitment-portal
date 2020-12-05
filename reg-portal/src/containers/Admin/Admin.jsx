@@ -6,16 +6,6 @@ import MgmtQuestions from '../../components/AdminQuestions/Questions/MgmtQuestio
 import classes from './Admin.module.css';
 
 const Admin = (props)=>{
-    const [inputText,setInputText]=useState("");
-    function inputValue(event){
-        var newItem=event.target.value;
-        setInputText(newItem);
-    }
-    const [selectYear,setSelectYear]=useState(1);
-    function yearValue(event){
-        var newItem=event.target.value;
-        setSelectYear(newItem);
-    }
     const [checkVal,setCheckVal]=useState("");
     function getSelectedVal(event){
         setCheckVal(event.target.value);
@@ -37,25 +27,9 @@ const Admin = (props)=>{
             <label htmlFor="management" className={classes.label}>Management</label>
             </div>
         </form>
-       <TechQuestions 
-        selectedValue={checkVal}
-        text={inputValue}
-        year={yearValue}
-        inputText={inputText}
-        inputYear={selectYear}/>
-       <DesignQuestions 
-       selectedValue={checkVal}
-       text={inputValue}
-       year={yearValue}
-       inputText={inputText}
-       inputYear={selectYear}
-       /> 
-       <MgmtQuestions 
-       selectedValue={checkVal}
-       text={inputValue}
-       year={yearValue}
-       inputText={inputText}
-       inputYear={selectYear}/>
+       <TechQuestions selectedValue={checkVal}/>
+       <DesignQuestions selectedValue={checkVal}/> 
+       <MgmtQuestions selectedValue={checkVal} />
        </div>
     </Background>
     )};

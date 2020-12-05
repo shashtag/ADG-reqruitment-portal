@@ -22,16 +22,45 @@
     margin-bottom: 2%;
 }
 .questionDescrip{
-    display:flex;
-    justify-content: flex-start;
-}
+    text-align: left;
+    margin-left: 25px;
+    margin-top:-25px;
+    font-size: 15px;
+} 
 .questions>button{
     width:10%;
     height:10%;
 }
 .options{
+    width:80%;
     display:flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .index{
-    margin-right:5%;
+    margin-right:2%;
+}
+.image{
+    width:200px;
+    height:200px;
+    object-fit: cover;
+    margin:10px;
+}
+.display-none{
+    opacity:0;
+}
+.optionsContainer{
+    display:flex;
+    flex-direction: row;
+    margin-top:2px;
+    margin-left: 22px;
+    font-size: 14px;
+}
+.descrip{
+    text-align: left;
+}
+.descripText{
+    margin-left:25px;
+    margin-top:-25px;
+    text-align: left;
 }

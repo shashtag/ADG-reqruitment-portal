@@ -38,11 +38,6 @@
     margin: auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
-.q-no{
-    float:right;
-    margin-top:-5%;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-}
 .input-field{
     display:flex;
     justify-content: space-between;
@@ -87,6 +82,10 @@ select{
 option{
     color:dodgerblue;
 }
+.image-container{
+    display:flex;
+    margin-top:40px;
+}
 .display-options{
     display:flex;
     flex-direction: column;
@@ -109,7 +108,8 @@ option{
 .input-option::placeholder{
     color:dodgerblue;
 }
-.btn-addopt{
+.btn-addopt,.btn-upload{
+    cursor: pointer;
     background-color: transparent;
     outline:none;
     border:none;
@@ -125,10 +125,19 @@ option{
     border:1px solid dodgerblue;
     outline:none;
 }
+.btn-upload{
+    margin-left:15px;
+}
+.btn-upload:hover{
+    color:rgb(134, 185, 236);
+    transform:scale(1.2);
+    outline:none;
+}
 .hide-options{
     display:none;
 }
 .submit-btn{
+    cursor:pointer;
     width:80%;
     height: 45px;
     background: #027AFF;
@@ -138,4 +147,18 @@ option{
     border-radius: 10px;
     font-size:1.25rem;
     margin:5%;
+}
+.submit-btn:hover{
+    transform: scale(0.95);
+}
+input[type="file"]{
+    appearance: none;
+    background-color:black;
+    color:white;
+    padding:2%;
+    border:none;
+    overflow: visible;
+    margin-left:10px;
+    border-radius: 5px;
+    border:0.1px solid grey;
 }
