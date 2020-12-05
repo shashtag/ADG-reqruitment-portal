@@ -46,7 +46,7 @@ const Modal = (props) => {
             <div className="option">Options :</div>
             <OptionsDisplay questions={props.options} />
             <div>
-            <button onClick={handleAddOptions} className="btn-blue">+ Add</button>
+            <button onClick={handleAddOptions} className="btn-addopt">+ Add</button>
             <input placeholder="Add Option" onChange={props.inputOption} className="input-option"></input>
             </div>
         </div>

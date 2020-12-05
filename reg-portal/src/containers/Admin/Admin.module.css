@@ -12,7 +12,6 @@
     margin-top:2%;
 }
 .label{
-    z-index:10;
     flex:1;
     text-align: center;
     background:rgba(63, 63, 63, 0.6);

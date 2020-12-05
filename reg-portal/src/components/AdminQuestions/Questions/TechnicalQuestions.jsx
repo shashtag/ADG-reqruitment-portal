@@ -8,7 +8,6 @@ let index=0;
 const TechQuestions = (props)=>{
         const [inputOption,setInputOption]=useState("");
         function optionValue(event){
-            // console.log(event.target.value);
             const newOption=event.target.value;
             setInputOption(newOption);
         }
@@ -23,21 +22,20 @@ const TechQuestions = (props)=>{
             questionid=uuid();
         }
         const [techQuestions,setTechQuestions]=useState([
-        {
-            id:uuid(),
-            questionDescription: "Which of the following function of Array object adds one or more elements to the end of an array and returns the new length of the array?",
-            options : {
-               1:"pop()",
-               2:"push()",
-               3:"map()",
-               4:"join()"
-            },
-            correctOption :"c",
-            yearofstudy:1
-           }
+        // {
+        //     id:uuid(),
+        //     questionDescription: "Which of the following function of Array object adds one or more elements to the end of an array and returns the new length of the array?",
+        //     options : {
+        //        1:"pop()",
+        //        2:"push()",
+        //        3:"map()",
+        //        4:"join()"
+        //     },
+        //     correctOption :"c",
+        //     yearofstudy:1
+        //    }
         ]);
         function addTechQuestion(){
-            // console.log("addquestion",questionid);
             setTechQuestions((prevQ)=>{
                 return [...prevQ,{id:questionid,questionDescription:props.inputText,yearofstudy:props.inputYear,options:options}]
             })

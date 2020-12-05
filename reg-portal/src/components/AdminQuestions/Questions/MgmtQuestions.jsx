@@ -5,11 +5,11 @@ import classes from "./Questions.module.css";
 
 const MgmtQuestions = (props)=>{
     const [mgmtQuestions,setMgmtQuestions]=useState([
-        {
-            id:uuid(),
-            questionDescription:"hello bro", 
-            yearofstudy:1          
-        }
+        // {
+        //     id:uuid(),
+        //     questionDescription:"hello bro", 
+        //     yearofstudy:1          
+        // }
     ]);
     function addMgmtQuestion(){
         setMgmtQuestions(prevQ=>{
@@ -28,16 +28,13 @@ const MgmtQuestions = (props)=>{
         setShowModal(!showModal);
     }
     let showQuestions=props.selectedValue==="management" ? "management": "display-none";
-    // console.log(showQuestions);
     return(
         <div className={showQuestions}>
-            {/* {props.selectedValue} */}
             <div className={classes.top}>
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={toggle}>Add Question</button>
             </div>
             <Modal show={showModal} onHide={toggle} inputText={props.text} inputYear={props.year} addQuestion={addMgmtQuestion}/>
-            <div>Hi iam a question:Mgmt</div>
                 {mgmtQuestions.map((question,index)=>(
                     <div className={classes.questions} key={index}>
                     <div>{question.questionDescription}</div>
