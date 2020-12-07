@@ -13,7 +13,8 @@ const Modal = (props) => {
     props.addQuestion();
   }
   const modalClass = props.show ? "modal display-block" : "modal display-none";
-  const showOptionsClass=props.selected==='technical' ? "display-options" : "hide-options";
+  const showOptionsClass=props.selected==='management' ? "hide-options" : "display-options";
+  console.log(showOptionsClass);
   return (
     <div className={modalClass}>
       <div className="modal-main">
@@ -52,6 +53,7 @@ const Modal = (props) => {
             <div>
             <button onClick={handleAddOptions} className="btn-addopt">+ Add</button>
             <input placeholder="Add Option" value={props.optionText} onChange={props.inputOption} className="input-option"></input>
+            <input placeholder="Enter the index of the correct option" className="input-correct" onChange={props.getCorrectOption}/>
             </div>
         </div>
         <button onClick={handleClick} className="submit-btn">Post Question</button>

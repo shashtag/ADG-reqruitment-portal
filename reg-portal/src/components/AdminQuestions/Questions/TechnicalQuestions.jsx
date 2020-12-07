@@ -33,6 +33,10 @@ const TechQuestions = (props)=>{
             // console.log(options);
             index++;
         }
+        const[correctOption,setCorrectOption]=useState("")
+        function getCorrectOption(event){
+            setCorrectOption(event.target.value);
+        }
         function generateId(){
             questionid=uuid();
         }
@@ -53,7 +57,7 @@ const TechQuestions = (props)=>{
         ]);
         function addTechQuestion(){
             setTechQuestions((prevQ)=>{
-                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files}]
+                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files,correctOption:correctOption}]
             })
             console.log(techQuestions);
             setInputText("");
@@ -86,7 +90,7 @@ const TechQuestions = (props)=>{
             <Modal show={showModal} onHide={toggle} genId={generateId} selected={props.selectedValue} 
             inputText={inputValue} inputYear={yearValue} text={inputText} optionText={inputOption}
             addQuestion={addTechQuestion} id={questionid} 
-            addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options}
+            addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options} getCorrectOption={getCorrectOption}
             getFile={getFile}
             />
                 {techQuestions.map((question,index)=>(

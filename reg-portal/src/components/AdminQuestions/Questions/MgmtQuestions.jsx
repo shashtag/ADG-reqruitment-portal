@@ -51,7 +51,7 @@ const MgmtQuestions = (props)=>{
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={toggle}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={toggle} text={inputText} 
+            <Modal show={showModal} onHide={toggle} text={inputText} selected={props.selectedValue} 
             inputText={inputValue} inputYear={yearValue} 
             addQuestion={addMgmtQuestion} getFile={getFile}/>
                 {mgmtQuestions.map((question,index)=>(

@@ -21,7 +21,7 @@ export const Login = () => {
           type='password'
           placeholder='Enter your password'
         />
-        <Link to='/quiz' className='myButton-log'>
+        <Link to='/selection' className='myButton-log'>
           Submit
         </Link>
       </div>
