@@ -5,41 +5,43 @@ import classes from "./Questions.module.css";
 
 let questionid;
 let index=0;
+let optionNo=0;
 const TechQuestions = (props)=>{
-        const [inputText,setInputText]=useState("");
-        function inputValue(event){
-            var newItem=event.target.value;
-            setInputText(newItem);
-        }
-        const [selectYear,setSelectYear]=useState(1);
-        function yearValue(event){
-            var newItem=event.target.value;
-            setSelectYear(newItem);
-        }
-        const [files, setFiles] = useState({});
-        function getFile(file){
-            setFiles(file);
-        }
-        const [inputOption,setInputOption]=useState("");
-        function optionValue(event){
-            const newOption=event.target.value;
-            setInputOption(newOption);
-        }
-        const [options,setOptions]=useState({});
-        function addOption(inputText){
+    const [inputText,setInputText]=useState("");
+    let inputValue = (event)=>{ setInputText(event.target.value) }
+
+    const [selectYear,setSelectYear]=useState(1);
+    let yearValue = (event) =>{ setSelectYear(event.target.value) }
+
+    const [files, setFiles] = useState({});
+    let getFile = (file)=>{ setFiles(file) }
+
+    const [inputOption,setInputOption]=useState("");
+    let optionValue = (event)=>{ setInputOption(event.target.value) }
+
+    const [options,setOptions]=useState({});
+
+    function addOption(inputText){
+        if(inputText!==""){
+            optionNo++;
+            if(optionNo<=4){
             setOptions((prevOptions)=>{
                 setInputOption("");
                 return {...prevOptions,[index]:inputText}});
             // console.log(options);
             index++;
+            } else 
+            {
+                alert("Only 4 options per question!")
+                setInputOption("");
+            };
         }
-        const[correctOption,setCorrectOption]=useState("")
-        function getCorrectOption(event){
-            setCorrectOption(event.target.value);
-        }
-        function generateId(){
-            questionid=uuid();
-        }
+    }
+    const[correctOption,setCorrectOption]=useState("")
+    let getCorrectOption = (event)=>{ setCorrectOption(event.target.value) }
+
+    let generateId = ()=>{ questionid = uuid() }
+
         const [techQuestions,setTechQuestions]=useState([
         // {
         //     id:uuid(),
@@ -57,9 +59,10 @@ const TechQuestions = (props)=>{
         ]);
         function addTechQuestion(){
             setTechQuestions((prevQ)=>{
-                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files,correctOption:correctOption}]
+                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files.base64,correctOption:correctOption}]
             })
             console.log(techQuestions);
+            setCorrectOption("");
             setInputText("");
             setOptions({});
             setFiles({});
@@ -72,14 +75,14 @@ const TechQuestions = (props)=>{
                 })
             })
         }
-    const [showModal,setShowModal]=useState(false);
-    function toggle(){
-        setShowModal(!showModal);
-    }
-    function multipleFunctions(){
-        toggle();
-        generateId();
-    }
+
+
+   const [showModal,setShowModal]=useState(false);
+    let showModal1 = ()=>{ setShowModal(true) }
+    let hideModal = ()=>{ setShowModal(false) }
+
+    let multipleFunctions = () =>{ showModal1(); generateId(); }
+
     let showQuestions=props.selectedValue==="technical" ? "technical": "display-none";
     return(
         <div className={showQuestions}>
@@ -87,10 +90,11 @@ const TechQuestions = (props)=>{
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={multipleFunctions}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={toggle} genId={generateId} selected={props.selectedValue} 
+            <Modal show={showModal} onHide={hideModal} genId={generateId} selected={props.selectedValue} 
             inputText={inputValue} inputYear={yearValue} text={inputText} optionText={inputOption}
             addQuestion={addTechQuestion} id={questionid} 
-            addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options} getCorrectOption={getCorrectOption}
+            addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options} 
+            correctOption={correctOption} getCorrectOption={getCorrectOption}
             getFile={getFile}
             />
                 {techQuestions.map((question,index)=>(
@@ -99,8 +103,8 @@ const TechQuestions = (props)=>{
                             <div className={classes.options}>
                                 <div>{index+1}.</div>
                                 <div className={classes.questionDescrip}>{question.questionDescription}</div>
-                                <div className={Object.keys(question.file).includes('base64') ? "display-image" :"display-none"}>
-                                <img src={question.file.base64} alt="Q.img" className={classes.image}></img>
+                                <div className={question.file ? "display-image" :"display-none"}>
+                                <img src={question.file} alt="Q.img" className={classes.image}></img>
                                 </div>
                             </div>
                             <OptionsDisplay questions={question.options}/>

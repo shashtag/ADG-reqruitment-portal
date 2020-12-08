@@ -1,4 +1,6 @@
-import React,{ useState } from "react";
+import React from "react";
+import { useEffect } from "react";
+import { useRef } from "react" 
 import FileBase64 from 'react-file-base64';
 import { OptionsDisplay } from "../Questions/TechnicalQuestions";
 import "./Modal.css";
@@ -6,24 +8,35 @@ import "./Modal.css";
 const Modal = (props) => {
   function handleAddOptions(){
     props.addOption(props.inputOptionVal,props.id);
-    console.log(props.options)
   }
   function handleClick(){
+    if(props.correctOption){
     props.onHide();
     props.addQuestion();
+  } else {
+    alert("Enter the correct option value to submit")
   }
+}
+  let modalRef=useRef()
+  useEffect(()=>{
+    document.addEventListener("mousedown",(event)=>{
+      if(!modalRef.current.contains(event.target)){
+        props.onHide();
+      }
+    });
+  });
+  let emptyFunction = ()=>{ return }
   const modalClass = props.show ? "modal display-block" : "modal display-none";
   const showOptionsClass=props.selected==='management' ? "hide-options" : "display-options";
-  console.log(showOptionsClass);
   return (
     <div className={modalClass}>
-      <div className="modal-main">
+      <div className="modal-main" ref={modalRef}>
         <div className="modal-header">
           <h4 className="heading">Add Question</h4>
         </div>
         <div className="input-field" onChange={props.inputText}>
           <label htmlFor="stmt" className="label">Statement:</label>
-          <textarea id="stmt" value={props.text}/>
+          <textarea id="stmt" value={props.text} onChange={emptyFunction}/>
         </div>
         <div className="type">
           <div>Type:</div>

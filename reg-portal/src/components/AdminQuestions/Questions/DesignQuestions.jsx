@@ -5,41 +5,43 @@ import classes from "./Questions.module.css";
 
 let questionid;
 let index=0;
+let optionNo=0;
 const DesignQuestions = (props)=>{
         const [inputText,setInputText]=useState("");
-        function inputValue(event){
-            var newItem=event.target.value;
-            setInputText(newItem);
-        }
+        let inputValue = (event)=>{ setInputText(event.target.value) }
+
         const [selectYear,setSelectYear]=useState(1);
-        function yearValue(event){
-            var newItem=event.target.value;
-            setSelectYear(newItem);
-        }
+        let yearValue = (event) =>{ setSelectYear(event.target.value) }
+
         const [files, setFiles] = useState({});
-        function getFile(file){
-            setFiles(file);
-        }
+        let getFile = (file)=>{ setFiles(file) }
+
         const [inputOption,setInputOption]=useState("");
-        function optionValue(event){
-            const newOption=event.target.value;
-            setInputOption(newOption);
-        }
+        let optionValue = (event)=>{ setInputOption(event.target.value) }
+
         const [options,setOptions]=useState({});
+
         function addOption(inputText){
-            setOptions((prevOptions)=>{
-                setInputOption("");
-                return {...prevOptions,[index]:inputText}});
-            // console.log(options);
-            index++;
+            if(inputText!==""){
+                optionNo++;
+                if(optionNo<=4){
+                setOptions((prevOptions)=>{
+                    setInputOption("");
+                    return {...prevOptions,[index]:inputText}});
+                // console.log(options);
+                index++;
+                } else 
+                {
+                    alert("Only 4 options per question!")
+                    setInputOption("");
+                };
+            }
         }
         const[correctOption,setCorrectOption]=useState("")
-        function getCorrectOption(event){
-            setCorrectOption(event.target.value);
-        }
-        function generateId(){
-            questionid=uuid();
-        }
+        let getCorrectOption = (event)=>{ setCorrectOption(event.target.value); }
+
+        let generateId = ()=>{ questionid = uuid() }
+
         const [designQuestions,setDesignQuestions]=useState([
         // {
         //     id:uuid(),
@@ -57,9 +59,10 @@ const DesignQuestions = (props)=>{
         ]);
         function addDesignQuestion(){
             setDesignQuestions((prevQ)=>{
-                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files,correctOption:correctOption}]
+                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files.base64,correctOption:correctOption}]
             })
             console.log("design",designQuestions);
+            setCorrectOption("");
             setInputText("");
             setOptions({});
             setFiles({});
@@ -72,14 +75,14 @@ const DesignQuestions = (props)=>{
                 })
             })
         }
+
+
     const [showModal,setShowModal]=useState(false);
-    function toggle(){
-        setShowModal(!showModal);
-    }
-    function multipleFunctions(){
-        toggle();
-        generateId();
-    }
+    let showModal1 = ()=>{ setShowModal(true) }
+    let hideModal = ()=>{ setShowModal(false) }
+
+    let multipleFunctions = () =>{ showModal1(); generateId(); }
+
     let showQuestions=props.selectedValue==="design" ? "design": "display-none";
     return(
         <div className={showQuestions}>
@@ -87,7 +90,7 @@ const DesignQuestions = (props)=>{
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={multipleFunctions}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={toggle} genId={generateId} selected={props.selectedValue} 
+            <Modal show={showModal} onHide={hideModal} genId={generateId} selected={props.selectedValue} 
             inputText={inputValue} inputYear={yearValue} text={inputText} optionText={inputOption}
             addQuestion={addDesignQuestion} id={questionid} 
             addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options} getCorrectOption={getCorrectOption}
@@ -99,8 +102,8 @@ const DesignQuestions = (props)=>{
                             <div className={classes.options}>
                                 <div>{index+1}.</div>
                                 <div className={classes.questionDescrip}>{question.questionDescription}</div>
-                                <div className={Object.keys(question.file).includes('base64') ? "display-image" :"display-none"}>
-                                <img src={question.file.base64} alt="Q.img" className={classes.image}></img>
+                                <div className={question.file ? "display-image" :"display-none"}>
+                                <img src={question.file} alt="Q.img" className={classes.image}></img>
                                 </div>
                             </div>
                             <OptionsDisplay questions={question.options}/>

@@ -5,19 +5,14 @@ import classes from "./Questions.module.css";
 
 const MgmtQuestions = (props)=>{
     const [inputText,setInputText]=useState("");
-    function inputValue(event){
-        var newItem=event.target.value;
-        setInputText(newItem);
-    }
+    let inputValue = (event)=>{ setInputText(event.target.value) }
+
     const [selectYear,setSelectYear]=useState(1);
-    function yearValue(event){
-        var newItem=event.target.value;
-        setSelectYear(newItem);
-    }
+    let yearValue = (event) =>{ setSelectYear(event.target.value) }
+
     const [files, setFiles] = useState({});
-    function getFile(file){
-        setFiles(file);
-    }
+        let getFile = (file)=>{ setFiles(file) }
+
     const [mgmtQuestions,setMgmtQuestions]=useState([
         // {
         //     id:uuid(),
@@ -41,17 +36,17 @@ const MgmtQuestions = (props)=>{
         })
     }
     const [showModal,setShowModal]=useState(false);
-    function toggle(){
-        setShowModal(!showModal);
-    }
+    let showModal1 = ()=>{ setShowModal(true) }
+    let hideModal = ()=>{ setShowModal(false) }
+    
     let showQuestions=props.selectedValue==="management" ? "management": "display-none";
     return(
         <div className={showQuestions}>
             <div className={classes.top}>
             <h2>Questionare:</h2>
-            <button type="button" className={classes.addBtn} onClick={toggle}>Add Question</button>
+            <button type="button" className={classes.addBtn} onClick={showModal1}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={toggle} text={inputText} selected={props.selectedValue} 
+            <Modal show={showModal} onHide={hideModal} text={inputText} selected={props.selectedValue} 
             inputText={inputValue} inputYear={yearValue} 
             addQuestion={addMgmtQuestion} getFile={getFile}/>
                 {mgmtQuestions.map((question,index)=>(

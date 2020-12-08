@@ -55,3 +55,46 @@
 /* button:hover {
   background-color: #489bd3;
 } */
+
+.options{
+  cursor:pointer;
+  width:60%;
+  background:transparent;
+  outline:none;
+  border:1px solid grey;
+  border-radius:15px;
+  height:45px;
+  margin-bottom:15px;
+  color:white;
+  text-align: left;
+  padding:5px 15px;
+  font-size:1rem;
+}
+.options:first-of-type{
+  margin-top: 10px;
+}
+.options:hover{
+  background: dodgerblue;
+}
+.btn-bottom{
+  display:flex;
+  justify-content: space-between;
+}
+.btn-bottom>button{
+  background:transparent;
+  outline:none;
+  border:1px solid dodgerblue;
+  height:30px;
+  color:dodgerblue;
+  height:40px;
+  font-size:20px;
+  border-radius: 5px;
+  width:7vw;
+}
+.btn-bottom>button:hover{
+  background: dodgerblue;
+  color:white;
+}
+.btn-bottom>button:active{
+  transform: scale(0.9);
+}
