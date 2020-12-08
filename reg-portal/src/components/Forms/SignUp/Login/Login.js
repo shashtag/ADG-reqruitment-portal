@@ -20,8 +20,9 @@ export const Login = () => {
           className='input'
           type='password'
           placeholder='Enter your password'
+          style={{marginBottom:10}}
         />
-        <Link to='/quiz' className='myButton-log'>
+        <Link to='/selection' className='btn btn-blue'>
           Submit
         </Link>
       </div>
