@@ -11,7 +11,6 @@ const Background = (props) => {
         <div id='adglogo-cont'>
           <img id='adglogo' src={adglogo} alt='ADG Logo' />
         </div>
-
         <div id='cont-box'>{props.children}</div>
       </div>
     </Aux>
