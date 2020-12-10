@@ -1,0 +1,67 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins',sans-serif;
+}
+body 
+{
+    background-color: black;
+    color: white;
+}
+.nav 
+{
+    min-height: 20vh;
+}
+.chooseDomain_card 
+{
+    background-color: rgb(27,27,27,0.7);
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    padding: 3%;
+    border-radius: 15px;
+    margin-top:10%;
+}
+.chooseDomain h4 
+{
+    font-weight: 200;
+    font-size: 80%;
+}
+.domains div 
+{
+    background-color: rgb(45,44,44,0.5);
+    width: 40%;
+    margin: auto;
+    border: 1.5px solid #747474;
+    border-radius: 15px;
+    padding: 2%;
+}
+
+.domains div:hover,
+.domains div:active
+{
+    border: 1.5px solid #027AFF;
+    color: #027AFF;
+}
+.domains div label
+{
+    margin-right: 60px;
+}
+.startButton {
+    width: 20%;
+    margin: auto;
+    background-color: #027AFF;
+    padding: 3%;
+    border-radius: 15px;
+    color: white;
+}
+.domains div svg {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+svg:hover 
+{
+    fill: violet;
+}
