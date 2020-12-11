@@ -34,9 +34,9 @@ const Modal = (props) => {
         <div className="modal-header">
           <h4 className="heading">Add Question</h4>
         </div>
-        <div className="input-field" onChange={props.inputText}>
+        <div className="input-field" onChange={props.questionDescription}>
           <label htmlFor="stmt" className="label">Statement:</label>
-          <textarea id="stmt" value={props.text} onChange={emptyFunction}/>
+          <textarea id="stmt" value={props.questionDescription} onChange={emptyFunction}/>
         </div>
         <div className="type">
           <div>Type:</div>
