@@ -1,10 +1,11 @@
 import React from "react";
-import "./App.css";
 import { Link } from "react-router-dom";
+import "./Domains.css";
+import Background from "../../hoc/Background/Background";
 
 const App = () => {
   return (
-    <div>
+    <Background>
       <div className="chooseDomain_card">
         <div className="chooseDomain">
           <h2>Choose Domain</h2>
@@ -93,12 +94,12 @@ const App = () => {
         </div>
         <br></br>
         <div className="startButton">
-          <Link to="/quiz">
+          <Link to="/instructions">
             <p>Start</p>
           </Link>
         </div>
       </div>
-    </div>
+    </Background>
   );
 };
 

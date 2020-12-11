@@ -98,3 +98,19 @@
 .btn-bottom>button:active{
   transform: scale(0.9);
 }
+.progress {
+	background-color: #5D5D5D;
+	border-radius: 20px;
+	margin: 15px 0;
+	height: 8px;
+	width: 250px;
+}
+
+.progress-done {
+	background: #018CF1;
+	border-radius: 20px;
+	color: #fff;
+	height: 100%;
+	/* width: 80%; */
+	transition: 1s ease 0.3s;
+}
