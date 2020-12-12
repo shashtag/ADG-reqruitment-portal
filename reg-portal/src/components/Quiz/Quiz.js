@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import "./Quiz.css";
+import Timer from './Timer';
 import Background from "../../hoc/Background/Background";
 
-function Quiz() {
+function Quiz(props) {
   const questions = [
     {
       questionText: "Which of the following is not a programming language?",
@@ -44,6 +46,14 @@ function Quiz() {
       ],
     },
   ];
+  let [time, setTime] = useState(600);
+  useEffect(() => {
+    if(time>0){
+    setTimeout(() => {
+      setTime(--time);
+    }, 1000);
+  }
+  });
   let [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
@@ -88,6 +98,7 @@ function Quiz() {
               ))}
               <div className="btn-bottom">
                   <button>Previous</button>
+                  <Timer time={time}/>
                   <button>Next</button>
                 </div>
             </div>
@@ -96,6 +107,6 @@ function Quiz() {
       </div>
     </Background>
   );
-}
+};
 
 export default Quiz;
