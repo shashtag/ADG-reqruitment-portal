@@ -1,11 +1,10 @@
 import React from "react";
-import Aux from "../aux/aux";
 import "./Background.css";
 import adglogo from "../../assets/img/adglogo.png";
 
 const Background = (props) => {
   return (
-    <Aux>
+    <div>
       <div id='back-img' />
       <div className='container'>
         <div id='adglogo-cont'>
@@ -13,7 +12,7 @@ const Background = (props) => {
         </div>
         <div id='cont-box'>{props.children}</div>
       </div>
-    </Aux>
+      </div>
   );
 };
 

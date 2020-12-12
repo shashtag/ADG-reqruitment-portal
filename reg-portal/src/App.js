@@ -3,8 +3,11 @@ import Landing from './components/Forms/Landing/Landing';
 import SignUp from "./components/Forms/SignUp/SignUp";
 import Login from "./components/Forms/SignUp/Login/Login";
 import SignUp2 from "./components/Forms/SignUp/SignUp2/SignUp2";
+import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
+import Instructions from './components/Forms/Domain&Instructions/Instructions';
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import Quiz from "./components/Quiz/Quiz";
+import Admin from './containers/Admin/Admin';
 
 
 function App() {
@@ -15,7 +18,10 @@ function App() {
         <Route path="/signup" component={SignUp} />
         <Route path="/signup2" component={SignUp2} />
         <Route path="/login" component={Login} />
+        <Route path="/selection" component={DomainPage} />
+        <Route path="/instructions" component={Instructions} />
         <Route path = "/quiz" component = {Quiz} />
+        <Route path = "/admin" component = {Admin} />
       </Router>
     </div>
   );

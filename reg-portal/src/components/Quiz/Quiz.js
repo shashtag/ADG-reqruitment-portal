@@ -44,7 +44,7 @@ function Quiz() {
       ],
     },
   ];
-  const [currentQuestion, setCurrentQuestion] = useState(0);
+  let [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -79,13 +79,17 @@ function Quiz() {
             </div>
             <div className='answer-section'>
               {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button
+                <button className="options"
                   onClick={() =>
                     handleAnswerOptionClick(answerOption.isCorrect)
                   }>
                   {answerOption.answerText}
                 </button>
               ))}
+              <div className="btn-bottom">
+                  <button>Previous</button>
+                  <button>Next</button>
+                </div>
             </div>
           </>
         )}
