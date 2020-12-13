@@ -32,11 +32,13 @@
     padding:3px;
     margin-top:0;
     margin-bottom: 3%;
+    cursor: pointer;
 }
-.headingm{
+.heading{
     font-size:20px;
     margin: auto;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    cursor: pointer;
 }
 .input-field{
     display:flex;
