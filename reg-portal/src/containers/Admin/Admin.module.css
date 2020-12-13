@@ -2,24 +2,33 @@
     width:60%;
     margin:auto;
 }
+
 .input{
     opacity:0;
 }
+
 .formContainer{
     display:flex;
     justify-content: center;
     align-items: center;
     margin-top:2%;
 }
+
 .label{
     flex:1;
     text-align: center;
-    background:rgba(71, 71, 71, 0.6);
+    background:rgba(63, 63, 63, 0.6);
     padding:20px;
-    border-radius: 5%;
-    font-size:25px;
-    font-family:sans-serif;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 250ms ease-in-out;
 }
+
+.label:hover {
+    background-color: #027aff;
+    transform: scale(1.10);
+}
+
 .input:checked + .label{
     background:dodgerblue;
 }
