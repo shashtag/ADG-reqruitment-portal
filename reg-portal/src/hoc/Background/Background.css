@@ -188,7 +188,6 @@ label {
 .sub-btn {
   display: block;
   margin: auto;
-  width: 100%;
   padding: 16px;
   border-radius: 10px;
   font-style: normal;
@@ -242,7 +241,6 @@ label {
     margin-bottom: 10px;
   }
   .sub-btn {
-    width: 100%;
     padding: 16px;
     border-radius: 10px;
     font-size: 36px;

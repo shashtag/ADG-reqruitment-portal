@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Background from "../../../../hoc/Background/Background";
 
 export const Login = () => {
@@ -20,11 +19,11 @@ export const Login = () => {
           className='input'
           type='password'
           placeholder='Enter your password'
-          style={{marginBottom:10}}
+          style={{ marginBottom: 10 }}
         />
-        <Link to='/selection' className='btn btn-blue'>
+        <div className='btn btn-blue' style={{ width: "94%" }}>
           Submit
-        </Link>
+        </div>
       </div>
     </Background>
   );
