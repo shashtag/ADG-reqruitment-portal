@@ -13,8 +13,19 @@
   padding-top: 7.75vh;
   padding-bottom: 5.6vh;
 }
+
 #adglogo {
   width: 90%;
+}
+#adglogo-cont2 {
+  padding: 0px 16px;
+  padding-top: 4vh;
+  padding-bottom: 5.6vh;
+  text-align: left;
+  display: flex;
+}
+#adglogo2 {
+  width: 44%;
 }
 
 #cont-box {
@@ -23,6 +34,9 @@
   color: #ffffff;
   border-radius: 20px;
   padding: 5.6vh 16px;
+}
+.flex {
+  flex: 1;
 }
 @media (min-width: 576px) {
   #adglogo-cont {

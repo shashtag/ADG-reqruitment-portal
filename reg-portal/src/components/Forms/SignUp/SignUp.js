@@ -20,8 +20,6 @@ export class SignUp extends Component {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
-    console.log(a);
-    e.preventDefault();
     const data = JSON.stringify({
       name: this.state.name,
       regno: this.state.regno,
