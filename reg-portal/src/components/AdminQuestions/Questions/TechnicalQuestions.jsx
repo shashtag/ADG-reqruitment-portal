@@ -87,7 +87,7 @@ const TechQuestions = (props)=>{
             }).then(data => {
                 // console.log(data);
             }).catch(error => {
-                console.log(error);
+                // console.log(error);
                 alert("Error: ", error);
             })
 
