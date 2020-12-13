@@ -95,6 +95,7 @@ const DesignQuestions = (props)=>{
             setOptions({});
             setFiles({});
             index=0;
+            optionNo=0;
         }
         function deleteDesignQuestion(id){
             setDesignQuestions((prevQ)=>{
