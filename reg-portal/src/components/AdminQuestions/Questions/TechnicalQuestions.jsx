@@ -7,11 +7,11 @@ let questionid;
 let index=0;
 let optionNo=0;
 const TechQuestions = (props)=>{
-    const [inputText,setInputText]=useState("");
-    let inputValue = (event)=>{ setInputText(event.target.value) }
+    const [questionDescription, setQuestionDescription]=useState("");
+    let inputValue = (event)=>{ setQuestionDescription(event.target.value) }
 
-    const [selectYear,setSelectYear]=useState(1);
-    let yearValue = (event) =>{ setSelectYear(event.target.value) }
+    const [yearofstudy,setYearofstudy]=useState(1);
+    let yearValue = (event) =>{ setYearofstudy(event.target.value) }
 
     const [files, setFiles] = useState({});
     let getFile = (file)=>{ setFiles(file) }
@@ -21,13 +21,15 @@ const TechQuestions = (props)=>{
 
     const [options,setOptions]=useState({});
 
-    function addOption(inputText){
-        if(inputText!==""){
+    const optionsArray = ["a", "b", "c", "d"];
+
+    function addOption(questionDescription){
+        if(questionDescription!==""){
             optionNo++;
             if(optionNo<=4){
             setOptions((prevOptions)=>{
                 setInputOption("");
-                return {...prevOptions,[index]:inputText}});
+                return {...prevOptions,[optionsArray[index-1]]:questionDescription}});
             // console.log(options);
             index++;
             } else 
@@ -57,16 +59,45 @@ const TechQuestions = (props)=>{
         //     file:{}
         //    }
         ]);
-        function addTechQuestion(){
+        async function addTechQuestion(){
             setTechQuestions((prevQ)=>{
-                return [...prevQ,{id:questionid,questionDescription:inputText,yearofstudy:selectYear,options:options,file:files.base64,correctOption:correctOption}]
+                return [...prevQ,{id:questionid,questionDescription:questionDescription,yearofstudy:yearofstudy,options:options,file:files.base64,correctOption:correctOption}]
             })
+
             console.log(techQuestions);
+
+            const questionObject = {questionDescription:questionDescription, options:options, correctOption:correctOption, yearofstudy:yearofstudy, questionImage:files.base64};
+            
+            await fetch("https://adgrecruitments.herokuapp.com/admin/technical/add-question", {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmMyNmI1NTNiNzgwMTE4N2IyZWE4ZTgiLCJpYXQiOjE2MDY3NjAwMTl9.DB2DxgaWierOYKZ4EJX44R9NXrEE5JwT0c2PaHSJAk4",
+                },
+                body: JSON.stringify(questionObject)
+            })
+            .then(function (response) {
+                // console.log(questionObject);
+                // console.log(response);
+                return response.json();
+                // if(response.status === 200)
+                //     return response.json();
+                // else
+                //     throw Error(response.statusText);
+            }).then(data => {
+                // console.log(data);
+            }).catch(error => {
+                // console.log(error);
+                alert("Error: ", error);
+            })
+
+            // console.log(techQuestions);
             setCorrectOption("");
-            setInputText("");
+            setQuestionDescription("");
             setOptions({});
             setFiles({});
             index=0;
+            optionNo=0;
         }
         function deleteTechQuestion(id){
             setTechQuestions((prevQ)=>{
@@ -91,7 +122,7 @@ const TechQuestions = (props)=>{
             <button type="button" className={classes.addBtn} onClick={multipleFunctions}>Add Question</button>
             </div>
             <Modal show={showModal} onHide={hideModal} genId={generateId} selected={props.selectedValue} 
-            inputText={inputValue} inputYear={yearValue} text={inputText} optionText={inputOption}
+            setQuestionDescription={inputValue} inputYear={yearValue} questionDescription={questionDescription} optionText={inputOption}
             addQuestion={addTechQuestion} id={questionid} 
             addOption={addOption} inputOption={optionValue} inputOptionVal={inputOption} options={options} 
             correctOption={correctOption} getCorrectOption={getCorrectOption}

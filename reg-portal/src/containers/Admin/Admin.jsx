@@ -4,12 +4,21 @@ import TechQuestions from '../../components/AdminQuestions/Questions/TechnicalQu
 import DesignQuestions from '../../components/AdminQuestions/Questions/DesignQuestions';
 import MgmtQuestions from '../../components/AdminQuestions/Questions/MgmtQuestions';
 import classes from './Admin.module.css';
+import { Redirect } from "react-router-dom";
 
 const Admin = (props)=>{
     const [checkVal,setCheckVal]=useState("");
     function getSelectedVal(event){
         setCheckVal(event.target.value);
-    } 
+    }
+
+    const isLoggedIn = !!sessionStorage.getItem("admin");
+    if(!isLoggedIn) {
+        return(
+            <Redirect to="/admin-login" />
+        )
+    }
+    
     return(
     <Background>
         <div>

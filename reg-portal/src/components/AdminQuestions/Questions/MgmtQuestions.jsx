@@ -4,11 +4,11 @@ import Modal from '../Modal/Modal';
 import classes from "./Questions.module.css";
 
 const MgmtQuestions = (props)=>{
-    const [inputText,setInputText]=useState("");
-    let inputValue = (event)=>{ setInputText(event.target.value) }
+    const [questionDescription,setQuestionDescription]=useState("");
+    let inputValue = (event)=>{ setQuestionDescription(event.target.value) }
 
-    const [selectYear,setSelectYear]=useState(1);
-    let yearValue = (event) =>{ setSelectYear(event.target.value) }
+    const [yearofstudy,setYearofstudy]=useState(1);
+    let yearValue = (event) =>{ setYearofstudy(event.target.value) }
 
     const [files, setFiles] = useState({});
         let getFile = (file)=>{ setFiles(file) }
@@ -21,12 +21,34 @@ const MgmtQuestions = (props)=>{
         //     file:""       
         // }
     ]);
-    function addMgmtQuestion(){
+    async function addMgmtQuestion(){
         setMgmtQuestions(prevQ=>{
-            return [...prevQ,{id:uuid(),questionDescription:inputText,yearofstudy:selectYear,file:files}]
+            return [...prevQ,{id:uuid(),questionDescription:questionDescription,yearofstudy:yearofstudy,file:files.base64}]
         });
+
+        const questionObject = {description:questionDescription, questionImage:files.base64};
+
+        await fetch("https://adgrecruitments.herokuapp.com/admin/management/add-question", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmMyNmI1NTNiNzgwMTE4N2IyZWE4ZTgiLCJpYXQiOjE2MDY3NjAwMTl9.DB2DxgaWierOYKZ4EJX44R9NXrEE5JwT0c2PaHSJAk4",
+            },
+            body: JSON.stringify(questionObject)
+        })
+        .then(function(response) {
+            // console.log(questionObject);
+            // console.log(response);
+            return response.json();
+        }).then(function(data) {
+            // console.log(data);
+        }).catch(error => {
+            // console.log(error)
+            alert("Error: ", error);
+        })
+
         setFiles({});
-        setInputText("");
+        setQuestionDescription("");
     }
     function deleteMgmtQuestion(id){
         setMgmtQuestions((prevQ)=>{
@@ -46,8 +68,8 @@ const MgmtQuestions = (props)=>{
             <h2>Questionare:</h2>
             <button type="button" className={classes.addBtn} onClick={showModal1}>Add Question</button>
             </div>
-            <Modal show={showModal} onHide={hideModal} text={inputText} selected={props.selectedValue} 
-            inputText={inputValue} inputYear={yearValue} 
+            <Modal show={showModal} onHide={hideModal} questionDescription={questionDescription} selected={props.selectedValue} 
+            setQuestionDescription={inputValue} inputYear={yearValue} 
             addQuestion={addMgmtQuestion} getFile={getFile}/>
                 {mgmtQuestions.map((question,index)=>(
                     <div className={classes.questions} key={index}>
