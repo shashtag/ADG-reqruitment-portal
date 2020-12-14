@@ -44,7 +44,7 @@ export class Background extends Component {
             <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
             <div className='flex'></div>
             {this.state.data ? (
-              <div className="usr-det">{this.state.data.userDetails.name}</div>
+              <div className='usr-det'>{this.state.data.userDetails.name}</div>
             ) : null}
           </div>
           <div className='container'>
