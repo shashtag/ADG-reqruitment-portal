@@ -4,7 +4,7 @@ import classes from "./styles.module.css";
 import Background from "../../../hoc/Background/Background";
 
 const DomainPage = (props) => {
-  const [checkVal, setCheckVal] = useState("");
+  const [checkVal, setCheckVal] = useState("technical");
   function getSelectedVal(event) {
     setCheckVal(event.target.value);
   }
