@@ -38,6 +38,9 @@
 .flex {
   flex: 1;
 }
+.usr-det {
+  color: white;
+}
 @media (min-width: 576px) {
   #adglogo-cont {
     padding-top: 32px;
