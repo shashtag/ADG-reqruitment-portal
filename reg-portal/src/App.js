@@ -6,7 +6,6 @@ import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
 import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import { Route, withRouter } from "react-router-dom";
 import Quiz from "./components/Quiz/Quiz";
-import Admin from "./containers/Admin/Admin";
 
 import React, { Component } from "react";
 
@@ -33,7 +32,6 @@ export class App extends Component {
         <Route path='/selection' component={DomainPage} />
         <Route path='/instructions' component={Instructions} />
         <Route path='/quiz' component={Quiz} />
-        <Route path='/admin' component={Admin} />
       </div>
     );
   }

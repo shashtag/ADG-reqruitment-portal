@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Quiz.css";
-import Timer from './Timer';
+import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
+import axios from "axios";
 
 function Quiz(props) {
+  const [error, setError] = useState(null);
+  const [quest, setquest] = useState(null);
+  let [time, setTime] = useState(600);
+
   const questions = [
     {
       questionText: "Which of the following is not a programming language?",
@@ -46,14 +51,31 @@ function Quiz(props) {
       ],
     },
   ];
-  let [time, setTime] = useState(600);
   useEffect(() => {
-    if(time>0){
-    setTimeout(() => {
-      setTime(--time);
-    }, 1000);
-  }
+    var config = {
+      method: "get",
+      url: `https://adgrecruitments.herokuapp.com/questions/${props.location.param}/get-quiz-questions/1/web`,
+      headers: {
+        "auth-token": localStorage.getItem("Token"),
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        setquest(response.data);
+      })
+      .catch(function (error) {
+        setError(error);
+      });
+  }, [props.location.param]);
+  useEffect(() => {
+    if (time > 0) {
+      setTimeout(() => {
+        setTime(--time);
+      }, 1000);
+    }
   });
+
   let [currentQuestion, setCurrentQuestion] = useState(0);
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
@@ -70,43 +92,52 @@ function Quiz(props) {
       setShowScore(true);
     }
   };
-  return (
-    <Background>
-      <div className='app'>
-        {showScore ? (
-          <div className='score-section'>
-            You scored {score} out of {questions.length}
-          </div>
-        ) : (
-          <>
-            <div className='question-section'>
-              <div className='question-count'>
-                <span>Question {currentQuestion + 1}</span>/{questions.length}
-              </div>
-              <div className='question-text'>
-                {questions[currentQuestion].questionText}
-              </div>
+  if (error) {
+    return <Background>{error.message}</Background>;
+  } else if (quest) {
+    return (
+      <Background>
+        <div className='app'>
+          {showScore ? (
+            <div className='score-section'>
+              You scored {score} out of {questions.length}
             </div>
-            <div className='answer-section'>
-              {questions[currentQuestion].answerOptions.map((answerOption) => (
-                <button className="options"
-                  onClick={() =>
-                    handleAnswerOptionClick(answerOption.isCorrect)
-                  }>
-                  {answerOption.answerText}
-                </button>
-              ))}
-              <div className="btn-bottom">
+          ) : (
+            <>
+              <div className='question-section'>
+                <div className='question-count'>
+                  <span>Question {currentQuestion + 1}</span>/{questions.length}
+                </div>
+                <div className='question-text'>
+                  {questions[currentQuestion].questionText}
+                </div>
+              </div>
+              <div className='answer-section'>
+                {questions[currentQuestion].answerOptions.map(
+                  (answerOption) => (
+                    <button
+                      className='options'
+                      onClick={() =>
+                        handleAnswerOptionClick(answerOption.isCorrect)
+                      }>
+                      {answerOption.answerText}
+                    </button>
+                  ),
+                )}
+                <div className='btn-bottom'>
                   <button>Previous</button>
-                  <Timer time={time}/>
+                  <Timer time={time} />
                   <button>Next</button>
                 </div>
-            </div>
-          </>
-        )}
-      </div>
-    </Background>
-  );
-};
+              </div>
+            </>
+          )}
+        </div>
+      </Background>
+    );
+  } else {
+    return <Background>loading...</Background>;
+  }
+}
 
 export default Quiz;
