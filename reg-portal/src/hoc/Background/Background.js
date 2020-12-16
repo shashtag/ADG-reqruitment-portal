@@ -1,8 +1,6 @@
 import "./Background.css";
 import adglogo from "../../assets/img/adglogo.png";
 import adglogo2 from "../../assets/img/adglogo2.png";
-import oval from "../../assets/img/oval.png";
-import pic from "../../assets/img/pic.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
@@ -47,7 +45,9 @@ export class Background extends Component {
             <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
             <div className='flex'></div>
             {this.state.data ? (
+                <>
               <div className='usr-det'>
+<<<<<<< HEAD
                 <span id='sp'>Logged in as</span>
                 <br />
                 {this.state.data.userDetails.name}
@@ -59,6 +59,16 @@ export class Background extends Component {
               <img id='userpic' src={userpic} alt='User pic' />
             </div>
             {/*</div>*/}
+=======
+                <span id='sp'>
+                  Logged in as</span><br/>
+                  {this.state.data.userDetails.name}</div>
+                <div>
+                  <img id='userpic' src={userpic} alt='User pic'/>
+                </div>
+              </>
+            ) : null}
+>>>>>>> 8cd3d7fa7ef6e520b84bb566bb149232f15f055d
           </div>
           <div className='container'>
             <div id='cont-box'>{this.props.children}</div>
