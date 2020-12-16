@@ -4,7 +4,10 @@ import classes from "./styles.module.css";
 import Background from "../../../hoc/Background/Background";
 
 const DomainPage = (props) => {
-  const [checkVal, setCheckVal] = useState("technical");
+  if (!sessionStorage.getItem("Token")) {
+    props.history.replace("/");
+  }
+  const [checkVal, setCheckVal] = useState("Technical");
   function getSelectedVal(event) {
     setCheckVal(event.target.value);
   }

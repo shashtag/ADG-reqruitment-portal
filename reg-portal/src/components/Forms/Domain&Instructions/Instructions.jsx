@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Background from "../../../hoc/Background/Background";
-import classes from "./styles.module.css";
 
 const Instructions = (props) => {
+  if (!sessionStorage.getItem("Token")) {
+    props.history.replace("/");
+  }
   const linkTo = {
     pathname: "/quiz",
     param: props.location.param,

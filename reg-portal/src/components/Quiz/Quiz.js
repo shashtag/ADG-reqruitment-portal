@@ -6,6 +6,9 @@ import Background from "../../hoc/Background/Background";
 import axios from "axios";
 
 function Quiz(props) {
+  if (!sessionStorage.getItem("Token")) {
+    props.history.replace("/");
+  }
   console.log(props);
   const [error, setError] = useState(null);
   const [quest, setquest] = useState(null);
@@ -58,7 +61,7 @@ function Quiz(props) {
       method: "get",
       url: `https://adgrecruitments.herokuapp.com/questions/${domain}/get-quiz-questions/1/web`,
       headers: {
-        "auth-token": localStorage.getItem("Token"),
+        "auth-token": sessionStorage.getItem("Token"),
       },
     };
 

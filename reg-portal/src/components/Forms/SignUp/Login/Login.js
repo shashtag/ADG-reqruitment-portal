@@ -27,7 +27,7 @@ export class Login extends Component {
 
     axios(config)
       .then(function (response) {
-        localStorage.setItem("Token", response.data.Token);
+        sessionStorage.setItem("Token", response.data.Token);
         console.log(response.data);
         a.history.push("/selection");
       })
@@ -35,11 +35,11 @@ export class Login extends Component {
         console.log(error);
       });
   };
-  // componentDidMount() {
-  //   if (localStorage.getItem("Token")) {
-  //     this.props.history.replace("/selection");
-  //   }
-  // }
+  componentDidMount() {
+    if (sessionStorage.getItem("Token")) {
+      this.props.history.replace("/selection");
+    }
+  }
   render() {
     return (
       <Background>

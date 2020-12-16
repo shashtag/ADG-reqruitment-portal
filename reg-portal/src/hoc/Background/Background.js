@@ -7,7 +7,7 @@ import axios from "axios";
 
 export class Background extends Component {
   state = {
-    Token: localStorage.getItem("Token"),
+    Token: sessionStorage.getItem("Token"),
     data: false,
   };
   constructor(props) {
@@ -19,7 +19,7 @@ export class Background extends Component {
     if (this.state.Token) {
       var config = {
         headers: {
-          "auth-token": localStorage.getItem("Token"),
+          "auth-token": sessionStorage.getItem("Token"),
         },
       };
       axios

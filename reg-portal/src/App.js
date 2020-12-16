@@ -22,7 +22,7 @@ import React, { Component } from "react";
 // });
 export class App extends Component {
   state = {
-    Token: localStorage.getItem("Token"),
+    Token: sessionStorage.getItem("Token"),
   };
   // componentDidMount() {
   //   if (this.state.Token) {
