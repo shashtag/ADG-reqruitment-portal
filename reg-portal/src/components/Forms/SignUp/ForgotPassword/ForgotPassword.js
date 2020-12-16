@@ -17,7 +17,7 @@ export class SignUp extends Component {
     });
     const config = {
       method: "post",
-      url: "https://adgrecruitments.herokuapp.com/user/forgotPassword",
+      url: "https://adgrecruitments.herokuapp.com/user/resetpassword",
       headers: {
         "Content-Type": "application/json",
       },
@@ -37,14 +37,14 @@ export class SignUp extends Component {
   };
   formSubmitHandler = (e, a) => {
     const data = JSON.stringify({
-      email: this.state.email,
+      // email: this.state.email,
       otp: this.state.otp,
-      newPassword: this.state.newPassword,
-      confirmPassword: this.state.confirmPassword,
+      password: this.state.newPassword,
+      // confirmPassword: this.state.confirmPassword,
     });
     const config = {
-      method: "post",
-      url: "https://adgrecruitments.herokuapp.com/user/changePassword",
+      method: "PUT",
+      url: "https://adgrecruitments.herokuapp.com/user/updatepassword",
       headers: {
         "Content-Type": "application/json",
       },
@@ -82,7 +82,10 @@ export class SignUp extends Component {
               </div>
               <div
                 className="sub-btn"
-                onClick={this.forgotPasswordClickHandler}>
+                onClick={(event) => {
+                  event.preventDefault();
+                  this.forgotPasswordClickHandler();
+                }}>
                 Send OTP
               </div>
             </div>
@@ -128,6 +131,7 @@ export class SignUp extends Component {
               <div
                 className="sub-btn"
                 onClick={(event) => {
+                  event.preventDefault();
                   this.formSubmitHandler(event, this.props);
                 }}>
                 Change Password

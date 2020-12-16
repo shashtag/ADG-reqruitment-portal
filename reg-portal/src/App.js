@@ -6,6 +6,7 @@ import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
 import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import { Route, withRouter } from "react-router-dom";
 import Quiz from "./components/Quiz/Quiz";
+import ForgotPassword from "./components/Forms/SignUp/ForgotPassword/ForgotPassword";
 
 import React, { Component } from "react";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -32,19 +33,20 @@ export class App extends Component {
   render() {
     return (
       // <ThemeProvider theme={theme}>
-        <div className='App'>
-          {/* {this.state.Token ? (
+      <div className="App">
+        {/* {this.state.Token ? (
             <Route path='/' exact component={DomainPage} />
           ) : ( */}
-          <Route path='/' exact component={Landing} />
-          {/* )} */}
+        <Route path="/" exact component={Landing} />
+        {/* )} */}
 
-          <Route path='/signup' component={SignUp} />
-          <Route path='/login' component={Login} />
-          <Route path='/selection' component={DomainPage} />
-          <Route path='/instructions' component={Instructions} />
-          <Route path='/quiz' component={Quiz} />
-        </div>
+        <Route path="/signup" component={SignUp} />
+        <Route path="/login" component={Login} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/selection" component={DomainPage} />
+        <Route path="/instructions" component={Instructions} />
+        <Route path="/quiz" component={Quiz} />
+      </div>
       // </ThemeProvider>
     );
   }
