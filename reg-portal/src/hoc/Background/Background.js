@@ -47,19 +47,6 @@ export class Background extends Component {
             {this.state.data ? (
                 <>
               <div className='usr-det'>
-<<<<<<< HEAD
-                <span id='sp'>Logged in as</span>
-                <br />
-                {this.state.data.userDetails.name}
-              </div>
-            ) : null}
-            <div>
-              {/*<img id='oval' src={oval} alt='oval'/>*/}
-              {/*<div>*/}
-              <img id='userpic' src={userpic} alt='User pic' />
-            </div>
-            {/*</div>*/}
-=======
                 <span id='sp'>
                   Logged in as</span><br/>
                   {this.state.data.userDetails.name}</div>
@@ -68,7 +55,6 @@ export class Background extends Component {
                 </div>
               </>
             ) : null}
->>>>>>> 8cd3d7fa7ef6e520b84bb566bb149232f15f055d
           </div>
           <div className='container'>
             <div id='cont-box'>{this.props.children}</div>
