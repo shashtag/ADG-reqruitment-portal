@@ -6,6 +6,9 @@ const Instructions = (props) => {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
+  if (!props.location.param) {
+    props.history.replace("/selection");
+  }
   const linkTo = {
     pathname: "/quiz",
     param: props.location.param,
