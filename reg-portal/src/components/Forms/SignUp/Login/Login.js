@@ -27,7 +27,7 @@ export class Login extends Component {
 
     axios(config)
       .then(function (response) {
-        localStorage.setItem("Token", response.data.Token);
+        sessionStorage.setItem("Token", response.data.Token);
         console.log(response.data);
         a.history.push("/selection");
       })
@@ -35,6 +35,11 @@ export class Login extends Component {
         console.log(error);
       });
   };
+  componentDidMount() {
+    if (sessionStorage.getItem("Token")) {
+      this.props.history.replace("/selection");
+    }
+  }
   render() {
     return (
       <Background>
@@ -61,14 +66,13 @@ export class Login extends Component {
               this.inputChangeHandler(event, "password");
             }}
           />
-          <div
-            className='btn btn-blue'
-            style={{ width: "94%" }}
-            onClick={(event) => {
-              this.formSubmitHandler(event, this.props);
-            }}>
-            Submit
-          </div>
+        </div>
+        <div
+          className='btn btn-blue lgn-btn'
+          onClick={(event) => {
+            this.formSubmitHandler(event, this.props);
+          }}>
+          Submit
         </div>
       </Background>
     );

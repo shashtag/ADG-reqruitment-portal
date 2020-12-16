@@ -2,7 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Background from "../../../hoc/Background/Background";
 
-const Landing = () => {
+const Landing = (props) => {
+  if (sessionStorage.getItem("Token")) {
+    props.history.replace("/selection");
+  }
   return (
     <Background>
       <div className='heading'>Recruitment portal</div>

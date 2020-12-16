@@ -8,10 +8,21 @@ import { Route, withRouter } from "react-router-dom";
 import Quiz from "./components/Quiz/Quiz";
 
 import React, { Component } from "react";
+// import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
+// const theme = createMuiTheme({
+//   typography: {
+//     fontFamily: [
+//       "SF Pro Display",
+//       "-apple-system",
+//       "BlinkMacSystemFont",
+//       "sans-serif",
+//     ].join(","),
+//   },
+// });
 export class App extends Component {
   state = {
-    Token: localStorage.getItem("Token"),
+    Token: sessionStorage.getItem("Token"),
   };
   // componentDidMount() {
   //   if (this.state.Token) {
@@ -20,19 +31,21 @@ export class App extends Component {
   // }
   render() {
     return (
-      <div className='App'>
-        {this.state.Token ? (
-          <Route path='/' exact component={DomainPage} />
-        ) : (
+      // <ThemeProvider theme={theme}>
+        <div className='App'>
+          {/* {this.state.Token ? (
+            <Route path='/' exact component={DomainPage} />
+          ) : ( */}
           <Route path='/' exact component={Landing} />
-        )}
+          {/* )} */}
 
-        <Route path='/signup' component={SignUp} />
-        <Route path='/login' component={Login} />
-        <Route path='/selection' component={DomainPage} />
-        <Route path='/instructions' component={Instructions} />
-        <Route path='/quiz' component={Quiz} />
-      </div>
+          <Route path='/signup' component={SignUp} />
+          <Route path='/login' component={Login} />
+          <Route path='/selection' component={DomainPage} />
+          <Route path='/instructions' component={Instructions} />
+          <Route path='/quiz' component={Quiz} />
+        </div>
+      // </ThemeProvider>
     );
   }
 }

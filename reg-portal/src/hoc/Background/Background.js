@@ -1,12 +1,13 @@
 import "./Background.css";
 import adglogo from "../../assets/img/adglogo.png";
 import adglogo2 from "../../assets/img/adglogo2.png";
+import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
 
 export class Background extends Component {
   state = {
-    Token: localStorage.getItem("Token"),
+    Token: sessionStorage.getItem("Token"),
     data: false,
   };
   constructor(props) {
@@ -18,7 +19,7 @@ export class Background extends Component {
     if (this.state.Token) {
       var config = {
         headers: {
-          "auth-token": localStorage.getItem("Token"),
+          "auth-token": sessionStorage.getItem("Token"),
         },
       };
       axios
@@ -44,7 +45,15 @@ export class Background extends Component {
             <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
             <div className='flex'></div>
             {this.state.data ? (
-              <div className='usr-det'>{this.state.data.userDetails.name}</div>
+                <>
+              <div className='usr-det'>
+                <span id='sp'>
+                  Logged in as</span><br/>
+                  {this.state.data.userDetails.name}</div>
+                <div>
+                  <img id='userpic' src={userpic} alt='User pic'/>
+                </div>
+              </>
             ) : null}
           </div>
           <div className='container'>
