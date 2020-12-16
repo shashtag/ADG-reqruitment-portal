@@ -25,9 +25,16 @@
   display: flex;
 }
 #adglogo2 {
-  width: 44%;
+  height: 58px;
 }
-
+#userpic {
+  padding: 0 10px;
+  width: 60px;
+}
+#sp {
+  font-weight: 200;
+  font-size: 11px;
+}
 #cont-box {
   background-color: #191919;
   margin: auto;
@@ -39,7 +46,10 @@
   flex: 1;
 }
 .usr-det {
+  text-align: right;
+  font-size: 18px;
   color: white;
+  /*padding-top: 25px;*/
 }
 @media (min-width: 576px) {
   #adglogo-cont {
@@ -273,4 +283,5 @@ label {
   border-radius: 10px;
   margin: 1%;
   cursor: pointer;
+  margin-bottom: 10px;
 }

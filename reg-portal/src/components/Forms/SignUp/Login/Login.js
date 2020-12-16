@@ -35,11 +35,11 @@ export class Login extends Component {
         console.log(error);
       });
   };
-  componentDidMount() {
-    if (localStorage.getItem("Token")) {
-      this.props.history.replace("/selection");
-    }
-  }
+  // componentDidMount() {
+  //   if (localStorage.getItem("Token")) {
+  //     this.props.history.replace("/selection");
+  //   }
+  // }
   render() {
     return (
       <Background>
