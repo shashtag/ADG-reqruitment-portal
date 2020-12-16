@@ -32,6 +32,7 @@ export class Background extends Component {
         });
     }
   }
+  
 
   render() {
     let background;

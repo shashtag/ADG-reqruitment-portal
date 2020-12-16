@@ -35,6 +35,11 @@ export class Login extends Component {
         console.log(error);
       });
   };
+  componentDidMount() {
+    if (localStorage.getItem("Token")) {
+      this.props.history.replace("/selection");
+    }
+  }
   render() {
     return (
       <Background>
@@ -64,7 +69,6 @@ export class Login extends Component {
         </div>
         <div
           className='btn btn-blue lgn-btn'
-          
           onClick={(event) => {
             this.formSubmitHandler(event, this.props);
           }}>
