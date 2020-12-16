@@ -6,9 +6,11 @@ import Background from "../../hoc/Background/Background";
 import axios from "axios";
 
 function Quiz(props) {
+  console.log(props);
   const [error, setError] = useState(null);
   const [quest, setquest] = useState(null);
   let [time, setTime] = useState(600);
+  let domain = props.location.param.toLowerCase();
 
   const questions = [
     {
@@ -54,7 +56,7 @@ function Quiz(props) {
   useEffect(() => {
     var config = {
       method: "get",
-      url: `https://adgrecruitments.herokuapp.com/questions/${props.location.param}/get-quiz-questions/1/web`,
+      url: `https://adgrecruitments.herokuapp.com/questions/${domain}/get-quiz-questions/1/web`,
       headers: {
         "auth-token": localStorage.getItem("Token"),
       },

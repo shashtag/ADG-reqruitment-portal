@@ -61,14 +61,11 @@
     height: 160vh;
   }
   #adglogo-cont {
-    padding-top: 44px;
-    padding-bottom: 64px;
+    padding-bottom: 44px;
   }
-
   #cont-box {
     width: 646px;
     border-radius: 28px;
-    padding: 36px 44px;
   }
 }
 /* landing */
@@ -118,20 +115,16 @@
 .btn-blue {
   background: #027aff;
   border: transparent 2px solid;
-  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
 }
-.btn-blue:hover {
-  background: transparent;
-  border: #027aff 2px solid;
-}
+
 .btn-trans {
   border: #027aff 2px solid;
-  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
 }
-.btn-trans:hover {
-  background: #027aff;
-  border: transparent 2px solid;
-}
+
 @media (min-width: 576px) {
   .heading {
     font-size: 44px;
@@ -155,21 +148,22 @@
 @media (min-width: 768px) {
   .heading {
     font-size: 48px;
-    margin-bottom: 24px;
+    margin-bottom: 2vh;
   }
   .sub-heading {
     font-size: 24px;
-    margin-bottom: 44px;
+    margin-bottom: 2.5vh;
   }
   .heading2 {
     font-size: 36px;
-    margin-bottom: 44px;
+    margin-bottom: 3.5vh;
   }
   .btn {
+    cursor: pointer;
     border-radius: 15px;
     padding: 16px 16px;
     font-size: 36px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     width: 80%;
   }
 }
@@ -203,6 +197,7 @@ label {
   margin-bottom: 1.5vh;
 }
 .sub-btn {
+  cursor: pointer;
   display: block;
   margin: auto;
   padding: 16px;
@@ -216,6 +211,9 @@ label {
   background: #027aff;
   color: #ffffff;
   margin-bottom: 1.7vh;
+}
+.lgn-btn {
+  width: calc(100% - 32px);
 }
 @media (min-width: 576px) {
   .input-grp {
@@ -243,25 +241,36 @@ label {
 }
 @media (min-width: 768px) {
   .input-grp {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
   .input {
     border-radius: 5px;
     width: 100%;
     padding: 16px 14px;
-
     font-size: 14px;
   }
   label {
     font-size: 18px;
     line-height: 1.2;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
   .sub-btn {
     padding: 16px;
     border-radius: 10px;
     font-size: 36px;
     line-height: 1.2;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
+}
+/* domain page */
+.rdio-grp {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  padding: 8px 10px;
+  align-items: center;
+  border: 1px solid grey;
+  border-radius: 10px;
+  margin: 1%;
+  cursor: pointer;
 }

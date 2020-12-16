@@ -10,29 +10,29 @@ const Instructions = (props) => {
   };
   return (
     <Background>
-      <div className={classes.container}>
-        <h1>{props.location.param} Quiz</h1>
-        <p>Please read the instructions carefully before attempting the quiz</p>
-        <h1>Instructions</h1>
-        <ul>
-          <li>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-            recusandae doloribus deleniti quasi repellat ipsum, amet quidem in
-          </li>
-          <li>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ex
-            quos illum reprehenderit quo dignissimos dolores error? Deleniti quo
-            voluptas
-          </li>
-          <li>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. A, itaque
-            unde aliquid nulla{" "}
-          </li>
-        </ul>
-        <Link to={linkTo} className={classes.button}>
-          Begin
-        </Link>
+      <div className='heading'>{props.location.param} Quiz</div>
+      <div className='sub-heading'>
+        Please read the instructions carefully before attempting the quiz
       </div>
+      <div className='heading2'>Instructions</div>
+      <ul style={{ textAlign: "left" }}>
+        <li>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+          recusandae doloribus deleniti quasi repellat ipsum, amet quidem in
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ex
+          quos illum reprehenderit quo dignissimos dolores error? Deleniti quo
+          voluptas
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, itaque
+          unde aliquid nulla{" "}
+        </li>
+      </ul>
+      <Link to={linkTo} className='btn btn-blue lgn-btn'>
+        Begin
+      </Link>
     </Background>
   );
 };

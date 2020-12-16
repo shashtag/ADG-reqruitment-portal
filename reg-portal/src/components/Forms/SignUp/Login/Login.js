@@ -61,14 +61,14 @@ export class Login extends Component {
               this.inputChangeHandler(event, "password");
             }}
           />
-          <div
-            className='btn btn-blue'
-            style={{ width: "94%" }}
-            onClick={(event) => {
-              this.formSubmitHandler(event, this.props);
-            }}>
-            Submit
-          </div>
+        </div>
+        <div
+          className='btn btn-blue lgn-btn'
+          
+          onClick={(event) => {
+            this.formSubmitHandler(event, this.props);
+          }}>
+          Submit
         </div>
       </Background>
     );

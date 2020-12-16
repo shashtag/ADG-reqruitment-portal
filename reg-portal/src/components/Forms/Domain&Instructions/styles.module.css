@@ -1,56 +1,7 @@
-.container{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.input:checked + .label {
+  color: dodgerblue;
 }
-.inputBox{
-    display:flex;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    padding:8px 10px;
-    align-items: center;
-    width:40%;
-    border:1px solid grey;
-    border-radius: 10px;
-    margin:1%;
+.label {
+  display: inline-block;
+  width: 100%;
 }
-.inputBox:hover{
-    cursor: pointer;
-    border:1px solid dodgerblue;
-    transform: scale(1.1);
-}
-input[type="radio"]{
-    font-size: 30rem;
-}
-.label{
-    cursor: pointer;
-    left:0;
-    padding:1px 10px;
-    font-size:1.7rem;
-    border-radius:15%;
-}
-.input:checked + .label{
-    color:dodgerblue;    
-}
-.button{
-    cursor:pointer;
-    width:45%;
-    height: 50px;
-    background: #027AFF;
-    color:white;
-    outline:none;
-    border:none;
-    border-radius: 10px;
-    font-size:1.25rem;
-    margin:3px;
-    text-decoration: none;
-}
-.button:hover{
-    transform: scale(0.85);
-}
-li{
-    text-align: left;
-}
-
-

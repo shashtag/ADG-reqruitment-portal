@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Background from "../../../hoc/Background/Background";
 
+
 const Landing = () => {
   return (
     <Background>

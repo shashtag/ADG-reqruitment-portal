@@ -14,10 +14,10 @@ const DomainPage = (props) => {
   };
   return (
     <Background>
-      <h1>Choose Domain</h1>
-      <p>Choose a domain to start the quiz</p>
-      <div className={classes.container} onChange={getSelectedVal}>
-        <div className={classes.inputBox}>
+      <div className='heading'>Choose Domain</div>
+      <div className='sub-heading'>Choose a domain to start the quiz</div>
+      <div onChange={getSelectedVal}>
+        <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
             value='Technical'
@@ -28,7 +28,7 @@ const DomainPage = (props) => {
             Technical
           </label>
         </div>
-        <div className={classes.inputBox}>
+        <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
             value='Design'
@@ -39,7 +39,7 @@ const DomainPage = (props) => {
             Design
           </label>
         </div>
-        <div className={classes.inputBox}>
+        <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
             value='Management'
@@ -50,7 +50,7 @@ const DomainPage = (props) => {
             Management
           </label>
         </div>
-        <Link to={linkTo} className={classes.button}>
+        <Link to={linkTo} className='btn btn-blue lgn-btn'>
           Start Quiz
         </Link>
       </div>
