@@ -4,6 +4,7 @@ import adglogo2 from "../../assets/img/adglogo2.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
+import Footer from "../../components/Footer/Footer";
 
 export class Background extends Component {
   state = {
@@ -41,41 +42,44 @@ export class Background extends Component {
     if (this.state.Token) {
       background = (
         <div>
-          <div id='adglogo-cont2'>
-            <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
-            <div className='flex'></div>
+          <div id="adglogo-cont2">
+            <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
+            <div className="flex"></div>
             {this.state.data ? (
-                <>
-              <div className='usr-det'>
-                <span id='sp'>
-                  Logged in as</span><br/>
-                  {this.state.data.userDetails.name}</div>
+              <>
+                <div className="usr-det">
+                  <span id="sp">Logged in as</span>
+                  <br />
+                  {this.state.data.userDetails.name}
+                </div>
                 <div>
-                  <img id='userpic' src={userpic} alt='User pic'/>
+                  <img id="userpic" src={userpic} alt="User pic" />
                 </div>
               </>
             ) : null}
           </div>
-          <div className='container'>
-            <div id='cont-box'>{this.props.children}</div>
+          <div className="container">
+            <div id="cont-box">{this.props.children}</div>
+            <Footer />
           </div>
         </div>
       );
     } else {
       background = (
         <div>
-          <div className='container'>
-            <div id='adglogo-cont'>
-              <img id='adglogo' src={adglogo} alt='ADG Logo' />
+          <div className="container">
+            <div id="adglogo-cont">
+              <img id="adglogo" src={adglogo} alt="ADG Logo" />
             </div>
-            <div id='cont-box'>{this.props.children}</div>
+            <div id="cont-box">{this.props.children}</div>
+            <Footer />
           </div>
         </div>
       );
     }
     return (
       <div>
-        <div id='back-img' />
+        <div id="back-img" />
         {background}
       </div>
     );
