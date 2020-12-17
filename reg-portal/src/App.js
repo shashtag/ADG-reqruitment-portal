@@ -33,19 +33,19 @@ export class App extends Component {
   render() {
     return (
       // <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className='App'>
         {/* {this.state.Token ? (
             <Route path='/' exact component={DomainPage} />
           ) : ( */}
-        <Route path="/" exact component={Landing} />
+        <Route path='/' exact component={Landing} />
         {/* )} */}
 
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={Login} />
-        <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/selection" component={DomainPage} />
-        <Route path="/instructions" component={Instructions} />
-        <Route path="/quiz" component={Quiz} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/login' component={Login} />
+        <Route path='/forgotPassword' component={ForgotPassword} />
+        <Route path='/selection' component={DomainPage} />
+        <Route path='/instructions' component={Instructions} />
+        <Route path='/quiz' component={Quiz} />
       </div>
       // </ThemeProvider>
     );

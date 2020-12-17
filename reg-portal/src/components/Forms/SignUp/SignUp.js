@@ -56,7 +56,7 @@ export class SignUp extends Component {
   render() {
     return (
       <Background>
-        <form>
+        <form autofill='off'>
           {this.state.firstPage ? (
             <div>
               <div className='heading'>Sign Up</div>
