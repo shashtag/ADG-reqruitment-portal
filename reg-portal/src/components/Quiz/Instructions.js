@@ -17,7 +17,7 @@ const Instructions = () => {
           <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
           <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</li>
         </ul>
-        <Link to="/quiz">
+        <Link to="/techQuiz">
           <button className="begin">
             <p>Begin</p>
           </button>

@@ -2,11 +2,12 @@ import "./App.css";
 import Landing from "./components/Forms/Landing/Landing";
 import SignUp from "./components/Forms/SignUp/SignUp";
 import Login from "./components/Forms/SignUp/Login/Login";
-import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
-import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import { Route, withRouter } from "react-router-dom";
 import Quiz from "./components/Quiz/Quiz";
 import ForgotPassword from "./components/Forms/SignUp/ForgotPassword/ForgotPassword";
+import DomainSelection from "./components/Quiz/Domains";
+import Instructions from "./components/Quiz/Instructions";
+import TechQuiz from "./components/Quiz/TechQuiz";
 
 import React, { Component } from "react";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -43,9 +44,11 @@ export class App extends Component {
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/selection" component={DomainPage} />
+        <Route path="/selection" component={DomainSelection} />
         <Route path="/instructions" component={Instructions} />
-        <Route path="/quiz" component={Quiz} />
+        {/* <Route path="/quiz" component={Quiz} /> */}
+        <Route path="/techQuiz" component={TechQuiz} />
+
       </div>
       // </ThemeProvider>
     );
