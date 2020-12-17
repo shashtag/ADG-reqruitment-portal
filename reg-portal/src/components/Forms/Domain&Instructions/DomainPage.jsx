@@ -20,7 +20,13 @@ const DomainPage = (props) => {
     <Background>
       <div className='heading'>Choose Domain</div>
       <div className='sub-heading'>Choose a domain to start the quiz</div>
-      <div onChange={getSelectedVal}>
+      <div
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   justifyContent: "center",
+        // }}
+        onChange={getSelectedVal}>
         <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
@@ -28,8 +34,10 @@ const DomainPage = (props) => {
             name='selection'
             id='technical'
             className={classes.input}></input>
-          <label htmlFor='technical' className={classes.label}>
-            {/* <img src={gear} height='25px' style={{ marginTop: "20px" }} /> */}
+          <label
+            htmlFor='technical'
+            className={`${classes.label} ${classes.tech}`}>
+            {/* <img src={gear} height='25px' style={{verticalAlign: "baseline"}} /> */}
             Technical
           </label>
         </div>

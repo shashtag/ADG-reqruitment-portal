@@ -303,6 +303,8 @@ label {
 }
 /* domain page */
 .rdio-grp {
+  margin: auto;
+  width: 50%;
   display: flex;
   justify-content: space-between;
   flex-direction: row-reverse;
@@ -310,7 +312,6 @@ label {
   align-items: center;
   border: 1px solid grey;
   border-radius: 10px;
-  margin: 1%;
   cursor: pointer;
   margin-bottom: 10px;
 }
