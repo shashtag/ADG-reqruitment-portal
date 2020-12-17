@@ -11,15 +11,100 @@ export class SignUp extends Component {
     phone: "",
     yearofstudy: 1,
     password: "",
+    confirmPass: "",
     github: "",
+    nameError: "",
+    regError: "",
+    emailError: "",
+    passError: "",
+    confirmPassError: "",
+    phoneError: "",
+    gitError: "",
   };
-  createAccountClickHandler = () => {
-    this.setState({ firstPage: false });
+
+  validate = () => {
+    let nameError= "";
+    let regError= "";
+    let passError= "";
+    let confirmPassError= "";
+
+    if(!this.state.name) {
+      nameError= "Name field cannot be left empty";
+    }
+
+    if(!this.state.regno) {
+      regError= "Registration number cannot be left empty";
+    }
+
+    if(!this.state.password) {
+      passError= "Enter Password";
+    }
+
+    else if(this.state.password.length<8) {
+      passError= "Password length must be greater than 8 characters";
+    }
+
+    if(this.state.password && !this.state.confirmPass) {
+      confirmPassError= "Confirm Password";
+    }
+
+    else if(this.state.password != this.state.confirmPass) {
+      confirmPassError= "Password and Confirm Password do not match"
+    }
+
+    if(nameError || regError || passError || confirmPassError) {
+      this.setState({nameError, regError, passError, confirmPassError});
+      return false;
+    }
+
+    return true;
+  }
+
+  validate2 = () => {
+    let emailError= "";
+    let phoneError= "";
+    let gitError= "";
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if(!this.state.email) {
+      emailError= "email field cannot be left empty";
+    }
+
+    else if(!re.test(this.state.email)) {
+      emailError="invalid email";
+    }
+
+    if(!this.state.phone) {
+      phoneError= "Phone number cannot be left empty";
+    }
+
+    if(!this.state.github) {
+      gitError= "Github ID cannot be left empty";
+    }
+
+    if(emailError || phoneError || gitError) {
+      this.setState({emailError, phoneError, gitError});
+    }
+
+    return true;
+  }
+
+  createAccountClickHandler = event => {
+    event.preventDefault();
+    this.validate();
+
+    if(this.validate()) {
+      this.setState({ firstPage: false });
+    }
+
   };
   inputChangeHandler = (e, s) => {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
+
+    this.validate2();
+
     const data = JSON.stringify({
       name: this.state.name,
       regno: this.state.regno,
@@ -72,6 +157,9 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.nameError ? <div className='error'>
+                {this.state.nameError}
+              </div> : null}
               <div className='input-grp'>
                 <label>Registration Number</label>
                 <input
@@ -83,6 +171,9 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.regError ? <div className='error'>
+                {this.state.regError}
+              </div> : null}
               <div className='input-grp'>
                 <label>Password</label>
                 <input
@@ -94,14 +185,23 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.passError? <div className='error'>
+                {this.state.passError}
+              </div> : null}
               <div className='input-grp'>
                 <label>Confirm password</label>
                 <input
                   className='input'
                   type='password'
                   placeholder='Confirm password'
+                  onChange={(event) => {
+                    this.inputChangeHandler(event, "confirmPass");
+                  }}
                 />
               </div>
+              {this.state.confirmPassError ? <div className='error'>
+                {this.state.confirmPassError}
+              </div> : null}
               <div className='sub-btn' onClick={this.createAccountClickHandler}>
                 Create account
               </div>
@@ -120,6 +220,9 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.phoneError ? <div className='error'>
+                {this.state.phoneError}
+              </div> : null}
               <div className='input-grp'>
                 <label>VIT-Email</label>
                 <input
@@ -131,6 +234,9 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.emailError ? <div className='error'>
+                {this.state.emailError}
+              </div> : null}
               <div className='input-grp'>
                 <label>Github</label>
                 <input
@@ -142,6 +248,9 @@ export class SignUp extends Component {
                   }}
                 />
               </div>
+              {this.state.gitError ? <div className='error'>
+                {this.state.gitError}
+              </div> : null}
               <div
                 className='sub-btn'
                 onClick={(event) => {
