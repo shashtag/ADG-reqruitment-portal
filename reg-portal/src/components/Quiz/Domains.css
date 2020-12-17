@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: black;
+  color: white;
+}
+.nav {
+  min-height: 20vh;
+}
+/*.chooseDomain_card 
+{
+    background-color: rgba(145, 136, 136, 0.7);
+    width: 40%;
+    margin: auto;
+    text-align: center;
+    padding: 3%;
+    border-radius: 15px;
+    margin-top:10%;
+}
+*/
+.chooseDomain h4 {
+  font-weight: 200;
+  font-size: 80%;
+  padding: 1%;
+}
+.domains div {
+  background-color: rgb(45, 44, 44, 0.5);
+  width: 40%;
+  margin: auto;
+  border: 1.5px solid #747474;
+  border-radius: 15px;
+  padding: 2%;
+}
+
+.domains div:hover,
+.domains div:active {
+  border: 1.5px solid #027aff;
+  color: #027aff;
+  transform: scale(1.15);
+}
+.domains div label {
+  margin-right: 60px;
+}
+.startButton {
+  width: 20%;
+  margin: auto;
+  background-color: #191919;
+  padding: 2%;
+  border-radius: 15px;
+  border: 1px solid white;
+  color: white;
+}
+.startButton:hover {
+  background-color: #027aff;
+  border: none;
+}
+.startButton p {
+  font-weight: 100;
+  font-size: 16px;
+  color: white;
+}
+.domains div svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+#design {
+  margin-left: 15px;
+}
+#management {
+  margin-left: -25px;
+}
+#technical {
+  margin-left: -2px;
+}
+svg {
+  width: 10px;
+  height: 10px;
+}
+svg:hover {
+  fill: violet;
+}
