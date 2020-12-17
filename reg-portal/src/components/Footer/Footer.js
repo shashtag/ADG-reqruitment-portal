@@ -15,7 +15,7 @@ export default function Footer() {
         <FontAwesomeIcon icon={faLinkedin} size="lg" />
       </div>
       <div className="footer-logo">
-        <img src={ADGLogo} alt="ADG Log" srcset="" />
+        <img src={ADGLogo} alt="ADG Log" />
       </div>
       <div className="footer-contact">
         <div className="contact-us">Contact US</div>
