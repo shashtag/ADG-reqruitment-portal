@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
 import Background from "../../../hoc/Background/Background";
+import gear from "../../../assets/img/settings-gear-63.svg";
 
 const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
@@ -28,6 +29,7 @@ const DomainPage = (props) => {
             id='technical'
             className={classes.input}></input>
           <label htmlFor='technical' className={classes.label}>
+            {/* <img src={gear} height='25px' style={{ marginTop: "20px" }} /> */}
             Technical
           </label>
         </div>

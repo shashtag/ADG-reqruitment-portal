@@ -8,12 +8,12 @@ const Landing = (props) => {
   }
   return (
     <Background>
-      <div className='heading'>Recruitment portal</div>
+      <div className='heading'>Recruitment Portal</div>
       <div className='sub-heading'>
         Welcome to the recruitment portal for<br></br>
-        Apple Developer's Group
+        Apple Developers Group
       </div>
-      <div className='heading2'>Sign up to get started</div>
+      <div className='heading2'>Sign Up to get started</div>
 
       <Link to='/signup' className='btn btn-blue'>
         Sign Up
