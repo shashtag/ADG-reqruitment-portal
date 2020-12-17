@@ -285,3 +285,8 @@ label {
   cursor: pointer;
   margin-bottom: 10px;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+}
