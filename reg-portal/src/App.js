@@ -41,14 +41,6 @@ export class App extends Component {
         <Route path='/' exact component={Landing} />
         {/* )} */}
 
-<<<<<<< HEAD
-        <Route path='/signup' component={SignUp} />
-        <Route path='/login' component={Login} />
-        <Route path='/forgotPassword' component={ForgotPassword} />
-        <Route path='/selection' component={DomainPage} />
-        <Route path='/instructions' component={Instructions} />
-        <Route path='/quiz' component={Quiz} />
-=======
         <Route path="/signup" component={SignUp} />
         <Route path="/login" component={Login} />
         <Route path="/forgotPassword" component={ForgotPassword} />
@@ -57,7 +49,6 @@ export class App extends Component {
         {/* <Route path="/quiz" component={Quiz} /> */}
         <Route path="/techQuiz" component={TechQuiz} />
 
->>>>>>> a7453eafb41349973618f6526fc33adbfef3c9f1
       </div>
       // </ThemeProvider>
     );
