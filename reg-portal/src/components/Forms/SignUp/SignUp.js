@@ -20,6 +20,7 @@ export class SignUp extends Component {
     confirmPassError: "",
     phoneError: "",
     gitError: "",
+    err: "",
   };
 
   validate = () => {
@@ -27,6 +28,8 @@ export class SignUp extends Component {
     let regError= "";
     let passError= "";
     let confirmPassError= "";
+    var regPattern= /^[12][09][A-Z][A-Z][A-Z]\d{4}$/;
+    var regPatternSoph= /^[1][9][A-Z][A-Z][A-Z]\d{4}$/;
 
     if(!this.state.name) {
       nameError= "Name field cannot be left empty";
@@ -34,6 +37,14 @@ export class SignUp extends Component {
 
     if(!this.state.regno) {
       regError= "Registration number cannot be left empty";
+    }
+
+    else if(!regPattern.test(this.state.regno)) {
+      regError= "Enter Valid Registration number";
+    }
+
+    if(regPatternSoph.test(this.state.regno)) {
+      this.state.yearofstudy= 2;
     }
 
     if(!this.state.password) {
@@ -64,7 +75,7 @@ export class SignUp extends Component {
     let emailError= "";
     let phoneError= "";
     let gitError= "";
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var re = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@vitstudent.ac.in$/;
 
     if(!this.state.email) {
       emailError= "email field cannot be left empty";
@@ -78,8 +89,8 @@ export class SignUp extends Component {
       phoneError= "Phone number cannot be left empty";
     }
 
-    if(!this.state.github) {
-      gitError= "Github ID cannot be left empty";
+    if(this.state.yearofstudy===2) {
+      gitError= "Github ID is mandatory for seniors";
     }
 
     if(emailError || phoneError || gitError) {
@@ -105,14 +116,16 @@ export class SignUp extends Component {
 
     this.validate2();
 
+    console.log(this.state.yearofstudy);
+
     const data = JSON.stringify({
       name: this.state.name,
       regno: this.state.regno,
       email: this.state.email,
       phone: this.state.phone,
-      yearofstudy: "1",
+      yearofstudy: this.state.yearofstudy,
       password: this.state.password,
-      // github: this.state.github,
+      githubLink: this.state.github,
     });
     var config = {
       method: "post",
@@ -129,7 +142,8 @@ export class SignUp extends Component {
         a.history.push("/login");
       })
       .catch(function (error) {
-        console.log(error);
+        alert(error.response.data.message);
+        console.log(error.success);
       });
   };
   componentDidMount() {
