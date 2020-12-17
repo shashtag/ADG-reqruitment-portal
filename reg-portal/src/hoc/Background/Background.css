@@ -168,44 +168,44 @@
 
 @media (min-width: 576px) {
   .heading {
-    font-size: 44px;
+    font-size: 40px;
     margin-bottom: 20px;
   }
   .sub-heading {
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 28px;
   }
   .heading2 {
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 28px;
   }
   .btn {
     padding: 16px;
-    font-size: 32px;
+    font-size: 28px;
     margin-bottom: 26px;
     width: 80%;
   }
 }
 @media (min-width: 768px) {
   .heading {
-    font-size: 48px;
+    font-size: 40px;
     margin-bottom: 2vh;
   }
   .sub-heading {
-    font-size: 24px;
+    font-size: 16px;
     margin-bottom: 2.5vh;
   }
   .heading2 {
-    font-size: 36px;
+    font-size: 28px;
     margin-bottom: 3.5vh;
   }
   .btn {
     cursor: pointer;
     border-radius: 15px;
-    padding: 16px 16px;
-    font-size: 36px;
+    padding: 18px 16px;
+    font-size: 20px;
     margin-bottom: 20px;
-    width: 80%;
+    width: 50%;
   }
 }
 /* signup */
@@ -253,9 +253,7 @@ label {
   color: #ffffff;
   margin-bottom: 1.7vh;
 }
-.lgn-btn {
-  width: calc(100% - 32px);
-}
+
 @media (min-width: 576px) {
   .input-grp {
     margin-bottom: 20px;
@@ -271,7 +269,7 @@ label {
     margin-bottom: 10px;
   }
   .sub-btn {
-    padding: 16px;
+    padding: 12px;
     border-radius: 10px;
 
     font-size: 20px;
@@ -291,16 +289,16 @@ label {
     font-size: 14px;
   }
   label {
-    font-size: 18px;
     line-height: 1.2;
     margin-bottom: 8px;
   }
   .sub-btn {
-    padding: 16px;
+    padding: 12px;
     border-radius: 10px;
-    font-size: 36px;
+    font-size: 24px;
     line-height: 1.2;
     margin-bottom: 8px;
+    width: 50%;
   }
 }
 /* domain page */

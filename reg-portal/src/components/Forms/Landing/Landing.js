@@ -13,7 +13,7 @@ const Landing = (props) => {
         Welcome to the recruitment portal for<br></br>
         Apple Developers Group
       </div>
-      <div className='heading2'>Sign up to get started</div>
+      <div className='heading2'>Sign Up to get started</div>
 
       <Link to='/signup' className='btn btn-blue'>
         Sign Up

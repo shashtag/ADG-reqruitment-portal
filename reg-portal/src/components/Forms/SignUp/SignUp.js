@@ -133,119 +133,119 @@ export class SignUp extends Component {
   render() {
     return (
       <Background>
-        <form autofill="off">
+        <form autofill='off'>
           {this.state.firstPage ? (
             <div>
-              <div className="heading">Sign Up</div>
-              <div className="input-grp">
+              <div className='heading'>Sign Up</div>
+              <div className='input-grp'>
                 <label>Name</label>
 
                 <input
-                  className="input"
-                  type="text"
-                  placeholder="Enter your name"
+                  className='input'
+                  type='text'
+                  placeholder='Enter your name'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "name");
                   }}
                 />
               </div>
               {this.state.nameError ? (
-                <div className="error">{this.state.nameError}</div>
+                <div className='error'>{this.state.nameError}</div>
               ) : null}
-              <div className="input-grp">
+              <div className='input-grp'>
                 <label>Registration Number</label>
                 <input
-                  className="input"
-                  type="text"
-                  placeholder="Enter Registration number"
+                  className='input'
+                  type='text'
+                  placeholder='Enter Registration number'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "regno");
                   }}
                 />
               </div>
               {this.state.regError ? (
-                <div className="error">{this.state.regError}</div>
+                <div className='error'>{this.state.regError}</div>
               ) : null}
-              <div className="input-grp">
+              <div className='input-grp'>
                 <label>Password</label>
                 <input
-                  className="input"
-                  type="password"
-                  placeholder="Enter your password"
+                  className='input'
+                  type='password'
+                  placeholder='Enter your password'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "password");
                   }}
                 />
               </div>
               {this.state.passError ? (
-                <div className="error">{this.state.passError}</div>
+                <div className='error'>{this.state.passError}</div>
               ) : null}
-              <div className="input-grp">
+              <div className='input-grp'>
                 <label>Confirm password</label>
                 <input
-                  className="input"
-                  type="password"
-                  placeholder="Confirm password"
+                  className='input'
+                  type='password'
+                  placeholder='Confirm password'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "confirmPass");
                   }}
                 />
               </div>
               {this.state.confirmPassError ? (
-                <div className="error">{this.state.confirmPassError}</div>
+                <div className='error'>{this.state.confirmPassError}</div>
               ) : null}
-              <div className="sub-btn" onClick={this.createAccountClickHandler}>
-                Create account
+              <div className='sub-btn' onClick={this.createAccountClickHandler}>
+                Create Account
               </div>
             </div>
           ) : (
             <div>
-              <div className="heading">Sign Up</div>
-              <div className="input-grp">
+              <div className='heading'>Sign Up</div>
+              <div className='input-grp'>
                 <label>Phone</label>
                 <input
-                  className="input"
-                  type="tel"
-                  placeholder="Enter your phone no."
+                  className='input'
+                  type='tel'
+                  placeholder='Enter your phone no.'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "phone");
                   }}
                 />
               </div>
               {this.state.phoneError ? (
-                <div className="error">{this.state.phoneError}</div>
+                <div className='error'>{this.state.phoneError}</div>
               ) : null}
-              <div className="input-grp">
+              <div className='input-grp'>
                 <label>VIT-Email</label>
                 <input
-                  className="input"
-                  type="text"
-                  placeholder="Enter your VIT Email"
+                  className='input'
+                  type='text'
+                  placeholder='Enter your VIT Email'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "email");
                   }}
                 />
               </div>
               {this.state.emailError ? (
-                <div className="error">{this.state.emailError}</div>
+                <div className='error'>{this.state.emailError}</div>
               ) : null}
-              <div className="input-grp">
+              <div className='input-grp'>
                 <label>Github</label>
                 <input
-                  className="input"
-                  type="text"
+                  className='input'
+                  type='text'
                   value={this.state.github}
-                  placeholder="Enter your github handle"
+                  placeholder='Enter your github handle'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "github");
                   }}
                 />
               </div>
               {this.state.gitError ? (
-                <div className="error">{this.state.gitError}</div>
+                <div className='error'>{this.state.gitError}</div>
               ) : null}
               <div
-                className="sub-btn"
+                className='sub-btn'
                 onClick={(event) => {
                   this.formSubmitHandler(event, this.props);
                 }}>
