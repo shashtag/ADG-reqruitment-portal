@@ -1,50 +1,50 @@
-import React, { useState, useEffect } from "react";
-import "./Quiz.css";
-import Timer from "./Timer";
-import Background from "../../hoc/Background/Background";
-import { Redirect } from "react-router-dom";
+// import React, { useState, useEffect } from "react";
+// import "./Quiz.css";
+// import Timer from "./Timer";
+// import Background from "../../hoc/Background/Background";
+// import { Redirect } from "react-router-dom";
 
-const DesignQuiz = (props) => {
+// const DesignQuiz = (props) => {
 
-    if(!sessionStorage.getItem("Token")) {
-        return(
-            <Redirect to="/" />
-        )
-    }
+//     if(!sessionStorage.getItem("Token")) {
+//         return(
+//             <Redirect to="/" />
+//         )
+//     }
 
-    const [quizQuestions, setQuizQuestions] = useState([]);
+//     const [quizQuestions, setQuizQuestions] = useState([]);
 
-    useEffect(() => {
-        getQuizQuestions();
-    }, []);
+//     useEffect(() => {
+//         getQuizQuestions();
+//     }, []);
 
-    function getQuizQuestions() {
+//     function getQuizQuestions() {
         
-        fetch("https://adgrecruitments.herokuapp.com/questions/design/get-quiz-questions/web", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "auth-token": sessionStorage.getItem("Token"),
-            },
-        })
-        .then((response) => {
-            console.log(response);
-            return response.json();
-        })
-        .then((data) => {
-            setQuizQuestions(data);
-        })
-        .catch((error) => {
-            console.log(error);
-            alert("Error in fetching quiz questions!");
-        })
+//         fetch("https://adgrecruitments.herokuapp.com/questions/design/get-quiz-questions/web", {
+//             method: "GET",
+//             headers: {
+//                 "Content-Type": "application/json",
+//                 "auth-token": sessionStorage.getItem("Token"),
+//             },
+//         })
+//         .then((response) => {
+//             console.log(response);
+//             return response.json();
+//         })
+//         .then((data) => {
+//             setQuizQuestions(data);
+//         })
+//         .catch((error) => {
+//             console.log(error);
+//             alert("Error in fetching quiz questions!");
+//         })
 
-        console.log(quizQuestions);
-    }
+//         console.log(quizQuestions);
+//     }
 
-    return(
-        <button onClick={ getQuizQuestions }>Get</button>
-    )
-}
+//     return(
+//         <button onClick={ getQuizQuestions }>Get</button>
+//     )
+// }
 
-export default DesignQuiz;
+// export default DesignQuiz;
