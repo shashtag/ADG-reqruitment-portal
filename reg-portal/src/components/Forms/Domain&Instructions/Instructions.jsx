@@ -10,8 +10,7 @@ const Instructions = (props) => {
     props.history.replace("/selection");
   }
   const linkTo = {
-    pathname: "/quiz",
-    param: props.location.param,
+    pathname: props.location.param
   };
   return (
     <Background>
