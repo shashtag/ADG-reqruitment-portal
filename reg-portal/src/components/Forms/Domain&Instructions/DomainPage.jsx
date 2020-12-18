@@ -37,7 +37,6 @@ const DomainPage = (props) => {
           <label
             htmlFor='technical'
             className={`${classes.label} ${classes.tech}`}>
-            {/* <img src={gear} height='25px' style={{verticalAlign: "baseline"}} /> */}
             Technical
           </label>
         </div>
@@ -48,7 +47,7 @@ const DomainPage = (props) => {
             name='selection'
             id='design'
             className={classes.input}></input>
-          <label htmlFor='design' className={classes.label}>
+          <label htmlFor='design' className={`${classes.label} ${classes.des}`}>
             Design
           </label>
         </div>
@@ -59,7 +58,9 @@ const DomainPage = (props) => {
             name='selection'
             id='management'
             className={classes.input}></input>
-          <label htmlFor='management' className={classes.label}>
+          <label
+            htmlFor='management'
+            className={`${classes.label} ${classes.man}`}>
             Management
           </label>
         </div>

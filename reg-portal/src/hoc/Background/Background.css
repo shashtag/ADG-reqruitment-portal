@@ -105,8 +105,10 @@
     padding-bottom: 44px;
   }
   #cont-box {
-    width: 646px;
+    width: 550px;
     border-radius: 28px;
+    opacity: 0.85;
+    backdrop-filter: 13px;
   }
 }
 /* landing */
@@ -140,7 +142,7 @@
 .btn {
   display: block;
   border-radius: 10px;
-  padding: 16px;
+  padding: 12px;
   margin: auto;
   color: #ffffff;
   font-family: SF Pro Display;

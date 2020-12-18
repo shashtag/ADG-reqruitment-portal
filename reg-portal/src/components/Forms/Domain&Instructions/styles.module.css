@@ -9,6 +9,7 @@
   margin: 0;
   position: relative;
   margin-left: 40px;
+  width: 100%;
 }
 
 .tech::before {
@@ -20,11 +21,12 @@
   height: 30px;
   bottom: 12px;
   left: -40px;
+  color: white;
 }
 .man::before {
   content: "";
   position: absolute;
-  background: url("../../../assets/img/settings-gear-63.svg") no-repeat;
+  background: url("../../../assets/img/Shape.svg") no-repeat;
   background-size: 30px 30px;
   width: 30px;
   height: 30px;
@@ -34,7 +36,7 @@
 .des::before {
   content: "";
   position: absolute;
-  background: url("../../../assets/img/Shape.svg") no-repeat;
+  background: url("../../../assets/img/vector.svg") no-repeat;
   background-size: 30px 30px;
   width: 30px;
   height: 30px;
