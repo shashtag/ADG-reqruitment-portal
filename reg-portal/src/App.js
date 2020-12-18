@@ -7,6 +7,8 @@ import ForgotPassword from "./components/Forms/SignUp/ForgotPassword/ForgotPassw
 import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
 import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import TechQuiz from "./components/Quiz/TechQuiz";
+import MgmtQuiz from "./components/Quiz/MgmtQuiz";
+import DesignQuiz from "./components/Quiz/DesignQuiz";
 
 import React, { Component } from "react";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -45,7 +47,9 @@ export class App extends Component {
         <Route path='/selection' component={DomainPage} />
         <Route path='/instructions' component={Instructions} />
         {/* <Route path="/quiz" component={Quiz} /> */}
-        <Route path='/techQuiz' component={TechQuiz} />
+        <Route path='/Technical' component={TechQuiz} />
+        <Route path='/Management' component={MgmtQuiz} />
+        <Route path='/Design' component={DesignQuiz} />
       </div>
       // </ThemeProvider>
     );
