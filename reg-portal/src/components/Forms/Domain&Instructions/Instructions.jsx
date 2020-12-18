@@ -21,18 +21,25 @@ const Instructions = (props) => {
       </div>
       <div className='heading2'>Instructions</div>
       <ul style={{ textAlign: "left" }}>
+        <li>The participant can attempt the quiz only ONCE.</li>
         <li>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
-          recusandae doloribus deleniti quasi repellat ipsum, amet quidem in
+          {props.location.param == "Technical"
+            ? "The quiz will have 10 Multiple choice questions."
+            : props.location.param == "Management"
+            ? "The quiz will have 10 Long Answer type questions."
+            : "The quiz will have 10 Multiple choice questions."}
         </li>
         <li>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam ex
-          quos illum reprehenderit quo dignissimos dolores error? Deleniti quo
-          voluptas
+          {props.location.param == "Technical"
+            ? "10 minutes will be provided to complete the quiz."
+            : props.location.param == "Management"
+            ? "There is no time limit for completing the quiz."
+            : "10 minutes will be provided to complete the quiz."}
         </li>
         <li>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. A, itaque
-          unde aliquid nulla{" "}
+          In case the participant tries to close the app or go back from the
+          quiz, it shall be considered cheating and the quiz will be auto
+          submitted.
         </li>
       </ul>
       <Link to={linkTo} className='btn btn-blue lgn-btn'>

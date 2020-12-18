@@ -20,7 +20,7 @@ const Landing = (props) => {
       </Link>
 
       <Link to='/login' className='btn btn-trans'>
-        Login
+        Log In
       </Link>
     </Background>
   );
