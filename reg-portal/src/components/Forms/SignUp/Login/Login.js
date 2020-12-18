@@ -10,33 +10,31 @@ export class Login extends Component {
     passError: "",
   };
 
+  validate = () => {
+    let regError = "";
+    let passError = "";
 
-    validate = () => {
-        let regError= "";
-        let passError= "";
-
-        if(!this.state.regno) {
-            regError= "Enter correct Registration Number";
-        }
-
-        if(!this.state.password) {
-            passError= "Enter Valid Password";
-        }
-
-        if(regError || passError) {
-            this.setState({regError, passError});
-            return false;
-        }
-
-        return true;
+    if (!this.state.regno) {
+      regError = "Enter correct Registration Number";
     }
+
+    if (!this.state.password) {
+      passError = "Enter Valid Password";
+    }
+
+    if (regError || passError) {
+      this.setState({ regError, passError });
+      return false;
+    }
+
+    return true;
+  };
 
   inputChangeHandler = (e, s) => {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
-
-      this.validate();
+    this.validate();
 
     const data = JSON.stringify({
       regno: this.state.regno,
@@ -82,9 +80,9 @@ export class Login extends Component {
             }}
           />
         </div>
-          {this.state.regError ? <div className='error'>
-              {this.state.regError}
-          </div> : null}
+        {this.state.regError ? (
+          <div className='error'>{this.state.regError}</div>
+        ) : null}
         <div className='input-grp'>
           <label id='p1'>Password</label>
           <input
@@ -97,15 +95,15 @@ export class Login extends Component {
             }}
           />
         </div>
-          {this.state.passError? <div className='error'>
-              {this.state.passError}
-          </div> : null}
+        {this.state.passError ? (
+          <div className='error'>{this.state.passError}</div>
+        ) : null}
         <div
           className='btn btn-blue lgn-btn'
           onClick={(event) => {
             this.formSubmitHandler(event, this.props);
           }}>
-          Submit
+          Log In
         </div>
       </Background>
     );
