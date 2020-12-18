@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
 import Background from "../../../hoc/Background/Background";
+import gear from "../../../assets/img/settings-gear-63.svg";
 
 const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
@@ -19,7 +20,13 @@ const DomainPage = (props) => {
     <Background>
       <div className='heading'>Choose Domain</div>
       <div className='sub-heading'>Choose a domain to start the quiz</div>
-      <div onChange={getSelectedVal}>
+      <div
+        // style={{
+        //   display: "flex",
+        //   flexDirection: "column",
+        //   justifyContent: "center",
+        // }}
+        onChange={getSelectedVal}>
         <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
@@ -27,7 +34,10 @@ const DomainPage = (props) => {
             name='selection'
             id='technical'
             className={classes.input}></input>
-          <label htmlFor='technical' className={classes.label}>
+          <label
+            htmlFor='technical'
+            className={`${classes.label} ${classes.tech}`}>
+            {/* <img src={gear} height='25px' style={{verticalAlign: "baseline"}} /> */}
             Technical
           </label>
         </div>

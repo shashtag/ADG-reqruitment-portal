@@ -3,11 +3,12 @@ import Landing from "./components/Forms/Landing/Landing";
 import SignUp from "./components/Forms/SignUp/SignUp";
 import Login from "./components/Forms/SignUp/Login/Login";
 import { Route, withRouter } from "react-router-dom";
-import Quiz from "./components/Quiz/Quiz";
 import ForgotPassword from "./components/Forms/SignUp/ForgotPassword/ForgotPassword";
-import DomainSelection from "./components/Quiz/Domains";
-import Instructions from "./components/Quiz/Instructions";
+import DomainPage from "./components/Forms/Domain&Instructions/DomainPage.jsx";
+import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import TechQuiz from "./components/Quiz/TechQuiz";
+import MgmtQuiz from "./components/Quiz/MgmtQuiz";
+import DesignQuiz from "./components/Quiz/DesignQuiz";
 
 import React, { Component } from "react";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
@@ -34,21 +35,21 @@ export class App extends Component {
   render() {
     return (
       // <ThemeProvider theme={theme}>
-      <div className="App">
+      <div className='App'>
         {/* {this.state.Token ? (
             <Route path='/' exact component={DomainPage} />
           ) : ( */}
-        <Route path="/" exact component={Landing} />
+        <Route path='/' exact component={Landing} />
         {/* )} */}
-
-        <Route path="/signup" component={SignUp} />
-        <Route path="/login" component={Login} />
-        <Route path="/forgotPassword" component={ForgotPassword} />
-        <Route path="/selection" component={DomainSelection} />
-        <Route path="/instructions" component={Instructions} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/login' component={Login} />
+        <Route path='/forgotPassword' component={ForgotPassword} />
+        <Route path='/selection' component={DomainPage} />
+        <Route path='/instructions' component={Instructions} />
         {/* <Route path="/quiz" component={Quiz} /> */}
-        <Route path="/techQuiz" component={TechQuiz} />
-
+        <Route path='/Technical' component={TechQuiz} />
+        <Route path='/Management' component={MgmtQuiz} />
+        <Route path='/Design' component={DesignQuiz} />
       </div>
       // </ThemeProvider>
     );
