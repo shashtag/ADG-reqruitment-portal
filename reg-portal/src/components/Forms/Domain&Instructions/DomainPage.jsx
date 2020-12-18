@@ -8,14 +8,15 @@ const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
-  const [checkVal, setCheckVal] = useState("Technical");
-  function getSelectedVal(event) {
-    setCheckVal(event.target.value);
+  const [domain, setDomain] = useState("");
+  let domainValue = (event) => {
+    setDomain(event.target.value)
   }
+
   const linkTo = {
     pathname: "/instructions",
-    param: checkVal,
-  };
+    param: domain
+  }
   return (
     <Background>
       <div className='heading'>Choose Domain</div>
@@ -26,7 +27,7 @@ const DomainPage = (props) => {
         //   flexDirection: "column",
         //   justifyContent: "center",
         // }}
-        onChange={getSelectedVal}>
+        onChange={domainValue}>
         <div className='rdio-grp lgn-btn'>
           <input
             type='radio'
