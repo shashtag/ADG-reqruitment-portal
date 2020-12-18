@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Domains.css";
 import Background from "../../hoc/Background/Background";
 
 const DomainSelection = () => {
+
+  const [domain, setDomain] = useState("");
+  let domainValue = (event) => {
+    setDomain(event.target.value)
+  }
+
+  const linkto = {
+    pathname: "/instructions",
+    param: domain
+  }
   return (
     <Background>
       <div className="chooseDomain_card">
@@ -11,7 +21,7 @@ const DomainSelection = () => {
           <h2>Choose Domain</h2>
           <h4>Choose a Domain to Start the Quiz</h4>
           <br></br>
-          <div className="domains">
+          <div className="domains" onChange={ domainValue }>
             <div>
               <svg
                 width="50"
@@ -31,7 +41,7 @@ const DomainSelection = () => {
                 type="radio"
                 id="technical"
                 name="domain"
-                value="technical"
+                value="Technical"
               ></input>
             </div>
             <br></br>
@@ -60,7 +70,7 @@ const DomainSelection = () => {
                 type="radio"
                 id="design"
                 name="domain"
-                value="design"
+                value="Design"
               ></input>
             </div>
             <br></br>
@@ -87,14 +97,14 @@ const DomainSelection = () => {
                 type="radio"
                 id="management"
                 name="domain"
-                value="management"
+                value="Management"
               ></input>
             </div>
           </div>
         </div>
         <br></br>
         <div className="startButton">
-          <Link to="/instructions">
+          <Link to={linkto}>
             <p>Start</p>
           </Link>
         </div>

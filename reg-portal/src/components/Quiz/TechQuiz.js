@@ -1,48 +1,34 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import React from "react";
 import "./Quiz.css";
 import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 
-const TechQuiz = (props) => {
-    const [quizQuestions, setQuizQuestions] = useState([]);
-    let [currentQuestion, setCurrentQuestion] = useState(0);
-    let questions=[];
-    let [time, setTime] = useState(600);
-    useEffect(() => {
-        if (time > 0) {
-          setTimeout(() => {
-            setTime(--time);
-          }, 1000);
-        }
-      });
-      function displayQuestion(descrip,options){
-        // setQuestions((prevQ)=>{
-        //     return [...prevQ,{questionDescription:descrip}]
-        // });
-        var q={descrip:descrip,options:options}
-        questions.push(q);
-        questions.forEach(q=>{
-            console.log("Description",q.descrip);
-            let opt=q.options;
-            Object.keys(opt).map((index)=>{
-                console.log("OPTION:",index,opt[index]);
-            })
-        })
-      }
-    // useEffect(() => {
-    //         getQuizQuestions();
-    // });
-    if(!sessionStorage.getItem("Token")) {
-        return(
-            <Redirect to="/" />
-        )
+class TechQuiz extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state =  {
+            quizQuestions: [],
+            time: 600,
+            currentQuestionIndex: 0,
+            selectedOptions: [],
+            questionId: []
+        };
+        this.setSelectedOption = this.setSelectedOption.bind(this);
     }
 
-    function getQuizQuestions() {
-        console.log("val");
-        fetch("https://adgrecruitments.herokuapp.com/questions/technical/get-quiz-questions/1/web", {
+    getTimer() {
+        if (this.state.time > 0) {
+            setTimeout(() => {
+                this.setState({
+                    time: this.state.time - 0.5
+                });
+            }, 1000);
+        }
+    }
+
+    async getQuizQuestions() {
+        await fetch("https://adgrecruitments.herokuapp.com/questions/technical/get-quiz-questions/1/web", {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -50,50 +36,105 @@ const TechQuiz = (props) => {
             },
         })
         .then((response) => {
-            console.log(response);
             return response.json();
         })
         .then((data) => {
-            setQuizQuestions(data);
-            quizQuestions.map(prevQ=>{
-                displayQuestion(prevQ.questionDescription,prevQ.options);
-            })
+            this.setState({
+                quizQuestions: data
+            });
+            // console.log(this.state.quizQuestions);
         })
         .catch((error) => {
-            console.log(error);
-            alert("Error in fetching quiz questions!");
+            // console.log(error.message);
+            alert(error.message);
         })
     }
-    
-    if (questions.length>0) {
-        return (
-          <Background>
-                  <div className='question-section'>
-                    <div className='question-count'>
-                      <span>Question {currentQuestion + 1}</span>/{questions.length}
-                    </div>
-                    <div className='question-text'>
-                      {questions[currentQuestion].descrip}
-                    </div>
-                  </div>
-                  <div className='answer-section'>
-                      {Object.keys(questions.options).map(index=>{
-                          <button className='options'>{questions.options[index]}
-                        </button>
-                      })}
-                    <div className='btn-bottom'>
-                      <button>Previous</button>
-                      <Timer time={time} />
-                      <button>Next</button>
-                    </div>
-                  </div>
-          </Background>
-        );
-      } else {
-        return <Background>loading...
-            <button onClick={()=> getQuizQuestions() }>Get</button>
-        </Background>;
-      }
+
+    optionsArray = ["a", "b", "c", "d"];
+
+    setSelectedOption() {
+        console.log("Hi");
+        this.setState({
+            selectedOptions: [...this.state.selectedOptions, this.optionsArray[1]]
+
+            // const selectedOptions = state.selectedOptions.concat(this.optionsArray[index]);
+            // const questionId = state.questionId.concat(id);
+        })
+        console.log(this.state.selectedOptions);
+    }
+
+    gotoNextQuestion() {
+        if(this.state.currentQuestionIndex < this.state.quizQuestions.length - 1)
+            this.setState({
+                currentQuestionIndex: this.state.currentQuestionIndex + 1
+            })
+        else
+            return
+    }
+
+    gotoPreviousQuestion() {
+        if(this.state.currentQuestionIndex > 0)
+            this.setState({
+                currentQuestionIndex: this.state.currentQuestionIndex - 1
+            })
+        else
+            return
+    }
+
+    componentDidMount() {
+        this.getQuizQuestions();
+        // console.log(this.state.quizQuestions);
+        this.getTimer();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
+            this.getTimer();
+    }
+
+    render() {
+        if(!sessionStorage.getItem("Token")) {
+            return(
+                <Redirect to="/" />
+            )
+        }
+        return(
+            <Background>
+                { this.state.quizQuestions.length === 0 ?
+                    <div>Loading...</div> :
+                    <>
+                        <div className="heading">Technical Quiz</div>
+                        <div className="question-section">
+                            <div className="question-count">
+                                <span>Question {this.state.currentQuestionIndex + 1}</span>/{this.state.quizQuestions.length}
+                            </div>
+                            <div className="question-text">
+                                {this.state.quizQuestions[this.state.currentQuestionIndex].questionDescription}
+                            </div>
+                            <div className='answer-section'>
+                                {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <button className="options"
+                                                    onCLick={ () => this.setSelectedOption() }
+                                                    value={this.optionsArray[index]}>
+                                                    {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
+                                            </button>
+                                        </div>
+                                    )
+                                })}
+                            </div>
+                            <div className='btn-bottom'>
+                                <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                                <Timer time={this.state.time} />
+                                <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
+                            </div>
+                        </div>
+                    </>
+                }
+            </Background>
+        )
+    }
 }
 
 export default TechQuiz;
