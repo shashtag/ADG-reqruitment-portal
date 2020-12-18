@@ -43,3 +43,18 @@
   bottom: 12px;
   left: -40px;
 }
+.redirectBtn{
+  height:40px;
+  width:auto;
+  border-radius: 5px;
+  background-color: transparent;
+  border:1px solid dodgerblue;
+  outline:none;
+  cursor:pointer;
+  color:dodgerblue;
+}
+.redirectBtn:hover{
+  transform:scale(0.9);
+  background-color: dodgerblue;
+  color:white;
+}

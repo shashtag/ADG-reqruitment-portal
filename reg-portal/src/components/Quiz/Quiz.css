@@ -114,3 +114,22 @@
 	/* width: 80%; */
 	transition: 1s ease 0.3s;
 }
+.submit-btn{
+  margin-top:10px;
+  background:transparent;
+  outline:none;
+  border:1px solid dodgerblue;
+  height:30px;
+  color:dodgerblue;
+  height:40px;
+  font-size:20px;
+  border-radius: 5px;
+  width:7vw;
+}
+.submit-btn:hover{
+  background: dodgerblue;
+  color:white;
+}
+.submit-btn:active{
+  transform: scale(0.9);
+}
