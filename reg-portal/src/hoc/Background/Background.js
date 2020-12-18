@@ -24,14 +24,14 @@ export class Background extends Component {
         },
       };
       axios
-        .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
-        .then(function (response) {
-          console.log(response.data);
-          t.setState({ data: response.data });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+          .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
+          .then(function (response) {
+            console.log(response.data);
+            t.setState({ data: response.data });
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     }
   }
 
@@ -41,47 +41,51 @@ export class Background extends Component {
 
     if (this.state.Token) {
       background = (
-        <div>
-          <div id="adglogo-cont2">
-            <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
-            <div className="flex"></div>
-            {this.state.data ? (
-              <>
-                <div className="usr-det">
-                  <span id="sp">Logged in as</span>
-                  <br />
-                  {this.state.data.userDetails.name}
-                </div>
-                <div>
-                  <img id="userpic" src={userpic} alt="User pic" />
-                </div>
-              </>
-            ) : null}
+          <div>
+            <div id="adglogo-cont2">
+              <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
+              <div className="flex"></div>
+              {this.state.data ? (
+                  <div id="profile-container" className="pf-cr">
+                    <div id="profile-wrapper" className="pf-wr">
+                      <div className="uinf">
+                        <div>
+                          <img id="userpic" src={userpic} alt="User pic" />
+                        </div>
+                        <div id="profile-title" className="usr-det">
+                          {this.state.data.userDetails.name}
+                        </div>
+                      </div>
+                      <a href="/auth/logout"><button id="logout-button">Logout</button>
+                      </a>
+                    </div>
+                  </div>
+              ) : null}
+            </div>
+            <div className="container">
+              <div id="cont-box">{this.props.children}</div>
+              <Footer />
+            </div>
           </div>
-          <div className="container">
-            <div id="cont-box">{this.props.children}</div>
-            <Footer />
-          </div>
-        </div>
       );
     } else {
       background = (
-        <div>
-          <div className="container">
-            <div id="adglogo-cont">
-              <img id="adglogo" src={adglogo} alt="ADG Logo" />
+          <div>
+            <div className="container">
+              <div id="adglogo-cont">
+                <img id="adglogo" src={adglogo} alt="ADG Logo" />
+              </div>
+              <div id="cont-box">{this.props.children}</div>
+              <Footer />
             </div>
-            <div id="cont-box">{this.props.children}</div>
-            <Footer />
           </div>
-        </div>
       );
     }
     return (
-      <div>
-        <div id="back-img" />
-        {background}
-      </div>
+        <div>
+          <div id="back-img" />
+          {background}
+        </div>
     );
   }
 }
