@@ -14,6 +14,8 @@
 #adglogo-cont {
   padding-top: 7.75vh;
   padding-bottom: 5.6vh;
+  justify-content: center;
+  display: flex;
 }
 
 #adglogo {
@@ -40,9 +42,9 @@
   background-color: #191919;
   margin: auto;
   color: #ffffff;
-  border-radius: 20px;
+  border-radius: 16px;
   padding: 5.6vh 16px;
-  opacity: 0.7;
+  opacity: 0.8;
   backdrop-filter: blur(20px);
   /* margin-bottom: 60px; */
 }
@@ -107,7 +109,7 @@
     padding-bottom: 44px;
   }
   #cont-box {
-    width: 525px;
+    width: 500px;
     border-radius: 28px;
     max-height: 60vh;
     overflow: auto;
@@ -127,7 +129,7 @@
   font-family: SF Pro Display;
   font-style: normal;
   font-weight: 300;
-  font-size: 5vw;
+  font-size: 5.2vw;
   line-height: 1.2;
   text-align: center;
   margin-bottom: 5vh;
@@ -143,8 +145,8 @@
 }
 .btn {
   display: block;
-  border-radius: 10px;
-  padding: 16px;
+  border-radius: 8px;
+  padding: 8px;
   margin: auto;
   color: #ffffff;
   font-family: SF Pro Display;
@@ -154,7 +156,7 @@
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
-  margin-bottom: 4.5vh;
+  margin-bottom: 3.5vh;
   width: calc(100%-16px);
 }
 .btn-blue {
@@ -169,7 +171,9 @@
   position: relative;
   overflow: hidden;
 }
-
+/* .landing-btn {
+  width: 65%;
+} */
 @media (min-width: 576px) {
   .heading {
     font-size: 36px;
@@ -183,29 +187,29 @@
   .btn {
     padding: 8px;
     font-size: 20px;
-    width: 36%;
+    width: 35%;
   }
 }
 @media (min-width: 768px) {
   .heading {
-    font-size: 40px;
-    margin-bottom: 2vh;
-  }
-  .sub-heading {
-    font-size: 16px;
+    font-size: 36px;
     margin-bottom: 2.5vh;
   }
+  .sub-heading {
+    font-size: 18px;
+    margin-bottom: 3vh;
+  }
   .heading2 {
-    font-size: 28px;
-    margin-bottom: 3.5vh;
+    font-size: 24px;
+    margin-bottom: 4vh;
   }
   .btn {
     cursor: pointer;
-    border-radius: 15px;
-    padding: 18px 16px;
+    border-radius: 8px;
+    padding: 8px 16px;
     font-size: 20px;
     margin-bottom: 20px;
-    width: 50%;
+    width: 37%;
   }
 }
 /* signup */
@@ -224,7 +228,7 @@
   padding: 12px 10px;
   font-style: normal;
   font-weight: 300;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.2;
   color: #434343;
 }
@@ -241,8 +245,8 @@ label {
   cursor: pointer;
   display: block;
   margin: auto;
-  padding: 16px;
-  border-radius: 10px;
+  padding: 12px;
+  border-radius: 8px;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -256,7 +260,7 @@ label {
 
 @media (min-width: 576px) {
   .input-grp {
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
   .input {
     border-radius: 5px;
@@ -272,7 +276,7 @@ label {
     padding: 12px;
     border-radius: 10px;
 
-    font-size: 20px;
+    font-size: 22px;
     line-height: 1.2;
 
     margin-bottom: 10px;
@@ -285,7 +289,7 @@ label {
   .input {
     border-radius: 5px;
     width: 100%;
-    padding: 16px 14px;
+    padding: 14px 14px;
     font-size: 14px;
   }
   label {
@@ -293,12 +297,12 @@ label {
     margin-bottom: 8px;
   }
   .sub-btn {
-    padding: 12px;
-    border-radius: 10px;
+    padding: 8px;
+    border-radius: 8px;
     font-size: 24px;
     line-height: 1.2;
     margin-bottom: 8px;
-    width: 50%;
+    width: 55%;
   }
 }
 /* domain page */
@@ -312,7 +316,6 @@ label {
   align-items: center;
   border: 1px solid grey;
   border-radius: 10px;
-  margin: 1%;
   cursor: pointer;
   margin-bottom: 10px;
 }

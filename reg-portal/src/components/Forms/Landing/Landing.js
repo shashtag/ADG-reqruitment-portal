@@ -15,11 +15,11 @@ const Landing = (props) => {
       </div>
       <div className='heading2'>Sign Up to get started</div>
 
-      <Link to='/signup' className='btn btn-blue'>
+      <Link to='/signup' className='btn btn-blue landing-btn'>
         Sign Up
       </Link>
 
-      <Link to='/login' className='btn btn-trans'>
+      <Link to='/login' className='btn btn-trans landing-btn'>
         Log In
       </Link>
     </Background>
