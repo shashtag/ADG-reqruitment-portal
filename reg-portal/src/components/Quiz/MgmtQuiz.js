@@ -3,6 +3,8 @@ import "./Quiz.css";
 import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
+import Modal from "../Modals/Modal";
+
 
 class MgmtQuiz extends React.Component {
     constructor(props) {
@@ -15,8 +17,19 @@ class MgmtQuiz extends React.Component {
             questionId: []
         };
         this.setSelectedOption = this.setSelectedOption.bind(this);
+        this.showModal1=this.showModal1.bind(this);
+        this.hideModal=this.hideModal.bind(this);
     }
-
+    showModal1(){
+        this.setState({
+            showModal:true
+        })
+    }
+    hideModal(){
+        this.setState({
+            showModal:false
+        })
+    }
     getTimer() {
         if (this.state.time > 0) {
             setTimeout(() => {
@@ -125,9 +138,13 @@ class MgmtQuiz extends React.Component {
                                 })}
                             </div> */}
                             <div className='btn-bottom'>
-                                <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                            <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                                <div>
                                 <Timer time={this.state.time} />
+                                <button className="submit-btn" onClick={()=>{this.showModal1()}}>Submit</button>
+                                </div>
                                 <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
+                                <Modal show={this.state.showModal} onHide={this.hideModal} />
                             </div>
                         </div>
                     </>

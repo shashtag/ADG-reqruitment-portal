@@ -5,17 +5,18 @@ import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 
 class TechQuiz extends React.Component {
-    selectedOptions= [];
     constructor(props) {
         super(props);
         this.state =  {
             quizQuestions: [],
             time: 600,
             currentQuestionIndex: 0,
+            selectedOptions: [],
             questionId: []
         };
         this.setSelectedOption = this.setSelectedOption.bind(this);
     }
+
     getTimer() {
         if (this.state.time > 0) {
             setTimeout(() => {
@@ -46,6 +47,28 @@ class TechQuiz extends React.Component {
         .catch((error) => {
             // console.log(error.message);
             alert(error.message);
+        })
+    }
+
+    async submitQuiz() {
+        const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
+        console.log(quizResponse);
+        await fetch("https://adgrecruitments.herokuapp.com/user/technical/submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "auth-token": sessionStorage.getItem("Token"),
+            },
+            body: JSON.stringify(quizResponse),
+        })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+        })
+        .catch((error) => {
+            console.log(error.message);
         })
     }
 
@@ -104,7 +127,7 @@ class TechQuiz extends React.Component {
         return(
             <Background>
                 { this.state.quizQuestions.length === 0 ?
-                    <div>Loading...</div> :
+                    <div className="loading">Loading...</div> :
                     <>
                         <div className="heading">Technical Quiz</div>
                         <div className="question-section">
@@ -117,10 +140,12 @@ class TechQuiz extends React.Component {
                             <div className='answer-section'>
                                 {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
                                     return (
-                                        <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
+                                        <div key={index}>
                                             <button className="options"
+                                                    onCLick={ () => { this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, key) } }
                                                     value={this.optionsArray[index]}>
-                                                    {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
+                                                        {/* {console.log(quizQuestions)} */}
+                                                    {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
                                         </div>
                                     )
@@ -128,9 +153,15 @@ class TechQuiz extends React.Component {
                             </div>
                             <div className='btn-bottom'>
                                 <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
-                                <Timer time={this.state.time} />
+                                <button onCLick={ () => { this.submitQuiz() } }>Submit</button>
                                 <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
                             </div>
+                            <div className="timer">
+                                <Timer time={this.state.time} />
+                            </div>
+                            {/* <div>
+                                <button onClick={ () => { this.submitQuiz } }>Submit</button>
+                            </div> */}
                         </div>
                     </>
                 }

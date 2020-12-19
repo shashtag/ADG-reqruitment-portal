@@ -14,3 +14,56 @@
   margin-left: 0px;
   width: 100%;
 }
+<<<<<<< HEAD
+=======
+
+.tech::before {
+  content: "";
+  position: absolute;
+  background: url("../../../assets/img/settings-gear-63.svg") no-repeat;
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  bottom: 12px;
+  left: -40px;
+  color: white;
+}
+.man::before {
+  content: "";
+  position: absolute;
+  background: url("../../../assets/img/Shape.svg") no-repeat;
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  bottom: 12px;
+  left: -40px;
+}
+.des::before {
+  content: "";
+  position: absolute;
+  background: url("../../../assets/img/vector.svg") no-repeat;
+  background-size: 30px 30px;
+  width: 30px;
+  height: 30px;
+  bottom: 12px;
+  left: -40px;
+}
+.redirectBtn{
+  height:40px;
+  width:auto;
+  border-radius: 5px;
+  background-color: transparent;
+  border:1px solid dodgerblue;
+  outline:none;
+  cursor:pointer;
+  color:dodgerblue;
+}
+.redirectBtn:hover{
+  transform:scale(0.9);
+  background-color: dodgerblue;
+  color:white;
+}
+.wrapper{
+  text-align: center;
+}
+>>>>>>> bcbd6d9d781c496c6ed7b4822636017cfb28a696

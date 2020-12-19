@@ -11,6 +11,7 @@ import MgmtQuiz from "./components/Quiz/MgmtQuiz";
 import DesignQuiz from "./components/Quiz/DesignQuiz";
 
 import React, { Component } from "react";
+import ThankYou from "./components/Forms/Domain&Instructions/Thankyou";
 // import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 // const theme = createMuiTheme({
@@ -50,6 +51,7 @@ export class App extends Component {
         <Route path='/Technical' component={TechQuiz} />
         <Route path='/Management' component={MgmtQuiz} />
         <Route path='/Design' component={DesignQuiz} />
+        <Route path="/thank-you" component={ThankYou} />
       </div>
       // </ThemeProvider>
     );

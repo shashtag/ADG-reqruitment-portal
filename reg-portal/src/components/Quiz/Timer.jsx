@@ -1,5 +1,6 @@
 import React from "react";
 import "./Quiz.css";
+import { Redirect } from "react-router-dom";
 
 let timeDisplay;
 const Timer = (props)=>{
@@ -11,12 +12,15 @@ const Timer = (props)=>{
             timeDisplay=`${minutes} : ${seconds} mins remaining`;
         let width=250-((props.time/600)*250);
         // console.log(width);
-    return(
-        <div className="progress">
-            <div className="progress-done" style={{width}}>
+        if(minutes===0 && seconds===0){
+            return(
+            <Redirect to="/thank-you" />
+            )}
+            return(
+            <div className="progress">
+                <div className="progress-done" style={{width}}></div>
+                {timeDisplay}
             </div>
-            {timeDisplay}
-        </div>
-    )
+            )
 }
 export default Timer;

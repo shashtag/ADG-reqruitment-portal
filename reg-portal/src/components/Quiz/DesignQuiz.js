@@ -3,8 +3,10 @@ import "./Quiz.css";
 import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
+import Modal from "../Modals/Modal";
 
 class DesignQuiz extends React.Component {
+    selectedOptions= [];
     constructor(props) {
         super(props);
         this.state =  {
@@ -15,8 +17,19 @@ class DesignQuiz extends React.Component {
             questionId: []
         };
         this.setSelectedOption = this.setSelectedOption.bind(this);
+        this.showModal1=this.showModal1.bind(this);
+        this.hideModal=this.hideModal.bind(this);
     }
-
+    showModal1(){
+        this.setState({
+            showModal:true
+        })
+    }
+    hideModal(){
+        this.setState({
+            showModal:false
+        })
+    }
     getTimer() {
         if (this.state.time > 0) {
             setTimeout(() => {
@@ -52,15 +65,19 @@ class DesignQuiz extends React.Component {
 
     optionsArray = ["a", "b", "c", "d"];
 
-    setSelectedOption() {
-        console.log("Hi");
-        this.setState({
-            selectedOptions: [...this.state.selectedOptions, this.optionsArray[1]]
-
-            // const selectedOptions = state.selectedOptions.concat(this.optionsArray[index]);
-            // const questionId = state.questionId.concat(id);
-        })
-        console.log(this.state.selectedOptions);
+    setSelectedOption(id,index) {
+        // console.log(id,this.optionsArray[index]);
+        if(this.selectedOptions.some(option=> option.id ===id)){
+            for(let i=0;i<this.selectedOptions.length;i++){
+                if(this.selectedOptions[i].id===id){
+                    console.log("okay match");
+                    this.selectedOptions[i].index=this.optionsArray[index];
+                }
+            }
+        } else {
+            this.selectedOptions.push({id:id,index:this.optionsArray[index]})
+        }
+        console.log("hello",this.selectedOptions);
     }
 
     gotoNextQuestion() {
@@ -114,9 +131,8 @@ class DesignQuiz extends React.Component {
                             <div className='answer-section'>
                                 {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
                                     return (
-                                        <div key={index}>
+                                        <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
                                             <button className="options"
-                                                    onCLick={ () => this.setSelectedOption() }
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
@@ -126,8 +142,12 @@ class DesignQuiz extends React.Component {
                             </div>
                             <div className='btn-bottom'>
                                 <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                                <div>
                                 <Timer time={this.state.time} />
+                                <button className="submit-btn" onClick={()=>{this.showModal1()}}>Submit</button>
+                                </div>
                                 <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
+                                <Modal show={this.state.showModal} onHide={this.hideModal} />
                             </div>
                         </div>
                     </>
