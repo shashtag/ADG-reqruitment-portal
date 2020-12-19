@@ -4,8 +4,8 @@ import adglogo2 from "../../assets/img/adglogo2.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
-// import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
+import Footer from "../../components/Footer/Footer";
 
 export class Background extends Component {
   state = {
@@ -42,6 +42,10 @@ export class Background extends Component {
       );
   }
 
+  handleLogOut() {
+    sessionStorage.removeItem("Token");
+  }
+
   render() {
     let background;
     // let profile = null;
@@ -63,9 +67,9 @@ export class Background extends Component {
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <a href='/auth/logout'>
-                    <button id='logout-button'>Logout</button>
-                  </a>
+                  <Link to="/">
+                    <button id="logout-button" onClick={this.handleLogOut}>Logout</button>
+                  </Link>
                 </div>
               </div>
             ) : null}
@@ -73,12 +77,12 @@ export class Background extends Component {
           <div className='container'>
             <div id='cont-box'>
               {this.state.recruitmentStatus ? (
-                this.props.children
+                  this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
             </div>
-            {/* <Footer /> */}
+             <Footer />
           </div>
         </div>
       );
@@ -91,12 +95,12 @@ export class Background extends Component {
             </div>
             <div id='cont-box'>
               {this.state.recruitmentStatus ? (
-                this.props.children
+                  this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
             </div>
-            {/* <Footer /> */}
+             <Footer />
           </div>
         </div>
       );
