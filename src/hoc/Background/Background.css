@@ -426,3 +426,6 @@ label {
   color: grey;
   font-size: large;
 }
+.t-uc {
+  text-transform: uppercase;
+}

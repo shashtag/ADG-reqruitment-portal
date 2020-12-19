@@ -170,7 +170,7 @@ export class SignUp extends Component {
                 <input
                   autoComplete='off'
                   onFocus={this.onFocus}
-                  className='input'
+                  className='input .t-uc'
                   value={this.state.regno}
                   type='text'
                   placeholder='Enter Registration Number'
@@ -198,7 +198,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.passError}</div>
               ) : null}
               <div className='input-grp'>
-                <label>Confirm password</label>
+                <label>Confirm Password</label>
                 <input
                   className='input'
                   type='password'
@@ -220,7 +220,7 @@ export class SignUp extends Component {
             <div>
               <div className='heading'>Sign Up</div>
               <div className='input-grp'>
-                <label>Phone</label>
+                <label>Phone Number</label>
                 <input
                   className='input'
                   type='text'
