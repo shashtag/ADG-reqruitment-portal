@@ -1,32 +1,49 @@
-import React from "react";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faFacebook } from "@fortawesome/free-brands-svg-icons";
-// import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-// import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import React,{Component} from "react";
 
-import ADGLogo from "../../assets/img/adglogo.png";
+const Modal = ({ handleClose, show, children }) => {
+    const showHideClassName = show ? "modal display-block" : "modal display-none";
 
-export default function Footer() {
-  return (
-    <div className='footer'>
-      <div className='footer-socials'>
-        {/* <FontAwesomeIcon icon={faFacebook} size='lg' />
-        <FontAwesomeIcon icon={faInstagram} size='lg' />
-        <FontAwesomeIcon icon={faLinkedin} size='lg' /> */}
-      </div>
-      <div className='footer-logo'>
-        <img src={ADGLogo} alt='ADG Log' />
-      </div>
-      <div className='footer-contact'>
-        <div className='contact-us'>Contact US</div>
-        <div className='contact-mail'>
-          <a href='mailto:adgvit@vit.ac.in'>
-            {" "}
-            <i className='fab fa-instagram'></i>
-            adgvit@vit.ac.in
-          </a>
+    return (
+        <div className={showHideClassName}>
+            <section className="modal-main">
+                <h3>Contact Us</h3>
+                <p>For any queries contact us at <a href='mailto:adgvit@vit.ac.in'>adgvit@vit.ac.in</a> </p>
+                <button className="btn btn-blue cls-btn" onClick={handleClose}>Close</button>
+            </section>
         </div>
-      </div>
-    </div>
-  );
+    );
+};
+
+
+class Footer extends Component {
+    state = { show: false };
+
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
+    render() {
+            return (
+                <div className='footer'>
+                    <Modal show={this.state.show} handleClose={this.hideModal}>
+                        <p>Modal</p>
+                        <p>Data</p>
+                    </Modal>
+                    <div className="footer-info">
+                        <div className='info-logo' onClick={this.showModal}>
+                            <i className="fas fa-info-circle" ></i>
+                        </div>
+                    </div>
+
+                </div>
+        );
+        };
 }
+
+export default Footer;
+
+

@@ -9,7 +9,7 @@
 .container {
   padding: 0 15px;
   position: relative;
-  min-height: 100vh;
+  min-height: 80vh;
 }
 #adglogo-cont {
   padding-top: 7.75vh;
@@ -60,26 +60,29 @@
 }
 .footer {
   position: absolute;
-  top: 100%;
   margin-top: 2em;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
+  text-align: right;
+  bottom: 0;
   align-items: center;
   padding: 1em 0;
 }
-.footer-socials {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.footer-socials svg {
-  padding: 0.2em;
-  margin: 0 0.3em;
-}
-.footer-logo img {
+.footer-info {
   height: 2.5em;
+}
+.info-logo {
+  width: 35px;
+  position: absolute;
+  right: 2.5em;
+}
+.fa-info-circle {
+  cursor: pointer;
+  margin-right: 1.5em;
+  font-size: xx-large;
+  color: #027aff;
+}
+.fa-info-circle:hover {
+  color: white;
 }
 .contact-mail a {
   text-decoration: none;
@@ -161,11 +164,15 @@
 }
 .btn-blue {
   background: #027aff;
+  min-width: 125px;
   border: transparent 2px solid;
   position: relative;
   overflow: hidden;
 }
-
+.cls-btn:hover {
+  background: black;
+  color: white;
+}
 .btn-trans {
   border: #027aff 2px solid;
   position: relative;
@@ -358,7 +365,7 @@ label {
 #profile-container:hover {
   z-index: 1000;
   border-radius: 10px;
-  padding: 0 15px;
+  padding: 0 20px;
   height: 150px;
   width: max-content;
   /*min-width: max-content;*/
@@ -432,4 +439,9 @@ label {
   bottom: 125px;
   color: grey;
   font-size: large;
+}
+.modal-main {
+  background: #b3b3b3 !important;
+  max-width: 600px;
+
 }
