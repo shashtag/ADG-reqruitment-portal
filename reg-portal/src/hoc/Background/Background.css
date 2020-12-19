@@ -268,8 +268,8 @@ label {
     padding: 16px 14px;
     font-size: 14px;
   }
-  .name-input{
-    text-transform:capitalize;
+  .name-input {
+    text-transform: capitalize;
   }
   label {
     font-size: 18px;
@@ -418,4 +418,11 @@ label {
 }
 #logout-button:hover {
   background: #121212;
+}
+.lgn-eye {
+  position: absolute;
+  right: 55px;
+  bottom: 125px;
+  color: grey;
+  font-size: large;
 }

@@ -8,6 +8,7 @@ export class Login extends Component {
     password: "",
     regError: "",
     passError: "",
+    showPass: "false",
   };
 
   validate = () => {
@@ -89,11 +90,12 @@ export class Login extends Component {
             className='input'
             type='password'
             placeholder='Enter Your Password'
-            style={{ marginBottom: 10 }}
+            style={{ marginBottom: 10, position: "relative" }}
             onChange={(event) => {
               this.inputChangeHandler(event, "password");
             }}
           />
+          <i className={`fas fa-eye lgn-eye ${this.state.showPass ? "lgn-eye-t":null}`}></i>
         </div>
         {this.state.passError ? (
           <div className='error'>{this.state.passError}</div>

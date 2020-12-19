@@ -235,7 +235,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.phoneError}</div>
               ) : null}
               <div className='input-grp'>
-                <label>VIT-Email</label>
+                <label>VIT Email</label>
                 <input
                   className='input'
                   type='text'
@@ -250,7 +250,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.emailError}</div>
               ) : null}
               <div className='input-grp'>
-                <label>GitHub</label>
+                <label>GitHub Link</label>
                 <input
                   className='input'
                   type='text'
