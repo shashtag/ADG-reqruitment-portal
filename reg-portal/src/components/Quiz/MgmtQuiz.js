@@ -138,7 +138,7 @@ class MgmtQuiz extends React.Component {
                                 })}
                             </div> */}
                             <div className='btn-bottom'>
-                                <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                            <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
                                 <div>
                                 <Timer time={this.state.time} />
                                 <button className="submit-btn" onClick={()=>{this.showModal1()}}>Submit</button>
