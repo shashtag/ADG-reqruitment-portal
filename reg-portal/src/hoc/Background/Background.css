@@ -111,8 +111,8 @@
   #cont-box {
     width: 500px;
     border-radius: 28px;
-    max-height: 60vh;
-    overflow: auto;
+    /* max-height: 60vh;
+    overflow: auto; */
   }
 }
 /* landing */
@@ -123,7 +123,7 @@
   font-size: 9.5vw;
   line-height: 1.2;
   text-align: center;
-  margin-bottom: 2.8vh;
+  margin-bottom: 3vh;
 }
 .sub-heading {
   font-family: SF Pro Display;
@@ -152,7 +152,7 @@
   font-family: SF Pro Display;
   font-style: normal;
   font-weight: 500;
-  font-size: 5.6vw;
+  font-size: 5vw;
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
@@ -230,7 +230,7 @@
   font-weight: 300;
   font-size: 12px;
   line-height: 1.2;
-  color: #434343;
+  color: white;
 }
 label {
   text-align: start;
@@ -242,6 +242,7 @@ label {
   margin-bottom: 1.5vh;
 }
 .sub-btn {
+  font-family: SF Pro Display;
   cursor: pointer;
   display: block;
   margin: auto;
@@ -266,6 +267,9 @@ label {
     border-radius: 5px;
     padding: 16px 14px;
     font-size: 14px;
+  }
+  .name-input {
+    text-transform: capitalize;
   }
   label {
     font-size: 18px;
@@ -414,4 +418,11 @@ label {
 }
 #logout-button:hover {
   background: #121212;
+}
+.lgn-eye {
+  position: absolute;
+  right: 55px;
+  bottom: 125px;
+  color: grey;
+  font-size: large;
 }

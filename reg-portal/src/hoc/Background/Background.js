@@ -4,7 +4,8 @@ import adglogo2 from "../../assets/img/adglogo2.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
-import Footer from "../../components/Footer/Footer";
+// import { Link } from "react-router-dom";
+// import Footer from "../../components/Footer/Footer";
 
 export class Background extends Component {
   state = {
@@ -77,7 +78,7 @@ export class Background extends Component {
                 <h2 align="center">Recruitments coming soon</h2>
               )}
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       );
@@ -95,7 +96,7 @@ export class Background extends Component {
                 <h2 align="center">Recruitments coming soon</h2>
               )}
             </div>
-            <Footer />
+            {/* <Footer /> */}
           </div>
         </div>
       );
