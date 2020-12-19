@@ -332,16 +332,19 @@ label {
   background: #b3b3b3;
 }
 #profile-container:hover {
+  z-index: 1000;
   border-radius: 5px;
   padding: 0 10px;
   transition: 0.3s;
-  height: max-content;
-  width: 200px;
-  min-width: max-content;
+  height: 150px;
+  width: max-content;
+  /*min-width: max-content;*/
   transition: all 0.3s ease-in-out;
+  margin-bottom: -85px;
 }
 #profile-container:hover img{
   padding-right: 5px;
+  transition: all 0.3s ease-in-out;
 }
 #profile-container #profile-wrapper img {
   position: relative;
@@ -352,15 +355,15 @@ label {
   width: 55px;
   object-fit: cover;
   margin: 5px auto;
-  transition: all 0.3s ease;
+  /*transition: all 0.3s ease;*/
 }
-.pf-wr:hover > div {
-  padding-top: 10px;
-  transition: 0.3s;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
+/*.pf-wr:hover > div {*/
+/*  padding-top: 10px;*/
+/*  transition: 0.3s;*/
+/*  display: flex;*/
+/*  justify-content: space-evenly;*/
+/*  align-items: center;*/
+/*}*/
 #profile-container:hover #profile-wrapper img.active {
   transition: 0.3s;
   margin: 0px auto;
@@ -373,8 +376,11 @@ label {
   color: #000;
   font-size: 20px;
   font-weight: 500;
-  padding-top: 10px;
+  padding: 15px 5px 5px 5px;
   line-height: 5px;
+}
+#profile-container #profile-title {
+  transition: all 0.3s ease-in-out;
 }
 #logout-button {
   margin-top: 15px;
@@ -389,7 +395,7 @@ label {
   font-weight: 400;
   border-radius: 5px;
   transition: all 0.3s;
-  padding: 10px 40px 10px 40px !important;
+  padding: 10px 40px 5px 40px !important;
   color: white;
 }
 #logout-button:hover {
