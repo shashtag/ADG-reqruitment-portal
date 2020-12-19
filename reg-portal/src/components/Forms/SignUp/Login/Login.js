@@ -9,6 +9,7 @@ export class Login extends Component {
     regError: "",
     passError: "",
     showPass: "false",
+    err: "",
   };
 
   validate = () => {
@@ -58,6 +59,7 @@ export class Login extends Component {
         a.history.push("/selection");
       })
       .catch(function (error) {
+        alert(error.response.data.message);
         console.log(error);
       });
   };

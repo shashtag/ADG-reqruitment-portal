@@ -4,7 +4,7 @@ import adglogo2 from "../../assets/img/adglogo2.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import Footer from "../../components/Footer/Footer";
 
 export class Background extends Component {
@@ -35,11 +35,15 @@ export class Background extends Component {
           console.log(error);
         });
     }
-    axios
-      .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
-      .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: recruitmentStatus.data.status })
-      );
+    // axios
+    //   .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
+    //   .then((recruitmentStatus) =>
+    //     this.setState({ recruitmentStatus: recruitmentStatus.data.status })
+    //   );
+  }
+
+  handleLogOut() {
+    sessionStorage.removeItem("Token");
   }
 
   render() {
@@ -52,7 +56,7 @@ export class Background extends Component {
           <div id="adglogo-cont2">
             <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
             <div className="flex"></div>
-            {this.state.data && this.state.recruitmentStatus ? (
+            {this.state.data /*&& this.state.recruitmentStatus*/ ? (
               <div id="profile-container" className="pf-cr">
                 <div id="profile-wrapper" className="pf-wr">
                   <div className="uinf">
@@ -63,20 +67,20 @@ export class Background extends Component {
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <a href="/auth/logout">
-                    <button id="logout-button">Logout</button>
-                  </a>
+                  <Link to="/">
+                    <button id="logout-button" onClick={this.handleLogOut}>Logout</button>
+                  </Link>
                 </div>
               </div>
             ) : null}
           </div>
           <div className="container">
             <div id="cont-box">
-              {this.state.recruitmentStatus ? (
-                this.props.children
-              ) : (
-                <h2 align="center">Recruitments coming soon</h2>
-              )}
+              {/*{this.state.recruitmentStatus ? (*/}
+              {this.props.children}
+              {/*) : (*/}
+              {/*  <h2 align="center">Recruitments coming soon</h2>*/}
+              {/*)}*/}
             </div>
             {/* <Footer /> */}
           </div>
@@ -90,11 +94,11 @@ export class Background extends Component {
               <img id="adglogo" src={adglogo} alt="ADG Logo" />
             </div>
             <div id="cont-box">
-              {this.state.recruitmentStatus ? (
-                this.props.children
-              ) : (
-                <h2 align="center">Recruitments coming soon</h2>
-              )}
+              {/*{this.state.recruitmentStatus ? (*/}
+              {this.props.children}
+              {/*) : (*/}
+              {/*  <h2 align="center">Recruitments coming soon</h2>*/}
+              {/*)}*/}
             </div>
             {/* <Footer /> */}
           </div>
