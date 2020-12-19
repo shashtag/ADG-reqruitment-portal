@@ -10,13 +10,13 @@ const DomainPage = (props) => {
   }
   const [domain, setDomain] = useState("");
   let domainValue = (event) => {
-    setDomain(event.target.value)
-  }
+    setDomain(event.target.value);
+  };
 
   const linkTo = {
     pathname: "/instructions",
-    param: domain
-  }
+    param: domain,
+  };
   return (
     <Background>
       <div className='heading'>Choose Domain</div>
@@ -35,21 +35,9 @@ const DomainPage = (props) => {
             name='selection'
             id='technical'
             className={classes.input}></input>
-          <label
-            htmlFor='technical'
-            className={`${classes.label} ${classes.tech}`}>
+          <label htmlFor='technical' className={`${classes.label} `}>
+            <i className='fas fa-cog dom-pg-ico'></i>
             Technical
-          </label>
-        </div>
-        <div className='rdio-grp lgn-btn'>
-          <input
-            type='radio'
-            value='Design'
-            name='selection'
-            id='design'
-            className={classes.input}></input>
-          <label htmlFor='design' className={`${classes.label} ${classes.des}`}>
-            Design
           </label>
         </div>
         <div className='rdio-grp lgn-btn'>
@@ -59,12 +47,24 @@ const DomainPage = (props) => {
             name='selection'
             id='management'
             className={classes.input}></input>
-          <label
-            htmlFor='management'
-            className={`${classes.label} ${classes.man}`}>
+          <label htmlFor='management' className={`${classes.label} `}>
+            <i className='fas fa-file-alt dom-pg-ico'></i>
             Management
           </label>
         </div>
+        <div className='rdio-grp lgn-btn'>
+          <input
+            type='radio'
+            value='Design'
+            name='selection'
+            id='design'
+            className={classes.input}></input>
+          <label htmlFor='design' className={`${classes.label} `}>
+            <i className='fas fa-drafting-compass dom-pg-ico'></i>
+            Design
+          </label>
+        </div>
+
         <Link to={linkTo} className='btn btn-blue lgn-btn'>
           Start Quiz
         </Link>
