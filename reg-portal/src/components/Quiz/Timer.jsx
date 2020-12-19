@@ -1,5 +1,4 @@
 import React from "react";
-import ThankYou from "../../components/Forms/Domain&Instructions/Thankyou";
 import "./Quiz.css";
 import { Redirect } from "react-router-dom";
 
@@ -13,7 +12,7 @@ const Timer = (props)=>{
             timeDisplay=`${minutes} : ${seconds} mins remaining`;
         let width=250-((props.time/600)*250);
         // console.log(width);
-        if(minutes==0 && seconds==0){
+        if(minutes===0 && seconds===0){
             return(
             <Redirect to="/thank-you" />
             )}
