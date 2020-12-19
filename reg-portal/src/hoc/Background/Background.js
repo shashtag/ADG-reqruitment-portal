@@ -10,6 +10,7 @@ export class Background extends Component {
   state = {
     Token: sessionStorage.getItem("Token"),
     data: false,
+    recruitmentStatus: null,
   };
   constructor(props) {
     super(props);
@@ -24,15 +25,20 @@ export class Background extends Component {
         },
       };
       axios
-          .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
-          .then(function (response) {
-            console.log(response.data);
-            t.setState({ data: response.data });
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
+        .then(function (response) {
+          console.log(response.data);
+          t.setState({ data: response.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
+    axios
+      .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
+      .then((recruitmentStatus) =>
+        this.setState({ recruitmentStatus: recruitmentStatus.data.status })
+      );
   }
 
   render() {
@@ -41,54 +47,66 @@ export class Background extends Component {
 
     if (this.state.Token) {
       background = (
-          <div>
-            <div id="adglogo-cont2">
-              <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
-              <div className="flex"></div>
-              {this.state.data ? (
-                  <div id="profile-container" className="pf-cr">
-                    <div id="profile-wrapper" className="pf-wr">
-                      <div className="uinf">
-                        <div>
-                          <img id="userpic" src={userpic} alt="User pic" />
-                        </div>
-                        <div id="profile-title" className="usr-det">
-                          {this.state.data.userDetails.name}
-                        </div>
-                      </div>
-                      <a href="/auth/logout"><button id="logout-button">Logout</button>
-                      </a>
+        <div>
+          <div id="adglogo-cont2">
+            <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
+            <div className="flex"></div>
+            {this.state.data && this.state.recruitmentStatus ? (
+              <div id="profile-container" className="pf-cr">
+                <div id="profile-wrapper" className="pf-wr">
+                  <div className="uinf">
+                    <div>
+                      <img id="userpic" src={userpic} alt="User pic" />
+                    </div>
+                    <div id="profile-title" className="usr-det">
+                      {this.state.data.userDetails.name}
                     </div>
                   </div>
-              ) : null}
-            </div>
-            <div className="container">
-              <div id="cont-box">{this.props.children}</div>
-              <Footer />
-            </div>
+                  <a href="/auth/logout">
+                    <button id="logout-button">Logout</button>
+                  </a>
+                </div>
+              </div>
+            ) : null}
           </div>
+          <div className="container">
+            <div id="cont-box">
+              {this.state.recruitmentStatus ? (
+                this.props.children
+              ) : (
+                <h2 align="center">Recruitments coming soon</h2>
+              )}
+            </div>
+            <Footer />
+          </div>
+        </div>
       );
     } else {
       background = (
-          <div>
-            <div className="container">
-              <div id="adglogo-cont">
-                <img id="adglogo" src={adglogo} alt="ADG Logo" />
-              </div>
-              <div id="cont-box">{this.props.children}</div>
-              <Footer />
+        <div>
+          <div className="container">
+            <div id="adglogo-cont">
+              <img id="adglogo" src={adglogo} alt="ADG Logo" />
             </div>
+            <div id="cont-box">
+              {this.state.recruitmentStatus ? (
+                this.props.children
+              ) : (
+                <h2 align="center">Recruitments coming soon</h2>
+              )}
+            </div>
+            <Footer />
           </div>
+        </div>
       );
     }
     return (
-        <div>
-          <div id="back-img" />
-          {background}
-        </div>
+      <div>
+        <div id="back-img" />
+        {background}
+      </div>
     );
   }
 }
 
 export default Background;
-
