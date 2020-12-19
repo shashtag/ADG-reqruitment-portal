@@ -2,14 +2,13 @@
   position: fixed;
   background-image: url("../../assets/img/back-img.png");
   width: 100vw;
-  height: 160vh;
+  height: 100vh;
   z-index: -100;
-  background-size: contain;
+  background-size: cover;
 }
 .container {
   padding: 0 15px;
   position: relative;
-  min-height: 100vh;
 }
 #adglogo-cont {
   padding-top: 7.75vh;
@@ -103,7 +102,6 @@
 @media (min-width: 768px) {
   #back-img {
     width: 100vw;
-    height: 160vh;
   }
   #adglogo-cont {
     padding-bottom: 44px;
@@ -421,11 +419,15 @@ label {
 }
 .lgn-eye {
   position: absolute;
-  right: 55px;
-  bottom: 125px;
+  right: 56px;
+  bottom: 122px;
   color: grey;
-  font-size: large;
+  font-size: 20px;
+  cursor: pointer;
 }
 .t-uc {
   text-transform: uppercase;
+}
+.lgn-eye-t {
+  color: blue;
 }

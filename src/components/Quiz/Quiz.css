@@ -56,19 +56,37 @@
   background-color: #489bd3;
 } */
 
+.loading {
+  text-align: center;
+}
+
+.question-count {
+  text-align: center;
+}
+
+.question-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 2% 0;
+}
+
 .options{
   cursor:pointer;
-  width:60%;
+  /* width:60%; */
+  width: 100%;
   background:transparent;
   outline:none;
   border:1px solid grey;
   border-radius:15px;
-  height:45px;
-  margin-bottom:15px;
+  /* height:45px; */
+  margin-bottom: 10px;
   color:white;
   text-align: left;
-  padding:5px 15px;
+  padding:10px 15px;
   font-size:1rem;
+  transition: all 250ms ease-in-out;
 }
 .options:first-of-type{
   margin-top: 10px;
@@ -76,20 +94,28 @@
 .options:hover{
   background: dodgerblue;
 }
+.options:focus{
+  background: dodgerblue;
+}
 .btn-bottom{
   display:flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
 }
 .btn-bottom>button{
+  flex:1;
+  margin: 0 3vw;
   background:transparent;
   outline:none;
   border:1px solid dodgerblue;
-  height:30px;
+  /* height:30px; */
   color:dodgerblue;
   height:40px;
   font-size:20px;
   border-radius: 5px;
-  width:7vw;
+  cursor: pointer;
 }
 .btn-bottom>button:hover{
   background: dodgerblue;
@@ -114,22 +140,10 @@
 	/* width: 80%; */
 	transition: 1s ease 0.3s;
 }
-.submit-btn{
-  margin-top:10px;
-  background:transparent;
-  outline:none;
-  border:1px solid dodgerblue;
-  height:30px;
-  color:dodgerblue;
-  height:40px;
-  font-size:20px;
-  border-radius: 5px;
-  width:7vw;
-}
-.submit-btn:hover{
-  background: dodgerblue;
-  color:white;
-}
-.submit-btn:active{
-  transform: scale(0.9);
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

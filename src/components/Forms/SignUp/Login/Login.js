@@ -8,7 +8,7 @@ export class Login extends Component {
     password: "",
     regError: "",
     passError: "",
-    showPass: "false",
+    showPass: false,
   };
 
   validate = () => {
@@ -66,6 +66,9 @@ export class Login extends Component {
       this.props.history.replace("/selection");
     }
   }
+  eyeClickHandler = () => {
+    this.setState({ showPass: true });
+  };
   render() {
     return (
       <Background>
@@ -95,7 +98,11 @@ export class Login extends Component {
               this.inputChangeHandler(event, "password");
             }}
           />
-          <i className={`fas fa-eye lgn-eye ${this.state.showPass ? "lgn-eye-t":null}`}></i>
+          <i
+            className={`fas fa-eye lgn-eye ${
+              this.state.showPass ? "lgn-eye-t" : null
+            }`}
+            onClick={this.eyeClickHandler}></i>
         </div>
         {this.state.passError ? (
           <div className='error'>{this.state.passError}</div>
