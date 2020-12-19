@@ -74,7 +74,7 @@ export class Login extends Component {
           <input
             className='input'
             type='text'
-            placeholder='Enter Registration number'
+            placeholder='Enter Registration Number'
             onChange={(event) => {
               this.inputChangeHandler(event, "regno");
             }}
@@ -88,7 +88,7 @@ export class Login extends Component {
           <input
             className='input'
             type='password'
-            placeholder='Enter your password'
+            placeholder='Enter Your Password'
             style={{ marginBottom: 10 }}
             onChange={(event) => {
               this.inputChangeHandler(event, "password");

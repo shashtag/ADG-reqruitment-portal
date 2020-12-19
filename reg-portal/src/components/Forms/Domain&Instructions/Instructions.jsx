@@ -10,7 +10,7 @@ const Instructions = (props) => {
     props.history.replace("/selection");
   }
   const linkTo = {
-    pathname: props.location.param
+    pathname: props.location.param,
   };
   return (
     <Background>
@@ -22,16 +22,16 @@ const Instructions = (props) => {
       <ul style={{ textAlign: "left" }}>
         <li>The participant can attempt the quiz only ONCE.</li>
         <li>
-          {props.location.param == "Technical"
-            ? "The quiz will have 10 Multiple choice questions."
-            : props.location.param == "Management"
+          {props.location.param === "Technical"
+            ? "The quiz will have 10 multiple choice questions."
+            : props.location.param === "Management"
             ? "The quiz will have 10 Long Answer type questions."
-            : "The quiz will have 10 Multiple choice questions."}
+            : "The quiz will have 10 multiple choice questions."}
         </li>
         <li>
-          {props.location.param == "Technical"
+          {props.location.param === "Technical"
             ? "10 minutes will be provided to complete the quiz."
-            : props.location.param == "Management"
+            : props.location.param === "Management"
             ? "There is no time limit for completing the quiz."
             : "10 minutes will be provided to complete the quiz."}
         </li>
