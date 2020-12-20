@@ -52,11 +52,11 @@ export class Background extends Component {
 
     if (this.state.Token) {
       background = (
-        <div >
+        <div>
           <div id='adglogo-cont2'>
             <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
             <div className='flex'></div>
-            {this.state.data && this.state.recruitmentStatus ? (
+            {this.state.data ? (
               <div id='profile-container' className='pf-cr'>
                 <div id='profile-wrapper' className='pf-wr'>
                   <div className='uinf'>
