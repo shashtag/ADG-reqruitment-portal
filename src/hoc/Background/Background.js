@@ -11,7 +11,7 @@ export class Background extends Component {
   state = {
     Token: sessionStorage.getItem("Token"),
     data: false,
-    recruitmentStatus: null,
+    recruitmentStatus: false,
   };
   constructor(props) {
     super(props);
@@ -83,6 +83,7 @@ export class Background extends Component {
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
+              {/* {this.props.children} */}
             </div>
             <Footer />
           </div>
@@ -101,6 +102,8 @@ export class Background extends Component {
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
+              {/* {this.props.children} */}
+
             </div>
             <Footer />
           </div>

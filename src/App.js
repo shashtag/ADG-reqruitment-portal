@@ -35,7 +35,6 @@ export class App extends Component {
   // }
   render() {
     return (
-      // <ThemeProvider theme={theme}>
       <div className='App'>
         {/* {this.state.Token ? (
             <Route path='/' exact component={DomainPage} />
@@ -53,7 +52,6 @@ export class App extends Component {
         <Route path='/Design' component={DesignQuiz} />
         <Route path="/thank-you" component={ThankYou} />
       </div>
-      // </ThemeProvider>
     );
   }
 }
