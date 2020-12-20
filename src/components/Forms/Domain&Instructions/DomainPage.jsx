@@ -9,6 +9,10 @@ const DomainPage = (props) => {
     props.history.replace("/");
   }
   const [domain, setDomain] = useState("");
+  const [tech, setTech] = useState(false);
+  const [man, setMan] = useState(false);
+  const [des, setDes] = useState(false);
+
   let domainValue = (event) => {
     setDomain(event.target.value);
   };
@@ -52,7 +56,7 @@ const DomainPage = (props) => {
             Management
           </label>
         </div>
-        <div className='rdio-grp lgn-btn'>
+        <div className='rdio-grp lgn-btn' style={{ marginBottom: "20px" }}>
           <input
             type='radio'
             value='Design'

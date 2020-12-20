@@ -38,7 +38,7 @@ export class Background extends Component {
     axios
       .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
+        this.setState({ recruitmentStatus: recruitmentStatus.data.status }),
       );
   }
 

@@ -58,8 +58,8 @@
   /*padding-top: 25px;*/
 }
 .footer {
-  position: absolute;
-  margin-top: 2em;
+  position: fixed;
+  /* top:100vh; */
   width: 100%;
   text-align: right;
   bottom: 0;
