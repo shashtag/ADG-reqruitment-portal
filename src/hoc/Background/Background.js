@@ -5,6 +5,7 @@ import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
 import Footer from "../../components/Footer/Footer";
+import { Link } from "react-router-dom";
 
 export class Background extends Component {
   state = {
@@ -41,10 +42,9 @@ export class Background extends Component {
       );
   }
 
-  handleLogOut() {
+  handleLogOut = () => {
     sessionStorage.clear();
-    this.props.history.push("/")
-  }
+  };
 
   render() {
     let background;
@@ -67,21 +67,23 @@ export class Background extends Component {
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
+                  <Link to='/'>
                     <button id='logout-button' onClick={this.handleLogOut}>
                       Logout
                     </button>
+                  </Link>
                 </div>
               </div>
             ) : null}
           </div>
           <div className='container'>
             <div id='cont-box'>
-              {this.state.recruitmentStatus ? (
+              {/* {this.state.recruitmentStatus ? (
                 this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
-              )}
-              {/* {this.props.children} */}
+              )} */}
+              {this.props.children}
             </div>
             <Footer />
           </div>
@@ -95,12 +97,12 @@ export class Background extends Component {
               <img id='adglogo' src={adglogo} alt='ADG Logo' />
             </div>
             <div id='cont-box'>
-              {this.state.recruitmentStatus ? (
+              {/* {this.state.recruitmentStatus ? (
                 this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
-              )}
-              {/* {this.props.children} */}
+              )} */}
+              {this.props.children}
             </div>
             <Footer />
           </div>
