@@ -56,7 +56,7 @@ export class SignUp extends Component {
     if (this.state.password && !this.state.confirmPass) {
       confirmPassError = "Confirm Password";
     } else if (this.state.password !== this.state.confirmPass) {
-      confirmPassError = "Password and Confirm Password do not match";
+      confirmPassError = "Passwords do not match";
     }
 
     if (nameError || regError || passError || confirmPassError) {

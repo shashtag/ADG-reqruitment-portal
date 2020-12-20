@@ -36,7 +36,7 @@ export class Background extends Component {
         });
     }
     axios
-      .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
+      .get("https://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
         this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
       );
@@ -52,7 +52,7 @@ export class Background extends Component {
 
     if (this.state.Token) {
       background = (
-        <div>
+        <div >
           <div id='adglogo-cont2'>
             <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
             <div className='flex'></div>
@@ -85,8 +85,8 @@ export class Background extends Component {
               )} */}
               {this.props.children}
             </div>
-            <Footer />
           </div>
+          <Footer />
         </div>
       );
     } else {
@@ -104,8 +104,8 @@ export class Background extends Component {
               )} */}
               {this.props.children}
             </div>
-            <Footer />
           </div>
+          <Footer />
         </div>
       );
     }
