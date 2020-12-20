@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.3ef3037d.chunk.css",
+    "main.js": "/static/js/main.fe9306ac.chunk.js",
+    "main.js.map": "/static/js/main.fe9306ac.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.4f3d173a.js",
+    "runtime-main.js.map": "/static/js/runtime-main.4f3d173a.js.map",
+    "static/js/2.b38fbb15.chunk.js": "/static/js/2.b38fbb15.chunk.js",
+    "static/js/2.b38fbb15.chunk.js.map": "/static/js/2.b38fbb15.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.3ef3037d.chunk.css.map": "/static/css/main.3ef3037d.chunk.css.map",
+    "static/js/2.b38fbb15.chunk.js.LICENSE.txt": "/static/js/2.b38fbb15.chunk.js.LICENSE.txt",
+    "static/media/App.css": "/static/media/SF-Pro-Display-UltralightItalic.b90d5d0f.otf",
+    "static/media/styles.module.css": "/static/media/vector.f9b370e3.svg",
+    "static/media/adglogo.ba947082.png": "/static/media/adglogo.ba947082.png",
+    "static/media/Background.css": "/static/media/back-img.feadef79.png",
+    "static/media/userpic.6a56817b.png": "/static/media/userpic.6a56817b.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4f3d173a.js",
+    "static/js/2.b38fbb15.chunk.js",
+    "static/css/main.3ef3037d.chunk.css",
+    "static/js/main.fe9306ac.chunk.js"
+  ]
+}
