@@ -150,6 +150,11 @@ class TechQuiz extends React.Component {
                 <Redirect to="/" />
             )
         }
+        else if(this.state.time === 0) {
+            return(
+                <Redirect to="thank-you" />
+            )
+        }
         return(
             <Background>
                 { this.state.quizQuestions.length === 0 ?
@@ -176,7 +181,10 @@ class TechQuiz extends React.Component {
                                 })}
                             </div>
                             <div className='btn-bottom'>
-                                <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                                {this.state.currentQuestionIndex === 0 ?
+                                    <button disabled={ true } id="disabled-btn">Previous</button> :
+                                    <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
+                                }
                                 {/* <button className={ submitButton } onCLick={ () => { this.showModal1() } }>Submit</button> */}
                                 {this.state.currentQuestionIndex === 9 ? 
                                     <button onClick={ () => { this.showModal1() } }>Submit</button> :
@@ -199,3 +207,4 @@ class TechQuiz extends React.Component {
 }
 
 export default TechQuiz;
+
