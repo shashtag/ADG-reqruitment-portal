@@ -171,10 +171,6 @@
   position: relative;
   overflow: hidden;
 }
-.cls-btn:hover {
-  background: black;
-  color: white;
-}
 .btn-trans {
   border: #027aff 2px solid;
   position: relative;
@@ -559,6 +555,10 @@ label {
 }
 
 .modal-main {
-  background: #b3b3b3 !important;
-  max-width: 600px;
+  color: white;
+  background: #312F31 !important;
+  max-width: 700px;
+}
+.modal-main a {
+  color: #027aff;
 }
