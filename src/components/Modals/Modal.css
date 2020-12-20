@@ -1,0 +1,64 @@
+.times {
+    float: right;
+    top: 0;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+} 
+.modal-main {
+    text-align: center;
+    z-index:25;
+    position:fixed;
+    background: rgb(17, 17, 17);
+    width: 80%;
+    height: auto;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 15px;
+    padding:2%;
+    box-sizing: border-box;
+} 
+.display-block {
+    display: block;
+} 
+.display-none {
+    display: none;
+}
+/* .submit-btn{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+} */
+.submit-btn{
+    text-align: center;
+    text-decoration: none;
+    margin: 0 3vw;
+    background:transparent;
+    outline:none;
+    border:1px solid dodgerblue;
+    /* height:30px; */
+    color:dodgerblue;
+    height: auto;
+    width: auto;
+    font-size:20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.submit-btn:hover{
+    background: dodgerblue;
+    color:white;
+}
+.submit-btn:active{
+    transform: scale(0.9);
+}
+/* .mod-btn{
+    width:20vw; */
+/* } */

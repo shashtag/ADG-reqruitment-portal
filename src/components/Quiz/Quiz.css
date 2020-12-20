@@ -1,0 +1,149 @@
+/* 
+
+.app {
+  background-color: #323335;
+  width: 100vh;
+  height: 80vh;
+  border-radius: 15px;
+  padding: 5%;
+  
+  
+}
+.score-section {
+  display: flex;
+  font-size: 24px;
+  align-items: center;
+  margin-left:28%;
+  margin-top:20%;
+}
+
+.question-section {
+  width: 100%;
+  position: relative;
+}
+.question-count {
+  margin-bottom: 20px;
+}
+
+.question-count span {
+  font-size: 28px;
+}
+
+.question-text {
+  margin-bottom: 12px;
+}
+.answer-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+} */
+
+/* button {
+  width: 100%;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: black;
+  border-radius: 15px;
+  display: flex;
+  padding: 4%;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid #4a4d50;
+  cursor: pointer;
+} */
+/* button:hover {
+  background-color: #489bd3;
+} */
+
+.loading {
+  text-align: center;
+}
+
+.question-count {
+  text-align: center;
+}
+
+.question-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 2% 0;
+}
+
+.options{
+  cursor:pointer;
+  /* width:60%; */
+  width: 100%;
+  background:transparent;
+  outline:none;
+  border:1px solid grey;
+  border-radius:15px;
+  /* height:45px; */
+  margin-bottom: 10px;
+  color:white;
+  text-align: left;
+  padding:10px 15px;
+  font-size:1rem;
+  transition: all 250ms ease-in-out;
+}
+.options:first-of-type{
+  margin-top: 10px;
+}
+.options:hover{
+  background: dodgerblue;
+}
+.options:focus{
+  background: dodgerblue;
+}
+.btn-bottom{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+.btn-bottom>button{
+  flex:1;
+  margin: 0 3vw;
+  background:transparent;
+  outline:none;
+  border:1px solid dodgerblue;
+  /* height:30px; */
+  color:dodgerblue;
+  height:40px;
+  font-size:20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-bottom>button:hover{
+  background: dodgerblue;
+  color:white;
+}
+.btn-bottom>button:active{
+  transform: scale(0.9);
+}
+.progress {
+	background-color: #5D5D5D;
+	border-radius: 20px;
+	margin: 15px 0;
+	height: 8px;
+	width: 250px;
+}
+
+.progress-done {
+	background: #018CF1;
+	border-radius: 20px;
+	color: #fff;
+	height: 100%;
+	/* width: 80%; */
+	transition: 1s ease 0.3s;
+}
+.timer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
