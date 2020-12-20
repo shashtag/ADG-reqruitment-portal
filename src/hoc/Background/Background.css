@@ -1,5 +1,5 @@
 #back-img {
-  position: fixed;
+  position: absolute;
   background-image: url("../../assets/img/back-img.png");
   width: 100vw;
   height: 100vh;
