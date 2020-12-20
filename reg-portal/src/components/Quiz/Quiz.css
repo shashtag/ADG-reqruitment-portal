@@ -147,3 +147,31 @@
   align-items: center;
   text-align: center;
 }
+.mgmt-answer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* resize: none; */
+  /* width:60%; */
+  width: 100%;
+  /* height: 10vh; */
+  background:transparent;
+  outline:none;
+  border:1px solid grey;
+  border-radius:15px;
+  /* height:45px; */
+  margin-bottom: 10px;
+  color:white;
+  text-align: left;
+  padding:10px 15px;
+  font-size:1rem;
+  transition: all 250ms ease-in-out;
+}
+#disabled-btn {
+  cursor: not-allowed;
+}
+#disabled-btn:hover{
+  background-color: inherit;
+  color: dodgerblue;
+}
