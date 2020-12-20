@@ -203,8 +203,8 @@ export class SignUp extends Component {
                   }}
                 />
                 <div
-                  className={`lgn-eye ${
-                    this.state.showPass ? "lgn-eye-t" : null
+                  className={`sgn-eye ${
+                    this.state.showPass ? "sgn-eye-t" : null
                   }`}
                   onClick={this.eyeClickHandler}>
                   <i className={`fas fa-eye  `}></i>
@@ -226,10 +226,10 @@ export class SignUp extends Component {
                   }}
                 />
                 <div
-                  className={`lgn-eye ${
-                    this.state.showPass ? "lgn-eye-t" : null
+                  className={`lgnc-eye ${
+                    this.state.showCPass ? "lgnc-eye-t" : null
                   }`}
-                  onClick={this.eyeClickHandler}>
+                  onClick={this.eyeClickHandlerC}>
                   <i className={`fas fa-eye  `}></i>
                 </div>
               </div>

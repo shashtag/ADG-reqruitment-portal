@@ -4,6 +4,11 @@
 .input:checked + .tech {
   color: dodgerblue;
 }
+.input:disabled + .label {
+  color: grey;
+  cursor: auto;
+}
+
 .label {
   display: inline-block;
   height: 100%;
@@ -13,6 +18,7 @@
   position: relative;
   margin-left: 0px;
   width: 100%;
+  transition: all 0.1s;
 }
 
 .tech::before {
@@ -46,21 +52,21 @@
   bottom: 12px;
   left: -40px;
 }
-.redirectBtn{
-  height:40px;
-  width:auto;
+.redirectBtn {
+  height: 40px;
+  width: auto;
   border-radius: 5px;
   background-color: transparent;
-  border:1px solid dodgerblue;
-  outline:none;
-  cursor:pointer;
-  color:dodgerblue;
+  border: 1px solid dodgerblue;
+  outline: none;
+  cursor: pointer;
+  color: dodgerblue;
 }
-.redirectBtn:hover{
-  transform:scale(0.9);
+.redirectBtn:hover {
+  transform: scale(0.9);
   background-color: dodgerblue;
-  color:white;
+  color: white;
 }
-.wrapper{
+.wrapper {
   text-align: center;
 }

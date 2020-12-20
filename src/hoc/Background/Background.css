@@ -325,7 +325,6 @@ label {
   align-items: center;
   border: 1px solid grey;
   border-radius: 10px;
-  cursor: pointer;
   margin-bottom: 10px;
 }
 @media (min-width: 576px) {
@@ -431,20 +430,130 @@ label {
   background: white;
   color: black;
 }
+.t-uc {
+  text-transform: uppercase;
+}
+/* login eye */
 .lgn-eye {
   position: absolute;
-  right: 56px;
-  bottom: 118px;
+  right: 30px;
+  bottom: 34.5%;
   color: grey;
   font-size: 20px;
   cursor: pointer;
 }
-.t-uc {
-  text-transform: uppercase;
-}
+
 .lgn-eye-t {
   color: #1466d1 !important;
 }
+@media (min-width: 576px) {
+  .lgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgn-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 128px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .lgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgn-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 118px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+/* signin eye */
+.sgn-eye {
+  position: absolute;
+  right: 30px;
+  bottom: 39%;
+  color: grey;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sgn-eye-t {
+  color: #1466d1 !important;
+}
+@media (min-width: 576px) {
+  .sgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .sgn-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 238px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .sgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .sgn-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 205px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+/* login eye */
+.lgnc-eye {
+  position: absolute;
+  right: 30px;
+  bottom: 21.5%;
+  color: grey;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.lgnc-eye-t {
+  color: #1466d1 !important;
+}
+@media (min-width: 576px) {
+  .lgnc-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgnc-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 123px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .lgnc-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgnc-eye {
+    position: absolute;
+    right: 56px;
+    bottom: 105px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
 .modal-main {
   background: #b3b3b3 !important;
   max-width: 600px;

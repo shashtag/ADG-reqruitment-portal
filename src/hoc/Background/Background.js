@@ -4,7 +4,6 @@ import adglogo2 from "../../assets/img/adglogo2.png";
 import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import Footer from "../../components/Footer/Footer";
 
 export class Background extends Component {
@@ -22,7 +21,7 @@ export class Background extends Component {
     if (this.state.Token) {
       var config = {
         headers: {
-          "auth-token": sessionStorage.getItem("Token"),
+          "auth-token": this.state.Token,
         },
       };
       axios
@@ -38,12 +37,13 @@ export class Background extends Component {
     axios
       .get("http://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: recruitmentStatus.data.status }),
+        this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
       );
   }
 
   handleLogOut() {
-    sessionStorage.removeItem("Token");
+    sessionStorage.clear();
+    this.props.history.push("/")
   }
 
   render() {
@@ -67,11 +67,9 @@ export class Background extends Component {
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <Link to='/'>
                     <button id='logout-button' onClick={this.handleLogOut}>
                       Logout
                     </button>
-                  </Link>
                 </div>
               </div>
             ) : null}
@@ -103,7 +101,6 @@ export class Background extends Component {
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
               {/* {this.props.children} */}
-
             </div>
             <Footer />
           </div>
