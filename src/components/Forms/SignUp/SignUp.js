@@ -21,6 +21,8 @@ export class SignUp extends Component {
     phoneError: "",
     gitError: "",
     err: "",
+    showPass: false,
+    showCPass: false,
   };
 
   validate = () => {
@@ -141,6 +143,12 @@ export class SignUp extends Component {
       this.props.history.replace("/selection");
     }
   }
+  eyeClickHandler = () => {
+    this.setState({ showPass: !this.state.showPass });
+  };
+  eyeClickHandlerC = () => {
+    this.setState({ showCPass: !this.state.showCPass });
+  };
 
   render() {
     return (
@@ -186,13 +194,21 @@ export class SignUp extends Component {
                 <label>Password</label>
                 <input
                   className='input'
-                  type='password'
+                  type={`${this.state.showPass ? "text" : "password"}`}
+                  style={{ marginBottom: 10, position: "relative" }}
                   value={this.state.password}
                   placeholder='Enter Your Password'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "password");
                   }}
                 />
+                <div
+                  className={`lgn-eye ${
+                    this.state.showPass ? "lgn-eye-t" : null
+                  }`}
+                  onClick={this.eyeClickHandler}>
+                  <i className={`fas fa-eye  `}></i>
+                </div>
               </div>
               {this.state.passError ? (
                 <div className='error'>{this.state.passError}</div>
@@ -201,13 +217,21 @@ export class SignUp extends Component {
                 <label>Confirm Password</label>
                 <input
                   className='input'
-                  type='password'
+                  type={`${this.state.showCPass ? "text" : "password"}`}
+                  style={{ marginBottom: 10, position: "relative" }}
                   value={this.state.confirmPass}
                   placeholder='Confirm Password'
                   onChange={(event) => {
                     this.inputChangeHandler(event, "confirmPass");
                   }}
                 />
+                <div
+                  className={`lgn-eye ${
+                    this.state.showPass ? "lgn-eye-t" : null
+                  }`}
+                  onClick={this.eyeClickHandler}>
+                  <i className={`fas fa-eye  `}></i>
+                </div>
               </div>
               {this.state.confirmPassError ? (
                 <div className='error'>{this.state.confirmPassError}</div>

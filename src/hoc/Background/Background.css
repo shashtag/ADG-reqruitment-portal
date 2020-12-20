@@ -434,7 +434,7 @@ label {
 .lgn-eye {
   position: absolute;
   right: 56px;
-  bottom: 122px;
+  bottom: 118px;
   color: grey;
   font-size: 20px;
   cursor: pointer;
@@ -443,10 +443,9 @@ label {
   text-transform: uppercase;
 }
 .lgn-eye-t {
-  color: blue;
+  color: #1466d1 !important;
 }
 .modal-main {
   background: #b3b3b3 !important;
   max-width: 600px;
-
 }

@@ -67,8 +67,10 @@ export class Background extends Component {
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <Link to="/">
-                    <button id="logout-button" onClick={this.handleLogOut}>Logout</button>
+                  <Link to='/'>
+                    <button id='logout-button' onClick={this.handleLogOut}>
+                      Logout
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -77,12 +79,12 @@ export class Background extends Component {
           <div className='container'>
             <div id='cont-box'>
               {this.state.recruitmentStatus ? (
-                  this.props.children
+                this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
             </div>
-             <Footer />
+            <Footer />
           </div>
         </div>
       );
@@ -95,12 +97,12 @@ export class Background extends Component {
             </div>
             <div id='cont-box'>
               {this.state.recruitmentStatus ? (
-                  this.props.children
+                this.props.children
               ) : (
                 <h2 align='center'>Recruitments coming soon</h2>
               )}
             </div>
-             <Footer />
+            <Footer />
           </div>
         </div>
       );

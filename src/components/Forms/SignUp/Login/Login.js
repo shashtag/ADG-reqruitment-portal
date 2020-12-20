@@ -69,7 +69,7 @@ export class Login extends Component {
     }
   }
   eyeClickHandler = () => {
-    this.setState({ showPass: true });
+    this.setState({ showPass: !this.state.showPass });
   };
   render() {
     return (
@@ -93,18 +93,18 @@ export class Login extends Component {
           <label id='p1'>Password</label>
           <input
             className='input'
-            type='password'
+            type={`${this.state.showPass ? "text": 'password'}`}
             placeholder='Enter Your Password'
             style={{ marginBottom: 10, position: "relative" }}
             onChange={(event) => {
               this.inputChangeHandler(event, "password");
             }}
           />
-          <i
-            className={`fas fa-eye lgn-eye ${
-              this.state.showPass ? "lgn-eye-t" : null
-            }`}
-            onClick={this.eyeClickHandler}></i>
+          <div
+            className={`lgn-eye ${this.state.showPass ? "lgn-eye-t" : null}`}
+            onClick={this.eyeClickHandler}>
+            <i className={`fas fa-eye  `}></i>
+          </div>
         </div>
         {this.state.passError ? (
           <div className='error'>{this.state.passError}</div>
