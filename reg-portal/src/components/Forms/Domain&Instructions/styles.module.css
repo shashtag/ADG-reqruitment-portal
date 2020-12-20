@@ -53,11 +53,13 @@
   background-color: transparent;
   border:1px solid dodgerblue;
   outline:none;
+  font-size: 1em;
   cursor:pointer;
   color:dodgerblue;
+  transition: all 250ms ease-in-out;
 }
 .redirectBtn:hover{
-  transform:scale(0.9);
+  transform:scale(1.10);
   background-color: dodgerblue;
   color:white;
 }
