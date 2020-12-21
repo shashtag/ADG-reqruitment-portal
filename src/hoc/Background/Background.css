@@ -48,6 +48,7 @@
   border-radius: 16px;
   padding: 5.6vh 16px;
   opacity: 0.8;
+  text-align: center;
   backdrop-filter: blur(20px);
   margin-bottom: 20px;
 }
@@ -170,10 +171,6 @@
   border: transparent 2px solid;
   position: relative;
   overflow: hidden;
-}
-.cls-btn:hover {
-  background: black;
-  color: white;
 }
 .btn-trans {
   border: #027aff 2px solid;
@@ -477,4 +474,29 @@ label {
     font-size: 20px;
     cursor: pointer;
   }
+}
+
+.modal-main {
+  color: white;
+  background: #312F31 !important;
+  max-width: 700px;
+}
+.modal-main a {
+  color: #027aff;
+}
+
+.countdown .card {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.countdown-value {
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  color: #027aff;
+  background: #333333;
+  margin: 10px;
+  min-width: 100px;
+  padding: 20px 0;
 }
