@@ -41,25 +41,16 @@ export class App extends Component {
           ) : ( */}
         <Route path='/' exact component={Landing} />
         {/* )} */}
-        <Route path='https://test.adgvit.com/signup' component={SignUp} />
-        <Route path='https://test.adgvit.com/login' component={Login} />
-        <Route
-          path='https://test.adgvit.com/forgotPassword'
-          component={ForgotPassword}
-        />
-        <Route
-          path='https://test.adgvit.com/selection'
-          component={DomainPage}
-        />
-        <Route
-          path='https://test.adgvit.com/instructions'
-          component={Instructions}
-        />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/login' component={Login} />
+        <Route path='/forgotPassword' component={ForgotPassword} />
+        <Route path='/selection' component={DomainPage} />
+        <Route path='/instructions' component={Instructions} />
         {/* <Route path="/quiz" component={Quiz} /> */}
-        <Route path='https://test.adgvit.com/Technical' component={TechQuiz} />
-        <Route path='https://test.adgvit.com/Management' component={MgmtQuiz} />
-        <Route path='https://test.adgvit.com/Design' component={DesignQuiz} />
-        <Route path='https://test.adgvit.com/thank-you' component={ThankYou} />
+        <Route path='/Technical' component={TechQuiz} />
+        <Route path='/Management' component={MgmtQuiz} />
+        <Route path='/Design' component={DesignQuiz} />
+        <Route path="/thank-you" component={ThankYou} />
       </div>
     );
   }
