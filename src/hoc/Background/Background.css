@@ -48,6 +48,7 @@
   border-radius: 16px;
   padding: 5.6vh 16px;
   opacity: 0.8;
+  text-align: center;
   backdrop-filter: blur(20px);
   margin-bottom: 20px;
 }
@@ -561,4 +562,20 @@ label {
 }
 .modal-main a {
   color: #027aff;
+}
+
+.countdown .card {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.countdown-value {
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  color: #027aff;
+  background: #333333;
+  margin: 10px;
+  min-width: 100px;
+  padding: 20px 0;
 }
