@@ -6,7 +6,8 @@ import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
 
 class MgmtQuiz extends React.Component {
-    selectedOptions = [];
+    responsesArray = [];
+    // inputValue = [];
     constructor(props) {
         super(props);
         this.state =  {
@@ -14,10 +15,11 @@ class MgmtQuiz extends React.Component {
             time: 600,
             currentQuestionIndex: 0,
             questionId: [],
-            showModal:false
+            showModal:false,
+            inputValue: []
         };
         this.submitQuiz = this.submitQuiz.bind(this);
-        this.setSelectedOption = this.setSelectedOption.bind(this);
+        this.setResponsesArray = this.setResponsesArray.bind(this);
         this.showModal1 = this.showModal1.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
@@ -87,45 +89,57 @@ class MgmtQuiz extends React.Component {
         .catch((error) => {
             console.log(error.message);
         })
+        // this.setState({
+        //     inputValue: ""
+        // })
     }
 
-    optionsArray = ["a", "b", "c", "d"];
+    // optionsArray = ["a", "b", "c", "d"];
 
-    setSelectedOption(qid, response) {
+    setResponsesArray(qid, event) {
+        console.log("Qid", qid);
+        console.log("Event", event.target.value);
+        // this.inputValue.push({qid: qid, response: event.target.value})
+        // this.inputValue[this.state.currentQuestionIndex] = event.target.value
+        // this.responsesArray.push({qid: qid, response: event.target.value});
+        // console.log("Hello", this.responsesArray)
         // console.log(qid,this.optionsArray[response]);
-        if(this.selectedOptions.some(option=> option.qid === qid)){
-            for(let i=0;i<this.selectedOptions.length;i++){
-                if(this.selectedOptions[i].qid === qid){
+        if(this.responsesArray.some(option=> option.qid === qid)){
+            for(let i=0;i<this.responsesArray.length;i++){
+                if(this.responsesArray[i].qid === qid){
                     console.log("okay match");
-                    this.selectedOptions[i].response=this.optionsArray[response];
+                    this.responsesArray[i].response = event.target.value;
                 }
             }
-        } else {
-            this.selectedOptions.push({qid:qid,response:this.optionsArray[response]})
+        } 
+        else {
+            this.responsesArray.push({qid:qid,response:event.target.value})
         }
-        console.log("inside setSelectedOption",this.selectedOptions);
+        this.setState({
+            inputValue: this.state.inputValue.concat(this.responsesArray[this.state.currentQuestionIndex].response)
+        })
+        console.log("inside setSelectedOption",this.responsesArray);
     }
 
     gotoNextQuestion() {
         if(this.state.currentQuestionIndex < this.state.quizQuestions.length - 1) {
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex + 1
+                currentQuestionIndex: this.state.currentQuestionIndex + 1,
+                // inputValue: this.responsesArray[this.state.currentQuestionIndex]['response']
             })
-            // if(this.state.currentQuestionIndex === 9)
-            //     this.setState({
-            //         nextBtn: "Submit"
-            //     })
-        }
-        else
+            // this.inputValue[this.state.currentQuestionIndex] = this.responsesArray[this.state.currentQuestionIndex].response;
+        } else
             return
     }
 
     gotoPreviousQuestion() {
-        if(this.state.currentQuestionIndex > 0)
+        if(this.state.currentQuestionIndex > 0) {
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex - 1
+                currentQuestionIndex: this.state.currentQuestionIndex - 1,
+                // inputValue: this.responsesArray[this.state.currentQuestionIndex]['response']
             })
-        else
+            // this.inputValue[this.state.currentQuestionIndex] = this.responsesArray[this.state.currentQuestionIndex].response;
+        } else
             return
     }
 
@@ -169,7 +183,14 @@ class MgmtQuiz extends React.Component {
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].description}
                             </div>
                             <div className='answer-section'>
-                                <textarea className="mgmt-answer" onChange={ this.setSelectedOption() }></textarea>
+                                {/* <textarea className="mgmt-answer"
+                                          value={ this.state.value }
+                                          onChange={ (e) => { this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, e) } }></textarea> */}
+                                <textarea
+                                       className="mgmt-answer"
+                                       placeholder="Enter your answer..."
+                                       value={ this.state.inputValue[this.state.currentQuestionIndex] }
+                                       onChange={ (e) => { this.setResponsesArray(this.state.quizQuestions[this.state.currentQuestionIndex]._id, e) } } />
                                 {/* {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
                                     return (
                                         <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
