@@ -98,7 +98,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 20px;
+  margin-bottom: 15px;
 }
 .btn-bottom>button{
   flex:1;
@@ -127,11 +128,18 @@
 	height: 8px;
 	width: 250px;
 }
-
 .progress-done {
 	background: #018CF1;
 	border-radius: 20px;
 	color: #fff;
+	height: 100%;
+	/* width: 80%; */
+	transition: 1s ease 0.3s;
+}
+.progress-done-red {
+	background: red;
+	border-radius: 20px;
+	color: red;
 	height: 100%;
 	/* width: 80%; */
 	transition: 1s ease 0.3s;
