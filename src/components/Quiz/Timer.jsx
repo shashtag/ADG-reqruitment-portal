@@ -1,5 +1,5 @@
 import React from "react";
-// import { useState } from "react";
+import { useState } from "react";
 import "./Quiz.css";
 import { Redirect } from "react-router-dom";
 
