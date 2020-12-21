@@ -2,15 +2,17 @@ import React, { Component } from "react";
 import Background from "../../../../hoc/Background/Background";
 import axios from "axios";
 
-export class SignUp extends Component {
+export class ForgotPassword extends Component {
   state = {
     firstPage: true,
     email: "",
+    emailErr: "",
     otp: "",
     newPassword: "",
     confirmPassword: "",
   };
-  forgotPasswordClickHandler = () => {
+  forgotPasswordClickHandler = (event) => {
+    event.preventDefault();
     if (this.state.email === "") return;
     const data = JSON.stringify({
       email: this.state.email,
@@ -26,16 +28,18 @@ export class SignUp extends Component {
     axios(config)
       .then(function (response) {
         console.log(response.data);
+        this.setState({ firstPage: false });
       })
       .catch(function (error) {
         console.log(error);
+        alert("User not found");
       });
-    this.setState({ firstPage: false });
   };
   inputChangeHandler = (e, s) => {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
+    e.preventDefault();
     const data = JSON.stringify({
       // email: this.state.email,
       otp: this.state.otp,
@@ -64,7 +68,10 @@ export class SignUp extends Component {
   render() {
     return (
       <Background>
-        <form>
+        <form
+          onSubmit={(event) => {
+            event.preventDefault();
+          }}>
           {this.state.firstPage ? (
             <div>
               <div className="heading">Forgot Password</div>
@@ -79,12 +86,15 @@ export class SignUp extends Component {
                     this.inputChangeHandler(event, "email");
                   }}
                 />
+                {this.state.messageErr !== "" && (
+                  <div className="error">{this.state.messageErr}</div>
+                )}
               </div>
               <div
                 className="sub-btn"
                 onClick={(event) => {
                   event.preventDefault();
-                  this.forgotPasswordClickHandler();
+                  this.forgotPasswordClickHandler(event);
                 }}>
                 Send OTP
               </div>
@@ -144,4 +154,4 @@ export class SignUp extends Component {
   }
 }
 
-export default SignUp;
+export default ForgotPassword;
