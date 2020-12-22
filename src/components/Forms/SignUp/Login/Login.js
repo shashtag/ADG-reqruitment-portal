@@ -1,7 +1,7 @@
 import Background from "../../../../hoc/Background/Background";
 import React, { Component } from "react";
 import axios from "axios";
-import Recaptcha from 'react-google-invisible-recaptcha';
+// import Recaptcha from 'react-google-invisible-recaptcha';
 
 
 
@@ -19,13 +19,16 @@ export class Login extends Component {
   validate = () => {
     let regError = "";
     let passError = "";
+    var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.regno) {
       regError = "Incorrect Registration Number";
+    } else if (!regPattern.test(this.state.regno)) {
+        regError = "Enter a valid Registration Number";
     }
 
     if (!this.state.password) {
-      passError = "Incorrect Password";
+      passError = "Enter Password";
     }
 
     if (regError || passError) {
@@ -42,30 +45,34 @@ export class Login extends Component {
   formSubmitHandler = (e, a) => {
     this.validate();
 
-    const data = JSON.stringify({
-      regno: this.state.regno,
-      password: this.state.password,
-    });
-    console.log(data);
-    var config = {
-      method: "post",
-      url: "https://adgrecruitments.herokuapp.com/user/login",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
+    if(this.validate()) {
 
-    axios(config)
-        .then(function (response) {
-          sessionStorage.setItem("Token", response.data.Token);
-          console.log(response.data);
-          a.history.push("/selection");
-        })
-        .catch(function (error) {
-          alert(error.response.data.message);
-          console.log(error);
+        const data = JSON.stringify({
+            regno: this.state.regno,
+            password: this.state.password,
         });
+        console.log(data);
+        var config = {
+            method: "post",
+            url: "https://adgrecruitments.herokuapp.com/user/login",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            data: data,
+        };
+
+        axios(config)
+            .then(function (response) {
+                sessionStorage.setItem("Token", response.data.Token);
+                console.log(response.data);
+                a.history.push("/selection");
+            })
+            .catch(function (error) {
+                alert(error.response.data.message);
+                console.log(error);
+            });
+
+    }
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {

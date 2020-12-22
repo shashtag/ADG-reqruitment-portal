@@ -30,7 +30,7 @@ export class SignUp extends Component {
     let regError = "";
     let passError = "";
     let confirmPassError = "";
-    var regPattern = /^[12][09][A-Z][A-Z][A-Z]\d{4}$/;
+    var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
     var regPatternSoph = /^[1][9][A-Z][A-Z][A-Z]\d{4}$/;
 
     if (!this.state.name) {
@@ -283,7 +283,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.emailError}</div>
               ) : null}
               <div className='input-grp'>
-                <label>GitHub Link</label>
+                <label>GitHub Link  (Mandatory for 2nd year students)</label>
                 <input
                   className='input'
                   type='text'

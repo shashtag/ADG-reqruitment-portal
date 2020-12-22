@@ -23,9 +23,11 @@ const Modal = (props) => {
             {/* <FontAwesomeIcon icon={ faTimes } className="times" /> */}
             <h4>Confirm Submission</h4>
             <p>You won't be able to re-attempt or change your answers!</p>
-            <Link to="/thank-you"><button onCLick={ props.submitQuiz } className="submit-btn mod-btn">Confirm</button></Link>
-            <button onClick={props.onHide}>Close</button>
-        </div>
+            <div className='sub-btns'>
+                <Link className='noUn' to="/thank-you"><button onCLick={ props.submitQuiz } className="btn submit-btn mod-btn">Confirm</button></Link>
+                <button className='btn submit-btn mod-btn' onClick={props.onHide}>Close</button>
+            </div>
+            </div>
         </div>
     )};
 export default Modal;

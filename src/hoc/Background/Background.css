@@ -521,3 +521,7 @@ label {
   min-width: 100px;
   padding: 20px 0;
 }
+
+.cll {
+  width: 150px;
+}
