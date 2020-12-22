@@ -1,6 +1,9 @@
 import Background from "../../../../hoc/Background/Background";
 import React, { Component } from "react";
 import axios from "axios";
+import Recaptcha from 'react-google-invisible-recaptcha';
+
+
 
 export class Login extends Component {
   state = {
@@ -10,6 +13,7 @@ export class Login extends Component {
     passError: "",
     showPass: false,
     err: "",
+    value:"",
   };
 
   validate = () => {
@@ -36,7 +40,12 @@ export class Login extends Component {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
-    this.validate();
+    if ( '' == this.state.value ) {
+      alert( 'Validation failed! Input cannot be empty.' );
+      this.recaptcha.reset();
+    } else {
+      this.recaptcha.execute();
+      this.validate();
 
     const data = JSON.stringify({
       regno: this.state.regno,
@@ -62,6 +71,9 @@ export class Login extends Component {
           alert(error.response.data.message);
           console.log(error);
         });
+    }
+
+    
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
@@ -71,6 +83,9 @@ export class Login extends Component {
   eyeClickHandler = () => {
     this.setState({ showPass: !this.state.showPass });
   };
+  onResolved=()=> {
+    alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
+  }
   render() {
     return (
         <Background>
@@ -78,7 +93,7 @@ export class Login extends Component {
           <div className='input-grp'>
             <label id='p2'>Registration Number</label>
             <input
-                className='input'
+                className='input t-uc'
                 type='text'
                 placeholder='Enter Registration Number'
                 onChange={(event) => {
@@ -116,6 +131,11 @@ export class Login extends Component {
               }}>
             Log In
           </div>
+          <Recaptcha
+          ref={ ref => this.recaptcha = ref }
+          sitekey="6Lc-2hAaAAAAAPXzcJHWcx8lr3K1nz9hhteRMLSa"
+          onResolved={ this.onResolved } />
+
         </Background>
     );
   }
