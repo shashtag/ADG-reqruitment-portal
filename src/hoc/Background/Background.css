@@ -80,12 +80,12 @@
   /*padding-top: 25px;*/
 }
 .footer {
-  position: fixed;
+  position: relative;
   /* top:100vh; */
-  /* width: 100%; */
-  right: 0;
+  width: 100%;
+  /* right: 0; */
   text-align: right;
-  bottom: 0;
+  /* bottom: 0; */
   align-items: center;
   padding: 1em 0;
 }
