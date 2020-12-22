@@ -25,10 +25,10 @@ class TechQuiz extends React.Component {
     }
 
     changeColor(e) {
-        if(this.selectedOptions[this.state.currentQuestionIndex].response === e.target.value)
-            this.setState({
-                black: !this.state.black
-            })
+        // if(this.selectedOptions[this.state.currentQuestionIndex].response === e.target.value)
+        this.setState({
+            black: !this.state.black
+        })
     }
 
     showModal1(){
@@ -182,7 +182,7 @@ class TechQuiz extends React.Component {
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].questionDescription}
                             </div>
                             <div className='answer-section'>
-                                {/* {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
+                                {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
                                     return (
                                         <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
                                             <button className={ btnClass }
@@ -192,8 +192,8 @@ class TechQuiz extends React.Component {
                                             </button>
                                         </div>
                                     )
-                                })} */}
-                                <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 0)}>
+                                })}
+                                {/* <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 0)}>
                                     <button className={ btnClass }
                                         onClick={ this.changeColor }
                                         value={this.optionsArray[0]}>
@@ -220,7 +220,7 @@ class TechQuiz extends React.Component {
                                         value={this.optionsArray[3]}>
                                         {this.optionsArray[3]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[3]}
                                     </button>
-                                </div>
+                                </div> */}
                             </div>
                             <div className='btn-bottom'>
                                 {this.state.currentQuestionIndex === 0 ?
