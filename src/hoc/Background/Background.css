@@ -453,6 +453,9 @@ label {
 .t-uc {
   text-transform: uppercase;
 }
+.t-uc::placeholder {
+  text-transform: capitalize;
+}
 /* login eye */
 .lgn-eye {
   position: absolute;
