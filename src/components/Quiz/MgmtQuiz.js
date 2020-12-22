@@ -16,7 +16,7 @@ class MgmtQuiz extends React.Component {
             currentQuestionIndex: 0,
             questionId: [],
             showModal:false,
-            inputValue: []
+            inputValues: ['', '', '', '', '', ''],
         };
         this.submitQuiz = this.submitQuiz.bind(this);
         this.setResponsesArray = this.setResponsesArray.bind(this);
@@ -94,54 +94,40 @@ class MgmtQuiz extends React.Component {
         // })
     }
 
-    // optionsArray = ["a", "b", "c", "d"];
 
-    setResponsesArray(qid, event) {
-        console.log("Qid", qid);
-        console.log("Event", event.target.value);
-        // this.inputValue.push({qid: qid, response: event.target.value})
-        // this.inputValue[this.state.currentQuestionIndex] = event.target.value
-        // this.responsesArray.push({qid: qid, response: event.target.value});
-        // console.log("Hello", this.responsesArray)
-        // console.log(qid,this.optionsArray[response]);
-        if(this.responsesArray.some(option=> option.qid === qid)){
+    setResponsesArray(qid,e) {
+        var response=[...this.state.inputValues]
+        response[this.state.currentQuestionIndex]=e.target.value;
+        this.setState({inputValues:response})
+        if(this.responsesArray.some(response=> response.qid === qid)){
             for(let i=0;i<this.responsesArray.length;i++){
                 if(this.responsesArray[i].qid === qid){
-                    console.log("okay match");
-                    this.responsesArray[i].response = event.target.value;
+                    this.responsesArray[i].response = e.target.value; 
                 }
             }
+            console.log("responsesArray",this.responsesArray);
         } 
         else {
-            this.responsesArray.push({qid:qid,response:event.target.value})
+            this.responsesArray.push({qid:qid,response:e.target.value});         
         }
-        this.setState({
-            inputValue: this.state.inputValue.concat(this.responsesArray[this.state.currentQuestionIndex].response)
-        })
-        console.log("inside setSelectedOption",this.responsesArray);
     }
 
     gotoNextQuestion() {
-        if(this.state.currentQuestionIndex < this.state.quizQuestions.length - 1) {
+        if (this.state.currentQuestionIndex < this.state.quizQuestions.length - 1) {
             this.setState({
                 currentQuestionIndex: this.state.currentQuestionIndex + 1,
-                // inputValue: this.responsesArray[this.state.currentQuestionIndex]['response']
             })
-            // this.inputValue[this.state.currentQuestionIndex] = this.responsesArray[this.state.currentQuestionIndex].response;
         } else
-            return
-    }
-
-    gotoPreviousQuestion() {
-        if(this.state.currentQuestionIndex > 0) {
-            this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex - 1,
-                // inputValue: this.responsesArray[this.state.currentQuestionIndex]['response']
-            })
-            // this.inputValue[this.state.currentQuestionIndex] = this.responsesArray[this.state.currentQuestionIndex].response;
-        } else
-            return
-    }
+                return
+        }
+        gotoPreviousQuestion() {
+            if(this.state.currentQuestionIndex > 0) {
+                this.setState({
+                    currentQuestionIndex: this.state.currentQuestionIndex - 1,
+                })
+            } else
+                return
+        }
 
     componentDidMount() {
         this.getQuizQuestions();
@@ -183,31 +169,17 @@ class MgmtQuiz extends React.Component {
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].description}
                             </div>
                             <div className='answer-section'>
-                                {/* <textarea className="mgmt-answer"
-                                          value={ this.state.value }
-                                          onChange={ (e) => { this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, e) } }></textarea> */}
                                 <textarea
-                                       className="mgmt-answer"
-                                       placeholder="Enter your answer..."
-                                       value={ this.state.inputValue[this.state.currentQuestionIndex] }
-                                       onChange={ (e) => { this.setResponsesArray(this.state.quizQuestions[this.state.currentQuestionIndex]._id, e) } } />
-                                {/* {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
-                                    return (
-                                        <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
-                                            <button className="options"
-                                                    value={this.optionsArray[index]}>
-                                                    {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                            </button>
-                                        </div>
-                                    )
-                                })} */}
+                                      className="mgmt-answer"
+                                      placeholder="Enter your answer..."
+                                      value={this.state.inputValues[this.state.currentQuestionIndex]}
+                                      onChange={(e) => { this.setResponsesArray(this.state.quizQuestions[this.state.currentQuestionIndex]._id,e) }} />
                             </div>
                             <div className='btn-bottom'>
                                 {this.state.currentQuestionIndex === 0 ?
                                     <button disabled={ true } id="disabled-btn">Previous</button> :
                                     <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
                                 }
-                                {/* <button className={ submitButton } onCLick={ () => { this.showModal1() } }>Submit</button> */}
                                 {this.state.currentQuestionIndex === 4 ? 
                                     <button onClick={ () => { this.showModal1() } }>Submit</button> :
                                     <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
@@ -217,9 +189,6 @@ class MgmtQuiz extends React.Component {
                             <div className="timer">
                                 <Timer time={this.state.time} />
                             </div>
-                            {/* <div>
-                                <button onClick={ () => { this.submitQuiz } }>Submit</button>
-                            </div> */}
                         </div>
                     </>
                 }
