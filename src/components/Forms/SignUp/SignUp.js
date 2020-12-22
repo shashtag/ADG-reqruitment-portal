@@ -283,7 +283,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.emailError}</div>
               ) : null}
               <div className='input-grp'>
-                <label>GitHub Link</label>
+                <label>GitHub Link  (Mandatory for 2nd year students)</label>
                 <input
                   className='input'
                   type='text'
