@@ -62,3 +62,12 @@
 /* .mod-btn{
     width:20vw; */
 /* } */
+
+.sub-btns {
+  display: flex;
+  justify-content: center;
+}
+
+.noUn {
+  text-decoration: none;
+}
