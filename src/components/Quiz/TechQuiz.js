@@ -14,12 +14,21 @@ class TechQuiz extends React.Component {
             time: 600,
             currentQuestionIndex: 0,
             questionId: [],
+            black: true,
             showModal:false
         };
         this.submitQuiz = this.submitQuiz.bind(this);
         this.setSelectedOption = this.setSelectedOption.bind(this);
         this.showModal1 = this.showModal1.bind(this);
         this.hideModal = this.hideModal.bind(this);
+        this.changeColor = this.changeColor.bind(this);
+    }
+
+    changeColor(e) {
+        // if(this.selectedOptions[this.state.currentQuestionIndex].response === e.target.value)
+        this.setState({
+            black: !this.state.black
+        })
     }
 
     showModal1(){
@@ -138,6 +147,8 @@ class TechQuiz extends React.Component {
     componentDidUpdate(prevProps, prevState) {
         if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
             this.getTimer();
+        // if(prevState.time > 0)
+        //     this.getTimer();
     }
 
     componentWillUnmount() {
@@ -145,6 +156,8 @@ class TechQuiz extends React.Component {
     }
 
     render() {
+        let btnClass = this.state.black ? "blackButton" : "blueButton";
+
         if(!sessionStorage.getItem("Token")) {
             return(
                 <Redirect to="/" />
@@ -172,13 +185,42 @@ class TechQuiz extends React.Component {
                                 {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
                                     return (
                                         <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
-                                            <button className="options"
+                                            <button className={ btnClass }
+                                                    onClick={ this.changeColor }
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
                                         </div>
                                     )
                                 })}
+                                {/* <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 0)}>
+                                    <button className={ btnClass }
+                                        onClick={ this.changeColor }
+                                        value={this.optionsArray[0]}>
+                                        {this.optionsArray[0]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[0]}
+                                    </button>
+                                </div>
+                                <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 1)}>
+                                    <button className={ btnClass }
+                                        onClick={ this.changeColor }
+                                        value={this.optionsArray[1]}>
+                                        {this.optionsArray[1]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[1]}
+                                    </button>
+                                </div>
+                                <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 2)}>
+                                    <button className={ btnClass }
+                                        onClick={ this.changeColor }
+                                        value={this.optionsArray[2]}>
+                                        {this.optionsArray[2]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[2]}
+                                    </button>
+                                </div>
+                                <div onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id, 3)}>
+                                    <button className={ btnClass }
+                                        onClick={ this.changeColor }
+                                        value={this.optionsArray[3]}>
+                                        {this.optionsArray[3]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[3]}
+                                    </button>
+                                </div> */}
                             </div>
                             <div className='btn-bottom'>
                                 {this.state.currentQuestionIndex === 0 ?
