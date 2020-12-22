@@ -1,9 +1,11 @@
 import React from "react";
 import "./Quiz.css";
-import Timer from "./Timer";
+// import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
+
+let n = 0;
 
 class MgmtQuiz extends React.Component {
     responsesArray = [];
@@ -46,6 +48,17 @@ class MgmtQuiz extends React.Component {
         }
     }
 
+    getTimer1() {
+        n = n + 1;
+        if (this.state.time > 0) {
+            setTimeout(() => {
+                this.setState({
+                    time: this.state.time - (0.5 / Math.pow(2, n))
+                });
+            }, 1000);
+        }
+    }
+
     async getQuizQuestions() {
         await fetch("https://adgrecruitments.herokuapp.com/questions/management/get-quiz-questions/web", {
             method: "GET",
@@ -78,7 +91,7 @@ class MgmtQuiz extends React.Component {
                 "Content-Type": "application/json",
                 "auth-token": sessionStorage.getItem("Token"),
             },
-            body: JSON.stringify(this.selectedOptions),
+            body: JSON.stringify(this.responsesArray),
         })
         .then((response) => {
             return response.json();
@@ -105,7 +118,7 @@ class MgmtQuiz extends React.Component {
                     this.responsesArray[i].response = e.target.value; 
                 }
             }
-            console.log("responsesArray",this.responsesArray);
+            // console.log("responsesArray",this.responsesArray);
         } 
         else {
             this.responsesArray.push({qid:qid,response:e.target.value});         
@@ -132,13 +145,15 @@ class MgmtQuiz extends React.Component {
     componentDidMount() {
         this.getQuizQuestions();
         // console.log(this.state.quizQuestions);
-        this.getTimer();
+        // this.getTimer();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
-            this.getTimer();
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
+    //         this.getTimer();
+    //     // if(prevState.time > 0 && prevState.responsesArray !== this.responsesArray)
+    //     //     this.getTimer();
+    // }
 
     componentWillUnmount() {
         this.submitQuiz();
@@ -186,9 +201,9 @@ class MgmtQuiz extends React.Component {
                                 }
                                 <Modal show={this.state.showModal} onHide={this.hideModal} submitQuiz={ this.submitQuiz } />
                             </div>
-                            <div className="timer">
+                            {/* <div className="timer">
                                 <Timer time={this.state.time} />
-                            </div>
+                            </div> */}
                         </div>
                     </>
                 }

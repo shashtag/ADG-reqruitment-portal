@@ -6,80 +6,89 @@ import userpic from "../../assets/img/userpic.png";
 import React, { Component } from "react";
 import axios from "axios";
 import Footer from "../../components/Footer/Footer";
-import moment from 'moment';
+import moment from "moment";
 import Countdown from "../../components/Countdown/Countdown";
 import { Link } from "react-router-dom";
 
 export class Background extends Component {
-  state = {
-    Token: sessionStorage.getItem("Token"),
-    data: false,
-    recruitmentStatus: false,
-  };
   constructor(props) {
     super(props);
     this.background = null;
     this.state = {
-      dateValue: '12-23-2020',
-      timeValue: '02:00',
-      ampmValue: 'pm',
+      Token: sessionStorage.getItem("Token"),
+      data: false,
+      recruitmentStatus: false,
+      dateValue: "12-23-2020",
+      timeValue: "02:00",
+      ampmValue: "pm",
       countdown: {
-        days: '',
-        hours: '',
-        mins: '',
-        secs: ''
+        days: "",
+        hours: "",
+        mins: "",
+        secs: "",
       },
       isCountdownSet: true,
-    }
+    };
     this.timer = null;
     this.countDownDate = {
-      dateValue: '12-23-2020',
-      timeValue: '02:00',
-      ampmValue: 'pm',
-      unixEndDate: ""
+      dateValue: "12-23-2020",
+      timeValue: "02:00",
+      ampmValue: "pm",
+      unixEndDate: "",
     };
   }
 
-   renderCountdownDate(countDownDate) {
-    countDownDate ? localStorage.setItem('countDownDate', JSON.stringify(countDownDate)): null;
-    return JSON.parse(localStorage.getItem('countDownDate')) || this.countDownDate;
+  renderCountdownDate(countDownDate) {
+    countDownDate
+      ? localStorage.setItem("countDownDate", JSON.stringify(countDownDate))
+      : null;
+    return (
+      JSON.parse(localStorage.getItem("countDownDate")) || this.countDownDate
+    );
   }
 
   setEndDate() {
-    let dateValue= '12-23-2020';
-    let timeValue= '02:00';
-    let ampmValue= 'pm';
-    const unixEndDate = Number(moment(`${dateValue} ${timeValue} ${ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
-    this.startCountdown(this.renderCountdownDate({
-      dateValue,
-      timeValue,
-      ampmValue,
-      unixEndDate
-    }))
-    console.log({dateValue},timeValue,ampmValue,unixEndDate);
+    let dateValue = "12-23-2020";
+    let timeValue = "02:00";
+    let ampmValue = "pm";
+    const unixEndDate = Number(
+      moment(
+        `${dateValue} ${timeValue} ${ampmValue}`,
+        "MM-DD-YYYY hh:mm A",
+      ).format("X"),
+    );
+    this.startCountdown(
+      this.renderCountdownDate({
+        dateValue,
+        timeValue,
+        ampmValue,
+        unixEndDate,
+      }),
+    );
+    console.log({ dateValue }, timeValue, ampmValue, unixEndDate);
   }
 
   startCountdown(endDate) {
     clearInterval(this.timer);
     this.timer = null;
 
-    if (endDate.unixEndDate !== '') {
+    if (endDate.unixEndDate !== "") {
       this.timer = setInterval(() => this.playTimer(endDate.unixEndDate), 1000);
     }
   }
 
   playTimer(unixEndDate) {
-    const distance = unixEndDate - moment().format('X');
+    const distance = unixEndDate - moment().format("X");
     if (distance > 0) {
       this.setState({
         countdown: {
           days: parseInt(distance / (60 * 60 * 24), 10),
-          hours: parseInt(distance % (60 * 60 * 24) / (60 * 60), 10),
-          mins: parseInt(distance % (60 * 60) / (60), 10),
-          secs: parseInt(distance % 60, 10)
+          hours: parseInt((distance % (60 * 60 * 24)) / (60 * 60), 10),
+          mins: parseInt((distance % (60 * 60)) / 60, 10),
+          secs: parseInt(distance % 60, 10),
         },
         isCountdownSet: true,
-        infoMessage: ''
+        infoMessage: "",
       });
     }
   }
@@ -159,19 +168,31 @@ export class Background extends Component {
       );
     } else {
       background = (
-        <div>
+        <div id='background'>
+          <div id='adglogo-cont'>
+            <img id='adglogo' src={adglogo} alt='ADG Logo' />
+          </div>
           <div className='container'>
-            <div id='adglogo-cont'>
-              <img id='adglogo' src={adglogo} alt='ADG Logo' />
-            </div>
             <div id='cont-box'>
               {this.state.recruitmentStatus ? (
                 this.props.children
               ) : (
                 <>
-                <h2 align='center'>Recruitments coming soon</h2>
-              {this.setEndDate()}
-              {this.state.isCountdownSet ? <Countdown countdown={this.state.countdown} unixEndDate={'\n' + '<Countdown date={\'2020-12-23T14:00:00'} /> : <p className="message info-message"><span className="fa fa-info-circle fa-lg fa-fw"></span> {this.state.infoMessage}</p>}
+                  <h2 align='center'>Recruitments coming soon</h2>
+                  {this.setEndDate()}
+                  {this.state.isCountdownSet ? (
+                    <Countdown
+                      countdown={this.state.countdown}
+                      unixEndDate={
+                        "\n" + "<Countdown date={'2020-12-23T14:00:00"
+                      }
+                    />
+                  ) : (
+                    <p className='message info-message'>
+                      <span className='fa fa-info-circle fa-lg fa-fw'></span>{" "}
+                      {this.state.infoMessage}
+                    </p>
+                  )}
                 </>
               )}
               {/*{this.props.children}*/}
@@ -183,7 +204,7 @@ export class Background extends Component {
     }
     return (
       <div>
-        <div id='back-img' />
+        {/* <div id='back-img' /> */}
         {background}
       </div>
     );

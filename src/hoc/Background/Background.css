@@ -1,18 +1,34 @@
-#back-img {
+/* #background {
+  
+} */
+/* #back-img {
   position: absolute;
   background-image: url("../../assets/img/back-img.png");
   width: 100vw;
   height: 100vh;
-  z-index: -100;
   background-size: cover;
-}
+  z-index: -100;
+} */
 .container {
-  padding: 0 15px;
+  /* padding: 0 15px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: -100;
+  transform: translate(-50%, -50%); */
+
+  margin-top: 0px;
+  min-height: 75vh;
   width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* display: flex;
+  justify-content: center;
+  height: 80vh;
+  align-items: center; */
+  /* width: 100%; */
 }
 #adglogo-cont {
   padding-top: 7.75vh;
@@ -50,7 +66,8 @@
   opacity: 0.8;
   text-align: center;
   backdrop-filter: blur(20px);
-  margin-bottom: 20px;
+
+  width: 100%;
 }
 .flex {
   transition: all 0.3s ease;
@@ -63,11 +80,12 @@
   /*padding-top: 25px;*/
 }
 .footer {
-  position: fixed;
+  position: relative;
   /* top:100vh; */
   width: 100%;
+  /* right: 0; */
   text-align: right;
-  bottom: 0;
+  /* bottom: 0; */
   align-items: center;
   padding: 1em 0;
 }
@@ -435,6 +453,9 @@ label {
 .t-uc {
   text-transform: uppercase;
 }
+.t-uc::placeholder {
+  text-transform: capitalize;
+}
 /* login eye */
 .lgn-eye {
   position: absolute;
@@ -478,7 +499,7 @@ label {
 
 .modal-main {
   color: white;
-  background: #312F31 !important;
+  background: #312f31 !important;
   max-width: 700px;
 }
 .modal-main a {
