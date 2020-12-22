@@ -40,12 +40,7 @@ export class Login extends Component {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
-    if ( '' == this.state.value ) {
-      alert( 'Validation failed! Input cannot be empty.' );
-      this.recaptcha.reset();
-    } else {
-      this.recaptcha.execute();
-      this.validate();
+    this.validate();
 
     const data = JSON.stringify({
       regno: this.state.regno,
@@ -71,9 +66,6 @@ export class Login extends Component {
           alert(error.response.data.message);
           console.log(error);
         });
-    }
-
-    
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
@@ -83,7 +75,7 @@ export class Login extends Component {
   eyeClickHandler = () => {
     this.setState({ showPass: !this.state.showPass });
   };
-  onResolved=()=> {
+  onResolved() {
     alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
   }
   render() {
@@ -131,10 +123,7 @@ export class Login extends Component {
               }}>
             Log In
           </div>
-          <Recaptcha
-          ref={ ref => this.recaptcha = ref }
-          sitekey="6Lc-2hAaAAAAAPXzcJHWcx8lr3K1nz9hhteRMLSa"
-          onResolved={ this.onResolved } />
+          
 
         </Background>
     );
