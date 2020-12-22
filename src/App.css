@@ -142,6 +142,7 @@ body {
   width: 100vw;
   overflow-x: hidden;
   background-image: url("./assets/img/back-img.png");
+  background-size: cover;
 }
 @media (min-width: 768px) {
 }

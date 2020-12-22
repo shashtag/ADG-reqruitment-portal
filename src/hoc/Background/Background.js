@@ -204,7 +204,7 @@ export class Background extends Component {
     }
     return (
       <div>
-        <div id='back-img' />
+        {/* <div id='back-img' /> */}
         {background}
       </div>
     );
