@@ -40,12 +40,9 @@ export class Login extends Component {
     this.setState({ [s]: e.target.value });
   };
   formSubmitHandler = (e, a) => {
-    if ( '' == this.state.value ) {
-      alert( 'Validation failed! Input cannot be empty.' );
-      this.recaptcha.reset();
-    } else {
-      this.recaptcha.execute();
-      this.validate();
+    
+
+    this.validate();
 
     const data = JSON.stringify({
       regno: this.state.regno,
@@ -71,9 +68,6 @@ export class Login extends Component {
           alert(error.response.data.message);
           console.log(error);
         });
-    }
-
-    
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
