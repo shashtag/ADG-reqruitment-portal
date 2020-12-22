@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
 import Background from "../../../hoc/Background/Background";
-import gear from "../../../assets/img/settings-gear-63.svg";
+import axios from "axios";
 
 const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
   const [domain, setDomain] = useState("");
+  const [tech, setTech] = useState(true);
+  const [man, setMan] = useState(true);
+  const [des, setDes] = useState(true);
+
   let domainValue = (event) => {
     setDomain(event.target.value);
   };
@@ -17,6 +21,26 @@ const DomainPage = (props) => {
     pathname: "/instructions",
     param: domain,
   };
+  useEffect(() => {
+    var config = {
+      headers: {
+        "auth-token": sessionStorage.getItem("Token"),
+      },
+    };
+    axios
+      .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
+      .then(function (response) {
+        console.log(response.data);
+        setTech(response.data.userDetails.attemptedTechnical);
+        setMan(response.data.userDetails.attemptedManagement);
+        setDes(response.data.userDetails.attemptedDesign);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
+  console.log(props);
   return (
     <Background>
       <div className='heading'>Choose Domain</div>
@@ -34,6 +58,7 @@ const DomainPage = (props) => {
             value='Technical'
             name='selection'
             id='technical'
+            disabled={tech}
             className={classes.input}></input>
           <label htmlFor='technical' className={`${classes.label} `}>
             <i className='fas fa-cog dom-pg-ico'></i>
@@ -46,18 +71,20 @@ const DomainPage = (props) => {
             value='Management'
             name='selection'
             id='management'
+            disabled={man}
             className={classes.input}></input>
           <label htmlFor='management' className={`${classes.label} `}>
             <i className='fas fa-file-alt dom-pg-ico'></i>
             Management
           </label>
         </div>
-        <div className='rdio-grp lgn-btn'>
+        <div className='rdio-grp lgn-btn' style={{ marginBottom: "20px" }}>
           <input
             type='radio'
             value='Design'
             name='selection'
             id='design'
+            disabled={des}
             className={classes.input}></input>
           <label htmlFor='design' className={`${classes.label} `}>
             <i className='fas fa-drafting-compass dom-pg-ico'></i>

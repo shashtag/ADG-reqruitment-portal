@@ -17,11 +17,11 @@ export class Login extends Component {
     let passError = "";
 
     if (!this.state.regno) {
-      regError = "Enter correct Registration Number";
+      regError = "Incorrect Registration Number";
     }
 
     if (!this.state.password) {
-      passError = "Enter Valid Password";
+      passError = "Incorrect Password";
     }
 
     if (regError || passError) {
@@ -53,15 +53,15 @@ export class Login extends Component {
     };
 
     axios(config)
-      .then(function (response) {
-        sessionStorage.setItem("Token", response.data.Token);
-        console.log(response.data);
-        a.history.push("/selection");
-      })
-      .catch(function (error) {
-        alert(error.response.data.message);
-        console.log(error);
-      });
+        .then(function (response) {
+          sessionStorage.setItem("Token", response.data.Token);
+          console.log(response.data);
+          a.history.push("/selection");
+        })
+        .catch(function (error) {
+          alert(error.response.data.message);
+          console.log(error);
+        });
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
@@ -73,50 +73,50 @@ export class Login extends Component {
   };
   render() {
     return (
-      <Background>
-        <div className='heading'>Log In</div>
-        <div className='input-grp'>
-          <label id='p2'>Registration Number</label>
-          <input
-            className='input'
-            type='text'
-            placeholder='Enter Registration Number'
-            onChange={(event) => {
-              this.inputChangeHandler(event, "regno");
-            }}
-          />
-        </div>
-        {this.state.regError ? (
-          <div className='error'>{this.state.regError}</div>
-        ) : null}
-        <div className='input-grp'>
-          <label id='p1'>Password</label>
-          <input
-            className='input'
-            type={`${this.state.showPass ? "text": 'password'}`}
-            placeholder='Enter Your Password'
-            style={{ marginBottom: 10, position: "relative" }}
-            onChange={(event) => {
-              this.inputChangeHandler(event, "password");
-            }}
-          />
-          <div
-            className={`lgn-eye ${this.state.showPass ? "lgn-eye-t" : null}`}
-            onClick={this.eyeClickHandler}>
-            <i className={`fas fa-eye  `}></i>
+        <Background>
+          <div className='heading'>Log In</div>
+          <div className='input-grp'>
+            <label id='p2'>Registration Number</label>
+            <input
+                className='input'
+                type='text'
+                placeholder='Enter Registration Number'
+                onChange={(event) => {
+                  this.inputChangeHandler(event, "regno");
+                }}
+            />
           </div>
-        </div>
-        {this.state.passError ? (
-          <div className='error'>{this.state.passError}</div>
-        ) : null}
-        <div
-          className='btn btn-blue lgn-btn'
-          onClick={(event) => {
-            this.formSubmitHandler(event, this.props);
-          }}>
-          Log In
-        </div>
-      </Background>
+          {this.state.regError ? (
+              <div className='error'>{this.state.regError}</div>
+          ) : null}
+          <div className='input-grp'>
+            <label id='p1'>Password</label>
+            <input
+                className='input'
+                type={`${this.state.showPass ? "text": 'password'}`}
+                placeholder='Enter Your Password'
+                style={{ marginBottom: 10, position: "relative" }}
+                onChange={(event) => {
+                  this.inputChangeHandler(event, "password");
+                }}
+            />
+            <div
+                className={`lgn-eye ${this.state.showPass ? "lgn-eye-t" : null}`}
+                onClick={this.eyeClickHandler}>
+              <i className={`fas fa-eye  `}></i>
+            </div>
+          </div>
+          {this.state.passError ? (
+              <div className='error'>{this.state.passError}</div>
+          ) : null}
+          <div
+              className='btn btn-blue lgn-btn'
+              onClick={(event) => {
+                this.formSubmitHandler(event, this.props);
+              }}>
+            Log In
+          </div>
+        </Background>
     );
   }
 }

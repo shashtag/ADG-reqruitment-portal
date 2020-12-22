@@ -1,5 +1,5 @@
 #back-img {
-  position: fixed;
+  position: absolute;
   background-image: url("../../assets/img/back-img.png");
   width: 100vw;
   height: 100vh;
@@ -8,7 +8,11 @@
 }
 .container {
   padding: 0 15px;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 #adglogo-cont {
   padding-top: 7.75vh;
@@ -44,8 +48,9 @@
   border-radius: 16px;
   padding: 5.6vh 16px;
   opacity: 0.8;
+  text-align: center;
   backdrop-filter: blur(20px);
-  /* margin-bottom: 60px; */
+  margin-bottom: 20px;
 }
 .flex {
   transition: all 0.3s ease;
@@ -58,8 +63,8 @@
   /*padding-top: 25px;*/
 }
 .footer {
-  position: absolute;
-  margin-top: 2em;
+  position: fixed;
+  /* top:100vh; */
   width: 100%;
   text-align: right;
   bottom: 0;
@@ -167,10 +172,6 @@
   position: relative;
   overflow: hidden;
 }
-.cls-btn:hover {
-  background: black;
-  color: white;
-}
 .btn-trans {
   border: #027aff 2px solid;
   position: relative;
@@ -222,6 +223,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 3.5vh;
+  position: relative;
 }
 .input {
   margin: auto;
@@ -325,7 +327,6 @@ label {
   align-items: center;
   border: 1px solid grey;
   border-radius: 10px;
-  cursor: pointer;
   margin-bottom: 10px;
 }
 @media (min-width: 576px) {
@@ -431,21 +432,71 @@ label {
   background: white;
   color: black;
 }
+.t-uc {
+  text-transform: uppercase;
+}
+/* login eye */
 .lgn-eye {
   position: absolute;
-  right: 56px;
-  bottom: 118px;
+  right: 15px;
+  bottom: 15px;
   color: grey;
   font-size: 20px;
   cursor: pointer;
 }
-.t-uc {
-  text-transform: uppercase;
-}
+
 .lgn-eye-t {
   color: #1466d1 !important;
 }
+@media (min-width: 576px) {
+  .lgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgn-eye {
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
+@media (min-width: 768px) {
+  .lgn-eye-t {
+    color: #1466d1 !important;
+  }
+  .lgn-eye {
+    position: absolute;
+    right: 15px;
+    bottom: 19px;
+    color: grey;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+
 .modal-main {
-  background: #b3b3b3 !important;
-  max-width: 600px;
+  color: white;
+  background: #312F31 !important;
+  max-width: 700px;
+}
+.modal-main a {
+  color: #027aff;
+}
+
+.countdown .card {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.countdown-value {
+  font-size: 25px;
+  font-weight: bolder;
+  text-align: center;
+  color: #027aff;
+  background: #333333;
+  margin: 10px;
+  min-width: 100px;
+  padding: 20px 0;
 }
