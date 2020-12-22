@@ -83,12 +83,19 @@ export class SignUp extends Component {
       phoneError = "Enter a valid Mobile Number";
     }
 
+    else if (this.state.phone.length!=10) {
+      phoneError = "Mobile Number should be 10 digits long";
+    }
+
     if (this.state.yearofstudy === 2) {
-      gitError = "GitHub Link is mandatory for 2nd year students";
+      if(!this.state.github) {
+        gitError = "GitHub Link is mandatory for 2nd year students";
+      }
     }
 
     if (emailError || phoneError || gitError) {
       this.setState({ emailError, phoneError, gitError });
+      return false;
     }
 
     return true;
@@ -110,33 +117,35 @@ export class SignUp extends Component {
 
     console.log(this.state.yearofstudy);
 
-    const data = JSON.stringify({
-      name: this.state.name,
-      regno: this.state.regno,
-      email: this.state.email,
-      phone: this.state.phone,
-      yearofstudy: this.state.yearofstudy,
-      password: this.state.password,
-      githubLink: this.state.github,
-    });
-    var config = {
-      method: "post",
-      url: "https://adgrecruitments.herokuapp.com/user/signup",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: data,
-    };
-
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        a.history.push("/login");
-      })
-      .catch(function (error) {
-        alert(error.response.data.message);
-        console.log(error.success);
+    if(this.validate2()) {
+      const data = JSON.stringify({
+        name: this.state.name,
+        regno: this.state.regno,
+        email: this.state.email,
+        phone: this.state.phone,
+        yearofstudy: this.state.yearofstudy,
+        password: this.state.password,
+        githubLink: this.state.github,
       });
+      var config = {
+        method: "post",
+        url: "https://adgrecruitments.herokuapp.com/user/signup",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+
+      axios(config)
+          .then(function (response) {
+            console.log(JSON.stringify(response.data));
+            a.history.push("/login");
+          })
+          .catch(function (error) {
+            alert(error.response.data.message);
+            console.log(error.success);
+          });
+    }
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
