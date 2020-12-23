@@ -31,8 +31,8 @@ export class ForgotPassword extends Component {
         this.setState({ firstPage: false });
       })
       .catch((error) => {
-        console.log(error);
-        this.setState({ emailErr: error.message });
+        console.log(error.response.data);
+        this.setState({ emailErr: error.response.data.message });
       });
   };
   inputChangeHandler = (e, s) => {
@@ -87,7 +87,7 @@ export class ForgotPassword extends Component {
                   }}
                 />
                 {this.state.messageErr !== "" && (
-                  <div className="error">{this.state.messageErr}</div>
+                  <div className="error">{this.state.emailErr}</div>
                 )}
               </div>
               <div
