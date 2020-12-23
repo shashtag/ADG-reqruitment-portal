@@ -8,7 +8,7 @@ const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
-  const [domain, setDomain] = useState("");
+  const [domain, setDomain] = useState(false);
   const [tech, setTech] = useState(true);
   const [man, setMan] = useState(true);
   const [des, setDes] = useState(true);
@@ -92,7 +92,7 @@ const DomainPage = (props) => {
           </label>
         </div>
 
-        <Link to={linkTo} className='btn btn-blue lgn-btn'>
+        <Link to={linkTo} className={`btn btn-blue lgn-btn ${domain ? "":"disable-btn"}`} >
           Start Quiz
         </Link>
       </div>

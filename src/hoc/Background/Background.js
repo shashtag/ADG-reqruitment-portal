@@ -184,7 +184,7 @@ export class Background extends Component {
                     <Countdown
                       countdown={this.state.countdown}
                       unixEndDate={
-                        "\n" + "<Countdown date={'2020-12-23T14:00:00"
+                        "\n" + "<Countdown date={'2020-12-23T14:00:00'}"
                       }
                     />
                   ) : (

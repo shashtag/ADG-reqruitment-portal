@@ -52,12 +52,17 @@
   background-color: #489bd3;
 } */
 
+body {
+  font-family: SF Pro Display;
+}
+
 .loading {
   text-align: center;
 }
 
 .question-count {
   text-align: center;
+  font-size: 24px;
 }
 
 .question-text {
