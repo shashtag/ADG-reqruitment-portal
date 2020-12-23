@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Background from "../../../hoc/Background/Background";
 import axios from "axios";
+import Recaptcha from "react-google-invisible-recaptcha";
+
 
 export class SignUp extends Component {
   state = {
@@ -115,10 +117,30 @@ export class SignUp extends Component {
   formSubmitHandler = (e, a) => {
     this.validate2();
 
-    console.log(this.state.yearofstudy);
+    // console.log(this.state.yearofstudy);
 
     if(this.validate2()) {
-      const data = JSON.stringify({
+            this.recaptcha.execute();
+    }
+    else{
+            this.recaptcha.reset();
+
+    }
+  };
+  componentDidMount() {
+    if (sessionStorage.getItem("Token")) {
+      this.props.history.replace("/selection");
+    }
+  }
+  eyeClickHandler = () => {
+    this.setState({ showPass: !this.state.showPass });
+  };
+  eyeClickHandlerC = () => {
+    this.setState({ showCPass: !this.state.showCPass });
+  };
+  onResolved=(a)=> {
+    // alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
+    const data = JSON.stringify({
         name: this.state.name,
         regno: this.state.regno,
         email: this.state.email,
@@ -145,22 +167,11 @@ export class SignUp extends Component {
             alert(error.response.data.message);
             console.log(error.success);
           });
-    }
-  };
-  componentDidMount() {
-    if (sessionStorage.getItem("Token")) {
-      this.props.history.replace("/selection");
-    }
   }
-  eyeClickHandler = () => {
-    this.setState({ showPass: !this.state.showPass });
-  };
-  eyeClickHandlerC = () => {
-    this.setState({ showCPass: !this.state.showCPass });
-  };
 
   render() {
     return (
+      <>
       <Background>
         <form autoComplete='false'>
           {this.state.firstPage ? (
@@ -308,6 +319,16 @@ export class SignUp extends Component {
           )}
         </form>
       </Background>
+      <Recaptcha
+          ref={(ref) => (this.recaptcha = ref)}
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
+          onResolved={()=>this.onResolved(this.props )}
+          onError={() => {
+            alert("Captcha Error : Please refresh site and try again");
+          }}
+        />
+        </>
     );
   }
 }

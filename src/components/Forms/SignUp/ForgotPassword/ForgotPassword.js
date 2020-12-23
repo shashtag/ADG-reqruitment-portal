@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Background from "../../../../hoc/Background/Background";
 import axios from "axios";
+import Recaptcha from "react-google-invisible-recaptcha";
+
 
 export class ForgotPassword extends Component {
   state = {
@@ -46,12 +48,22 @@ export class ForgotPassword extends Component {
       this.setState({
         newPasswordErr: "Password must be at least 8 characters",
       });
+      this.recaptcha.reset();
       return;
     }
     if (this.state.newPassword !== this.state.confirmPassword) {
       this.setState({ confirmPasswordErr: "Passwords must match" });
+      this.recaptcha.reset();
       return;
     }
+    else{
+            this.recaptcha.execute();
+
+    }
+    
+  };
+  onResolved=(a)=> {
+    // alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
     const data = JSON.stringify({
       // email: this.state.email,
       otp: this.state.otp,
@@ -75,10 +87,11 @@ export class ForgotPassword extends Component {
       .catch(function (error) {
         console.log(error);
       });
-  };
+  }
 
   render() {
     return (
+      <>
       <Background>
         <form
           onSubmit={(event) => {
@@ -168,6 +181,16 @@ export class ForgotPassword extends Component {
           )}
         </form>
       </Background>
+      <Recaptcha
+          ref={(ref) => (this.recaptcha = ref)}
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
+          onResolved={()=>this.onResolved(this.props )}
+          onError={() => {
+            alert("Captcha Error : Please refresh site and try again");
+          }}
+        />
+      </>
     );
   }
 }
