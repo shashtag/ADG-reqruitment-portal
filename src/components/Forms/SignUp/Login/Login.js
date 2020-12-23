@@ -127,9 +127,9 @@ export class Login extends Component {
           }}>
           Log In
         </div>
-        <Link to="/forgotPassword" className="forgot-pass">
-          Forgot Password
-        </Link>
+        <div className="forgot-pass">
+          <Link to="/forgotPassword">Forgot Password?</Link>
+        </div>
       </Background>
     );
   }
