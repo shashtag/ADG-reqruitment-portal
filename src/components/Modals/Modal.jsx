@@ -21,8 +21,8 @@ const Modal = (props) => {
         <div className={modalClass}>
         <div className="modal-main" ref={modalRef}>
             {/* <FontAwesomeIcon icon={ faTimes } className="times" /> */}
-            <h4>Confirm Submission</h4>
-            <p>You won't be able to re-attempt or change your answers!</p>
+            <h2>Confirm Submission</h2>
+            <div className='sub-heading'>You won't be able to re-attempt or change your answers!</div>
             <div className='sub-btns'>
                 <Link className='noUn' to="/thank-you"><button onCLick={ props.submitQuiz } className="btn submit-btn mod-btn">Confirm</button></Link>
                 <button className='btn submit-btn mod-btn' onClick={props.onHide}>Close</button>

@@ -499,7 +499,7 @@ label {
 
 .modal-main {
   color: white;
-  background: #312f31 !important;
+  background: #191919 /*#312f31*/;
   max-width: 700px;
 }
 .modal-main a {
