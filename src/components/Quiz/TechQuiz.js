@@ -11,7 +11,7 @@ class TechQuiz extends React.Component {
         super(props);
         this.state =  {
             quizQuestions: [],
-            time: 600,
+            // time: 600,
             currentQuestionIndex: 0,
             questionId: [],
             black: true,
@@ -43,15 +43,15 @@ class TechQuiz extends React.Component {
         })
     }
 
-    getTimer() {
-        if (this.state.time > 0) {
-            setTimeout(() => {
-                this.setState({
-                    time: this.state.time - 0.5
-                });
-            }, 1000);
-        }
-    }
+    // getTimer() {
+    //     if (this.state.time > 0) {
+    //         setTimeout(() => {
+    //             this.setState({
+    //                 time: this.state.time - 0.5
+    //             });
+    //         }, 1000);
+    //     }
+    // }
 
     async getQuizQuestions() {
         await fetch("https://adgrecruitments.herokuapp.com/questions/technical/get-quiz-questions/1/web", {
@@ -141,15 +141,15 @@ class TechQuiz extends React.Component {
     componentDidMount() {
         this.getQuizQuestions();
         // console.log(this.state.quizQuestions);
-        this.getTimer();
+        // this.getTimer();
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
-            this.getTimer();
-        // if(prevState.time > 0)
-        //     this.getTimer();
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //     if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
+    //         this.getTimer();
+    //     // if(prevState.time > 0)
+    //     //     this.getTimer();
+    // }
 
     componentWillUnmount() {
         this.submitQuiz();
@@ -163,11 +163,11 @@ class TechQuiz extends React.Component {
                 <Redirect to="/" />
             )
         }
-        else if(this.state.time === 0) {
-            return(
-                <Redirect to="thank-you" />
-            )
-        }
+        // else if(this.state.time === 0) {
+        //     return(
+        //         <Redirect to="thank-you" />
+        //     )
+        // }
         return(
             <Background>
                 { this.state.quizQuestions.length === 0 ?
@@ -235,7 +235,7 @@ class TechQuiz extends React.Component {
                                 <Modal show={this.state.showModal} onHide={this.hideModal} submitQuiz={ this.submitQuiz } />
                             </div>
                             <div className="timer">
-                                <Timer time={this.state.time} />
+                                <Timer />
                             </div>
                             {/* <div>
                                 <button onClick={ () => { this.submitQuiz } }>Submit</button>
