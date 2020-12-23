@@ -47,10 +47,26 @@ export class Login extends Component {
     if (this.validate()) {
       this.recaptcha.execute();
 
-      const data = JSON.stringify({
+      
+    } else {
+      this.recaptcha.reset();
+    }
+  };
+  componentDidMount() {
+    if (sessionStorage.getItem("Token")) {
+      this.props.history.replace("/selection");
+    }
+  }
+  eyeClickHandler = () => {
+    this.setState({ showPass: !this.state.showPass });
+  };
+  onResolved=(a)=> {
+    // alert("Recaptcha resolved with response: " + this.recaptcha.getResponse());
+    const data = JSON.stringify({
         regno: this.state.regno,
         password: this.state.password,
       });
+
       console.log(data);
       var config = {
         method: "post",
@@ -71,23 +87,10 @@ export class Login extends Component {
           alert(error.response.data.message);
           console.log(error);
         });
-    } else {
-      this.recaptcha.reset();
-    }
-  };
-  componentDidMount() {
-    if (sessionStorage.getItem("Token")) {
-      this.props.history.replace("/selection");
-    }
-  }
-  eyeClickHandler = () => {
-    this.setState({ showPass: !this.state.showPass });
-  };
-  onResolved() {
-    alert("Recaptcha resolved with response: " + this.recaptcha.getResponse());
   }
   render() {
     return (
+      <>
       <Background>
         <div className='heading'>Log In</div>
         <div className='input-grp'>
@@ -131,19 +134,21 @@ export class Login extends Component {
           }}>
           Log In
         </div>
-        <Recaptcha
-          ref={(ref) => (this.recaptcha = ref)}
-          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
-'
-          onResolved={this.onResolved}
-          onError={() => {
-            alert("recapcha err");
-          }}
-        />
+        
         <div className='forgot-pass'>
           <Link to='/forgotPassword'>Forgot Password?</Link>
         </div>
       </Background>
+      <Recaptcha
+          ref={(ref) => (this.recaptcha = ref)}
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
+          onResolved={()=>this.onResolved(this.props )}
+          // onError={() => {
+          //   alert("recapcha err" + this.recapcha.getError());
+          // }}
+        />
+        </>
     );
   }
 }
