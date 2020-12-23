@@ -2,7 +2,7 @@ import Background from "../../../../hoc/Background/Background";
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-// import Recaptcha from 'react-google-invisible-recaptcha';
+import Recaptcha from "react-google-invisible-recaptcha";
 
 export class Login extends Component {
   state = {
@@ -45,6 +45,8 @@ export class Login extends Component {
     this.validate();
 
     if (this.validate()) {
+      this.recaptcha.execute();
+
       const data = JSON.stringify({
         regno: this.state.regno,
         password: this.state.password,
@@ -69,6 +71,8 @@ export class Login extends Component {
           alert(error.response.data.message);
           console.log(error);
         });
+    } else {
+      this.recaptcha.reset();
     }
   };
   componentDidMount() {
@@ -85,27 +89,27 @@ export class Login extends Component {
   render() {
     return (
       <Background>
-        <div className="heading">Log In</div>
-        <div className="input-grp">
-          <label id="p2">Registration Number</label>
+        <div className='heading'>Log In</div>
+        <div className='input-grp'>
+          <label id='p2'>Registration Number</label>
           <input
-            className="input t-uc"
-            type="text"
-            placeholder="Enter Registration Number"
+            className='input t-uc'
+            type='text'
+            placeholder='Enter Registration Number'
             onChange={(event) => {
               this.inputChangeHandler(event, "regno");
             }}
           />
         </div>
         {this.state.regError ? (
-          <div className="error">{this.state.regError}</div>
+          <div className='error'>{this.state.regError}</div>
         ) : null}
-        <div className="input-grp">
-          <label id="p1">Password</label>
+        <div className='input-grp'>
+          <label id='p1'>Password</label>
           <input
-            className="input"
+            className='input'
             type={`${this.state.showPass ? "text" : "password"}`}
-            placeholder="Enter Your Password"
+            placeholder='Enter Your Password'
             style={{ marginBottom: 10, position: "relative" }}
             onChange={(event) => {
               this.inputChangeHandler(event, "password");
@@ -118,17 +122,26 @@ export class Login extends Component {
           </div>
         </div>
         {this.state.passError ? (
-          <div className="error">{this.state.passError}</div>
+          <div className='error'>{this.state.passError}</div>
         ) : null}
         <div
-          className="btn btn-blue lgn-btn"
+          className='btn btn-blue lgn-btn'
           onClick={(event) => {
             this.formSubmitHandler(event, this.props);
           }}>
           Log In
         </div>
-        <div className="forgot-pass">
-          <Link to="/forgotPassword">Forgot Password?</Link>
+        <Recaptcha
+          ref={(ref) => (this.recaptcha = ref)}
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
+          onResolved={this.onResolved}
+          onError={() => {
+            alert("recapcha err");
+          }}
+        />
+        <div className='forgot-pass'>
+          <Link to='/forgotPassword'>Forgot Password?</Link>
         </div>
       </Background>
     );
