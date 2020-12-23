@@ -26,13 +26,13 @@ export class ForgotPassword extends Component {
       data: data,
     };
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
         this.setState({ firstPage: false });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
-        alert("User not found");
+        this.setState({ emailErr: error.message });
       });
   };
   inputChangeHandler = (e, s) => {
