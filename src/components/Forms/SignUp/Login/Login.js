@@ -21,7 +21,7 @@ export class Login extends Component {
     var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.regno) {
-      regError = "Incorrect Registration Number";
+      regError = "Enter Registration Number";
     } else if (!regPattern.test(this.state.regno)) {
       regError = "Enter a valid Registration Number";
     }
