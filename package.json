@@ -2,7 +2,7 @@
   "name": "reg-portal",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://adg-vit.github.io/ADG-Recruitment-Portal-2k20/",
+  "homepage": "https://test.adgvit.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.2.2",
