@@ -10,6 +10,8 @@ export class ForgotPassword extends Component {
     otp: "",
     newPassword: "",
     confirmPassword: "",
+    newPasswordErr: "",
+    confirmPasswordErr: "",
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
@@ -40,6 +42,16 @@ export class ForgotPassword extends Component {
   };
   formSubmitHandler = (e, a) => {
     e.preventDefault();
+    if (this.state.newPassword.length < 8) {
+      this.setState({
+        newPasswordErr: "Password must be at least 8 characters",
+      });
+      return;
+    }
+    if (this.state.newPassword !== this.state.confirmPassword) {
+      this.setState({ confirmPasswordErr: "Passwords must match" });
+      return;
+    }
     const data = JSON.stringify({
       // email: this.state.email,
       otp: this.state.otp,
@@ -125,6 +137,9 @@ export class ForgotPassword extends Component {
                     this.inputChangeHandler(event, "newPassword");
                   }}
                 />
+                {this.state.newPasswordErr !== "" && (
+                  <div className="error">{this.state.newPasswordErr}</div>
+                )}
               </div>
               <div className="input-grp">
                 <label>Confirm Password</label>
@@ -137,6 +152,9 @@ export class ForgotPassword extends Component {
                     this.inputChangeHandler(event, "confirmPassword");
                   }}
                 />
+                {this.state.confirmPasswordErr !== "" && (
+                  <div className="error">{this.state.confirmPasswordErr}</div>
+                )}
               </div>
               <div
                 className="sub-btn"
