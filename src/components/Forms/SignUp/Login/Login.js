@@ -144,9 +144,9 @@ export class Login extends Component {
           sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
 '
           onResolved={()=>this.onResolved(this.props )}
-          // onError={() => {
-          //   alert("recapcha err" + this.recapcha.getError());
-          // }}
+          onError={() => {
+            alert("Captcha Error : Please refresh site and try again");
+          }}
         />
         </>
     );

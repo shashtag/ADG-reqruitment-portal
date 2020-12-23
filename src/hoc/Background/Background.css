@@ -334,6 +334,10 @@ label {
     width: 55%;
   }
 }
+.disable-btn{
+pointer-events: none;
+/* background:grey; */
+}
 /* domain page */
 .rdio-grp {
   margin: auto;
@@ -527,6 +531,7 @@ label {
 }
 
 .forgot-pass {
+    font-family: SF Pro Display;
   display: flex;
   align-items: center;
   justify-content: flex-end;
