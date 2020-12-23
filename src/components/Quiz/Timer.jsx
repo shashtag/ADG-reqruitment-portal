@@ -4,7 +4,7 @@ import "./Quiz.css";
 import { Redirect } from "react-router-dom";
 
 const Timer = ()=>{
-    const [time,setTime]=useState(60);
+    const [time,setTime]=useState(600);
     const [minutes,setMinutes]=useState(10);
     const [seconds,setSeconds]=useState(0);
     const [timerColor,setTimerColor]=useState("progress-done")
@@ -24,7 +24,7 @@ const Timer = ()=>{
             getTimer();
             return <Redirect to="/thank-you" />
         })
-        let width=250-((time/60)*250);
+        let width=250-((time/600)*250);
     return(
             <div className="progress">
                 <div className={timerColor} style={{width}}></div>
