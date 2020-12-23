@@ -525,3 +525,18 @@ label {
 .cll {
   width: 150px;
 }
+
+.forgot-pass {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: white;
+}
+
+.forgot-pass a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  /* border-bottom: 1px solid white; */
+  text-decoration: underline;
+}

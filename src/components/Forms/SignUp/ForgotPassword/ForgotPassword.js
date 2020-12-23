@@ -26,13 +26,13 @@ export class ForgotPassword extends Component {
       data: data,
     };
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
         this.setState({ firstPage: false });
       })
-      .catch(function (error) {
-        console.log(error);
-        alert("User not found");
+      .catch((error) => {
+        console.log(error.response.data);
+        this.setState({ emailErr: error.response.data.message });
       });
   };
   inputChangeHandler = (e, s) => {
@@ -87,7 +87,7 @@ export class ForgotPassword extends Component {
                   }}
                 />
                 {this.state.messageErr !== "" && (
-                  <div className="error">{this.state.messageErr}</div>
+                  <div className="error">{this.state.emailErr}</div>
                 )}
               </div>
               <div

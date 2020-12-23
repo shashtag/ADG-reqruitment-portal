@@ -88,9 +88,9 @@ body {
   font-size:1rem;
   transition: all 250ms ease-in-out;
 }
-.blackButton:first-of-type{
+/* .blackButton:first-of-type{
   margin-top: 10px;
-}
+} */
 .blackButton:hover{
   background: dodgerblue;
 }
@@ -137,6 +137,24 @@ body {
   padding:10px 15px;
   font-size:1rem;
   transition: all 250ms ease-in-out;
+}
+.options:first-of-type{
+  margin-top: 10px;
+}
+.options:hover{
+  background: dodgerblue;
+}
+.options:focus{
+  background: dodgerblue;
+}
+.options:active {
+  background: dodgerblue;
+}
+.options:target {
+  background: dodgerblue;
+}
+.options:visited {
+  background: dodgerblue;
 } */
 .btn-bottom{
   display:flex;

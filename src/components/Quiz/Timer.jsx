@@ -1,36 +1,36 @@
-import React from "react";
+import React ,{useEffect } from "react";
 import { useState } from "react";
 import "./Quiz.css";
 import { Redirect } from "react-router-dom";
 
-let timeDisplay;
-const Timer = (props)=>{
-        // const[timerColor, setTimerColor] = useState("dodgerblue");
-        let minutes=Math.floor(props.time/60);
-        let seconds=Math.floor(props.time%60);
-        if (seconds<10)
-            timeDisplay=`${minutes} : 0${seconds} mins remaining`;
-        else
-            timeDisplay=`${minutes} : ${seconds} mins remaining`;
-        let width=250-((props.time/600)*250);
-        // console.log(width);
-        if(minutes===0 && seconds<=30) {
-            return(
-                <div className="progress">
-                    <div className="progress-done-red" style={{width}}></div>
-                    {timeDisplay}
-                </div>
-            )
+const Timer = ()=>{
+    const [time,setTime]=useState(60);
+    const [minutes,setMinutes]=useState(10);
+    const [seconds,setSeconds]=useState(0);
+    const [timerColor,setTimerColor]=useState("progress-done")
+            function getTimer() {
+            if (time > 0) {
+                setTimeout(() => {
+                    setTime(time-1);
+                    setMinutes(Math.floor(time/60));
+                    setSeconds(Math.floor(time%60));
+                    if(time<30){
+                        setTimerColor("progress-done-red");
+                    }
+                }, 1000);
+            }
         }
-        if(minutes===0 && seconds===0){
-            return(
-            <Redirect to="/thank-you" />
-            )}
-            return(
+        useEffect(()=>{
+            getTimer();
+            return <Redirect to="/thank-you" />
+        })
+        let width=250-((time/60)*250);
+    return(
             <div className="progress">
-                <div className="progress-done" style={{width}}></div>
-                {timeDisplay}
+                <div className={timerColor} style={{width}}></div>
+                {seconds >=10 ? `${minutes}:${seconds} mins remaining`  : `${minutes}:0${seconds} mins remaining`  }
             </div>
-            )
+    )
 }
+
 export default Timer;
