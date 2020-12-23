@@ -6,14 +6,14 @@ const Modal = ({ handleClose, show, children }) => {
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <h3>Contact Us</h3>
-        <p>
+        <h2>Contact Us</h2>
+        <div className='sub-heading'>
           Incase of any queries or discrepancies, please feel free to contact us
           at{" "}
           <a href='mailto:appledevelopersgroup@gmail.com'>
             appledevelopersgroup@gmail.com
           </a>
-        </p>
+        </div>
         <button className='btn btn-blue cls-btn' onClick={handleClose}>
           Close
         </button>
