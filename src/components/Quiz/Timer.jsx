@@ -30,7 +30,7 @@ const Timer = ()=>{
             return(
                     <div className="progress">
                         <div className={timerColor} style={{width}}></div>
-                        {seconds >=10 ? `${minutes}:${seconds} mins remaining`  : `${minutes}:0${seconds} mins remaining`  }
+                        <p className="time-p">{seconds >=10 ? `${minutes}:${seconds} mins remaining`  : `${minutes}:0${seconds} mins remaining`}</p>
                     </div>
             )}  else {
                 return(
