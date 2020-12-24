@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 
 const Countdown = ({ countdown,}) => {
-    let dateValue= '12-26-2020';
+    let dateValue= '12-27-2020';
     let timeValue= '02:00';
     let ampmValue= 'pm';
     const unixEnddate = Number(moment(`${dateValue} ${timeValue} ${ampmValue}`, 'MM-DD-YYYY hh:mm A').format('X'));
