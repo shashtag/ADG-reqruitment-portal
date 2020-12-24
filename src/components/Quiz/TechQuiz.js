@@ -78,7 +78,7 @@ class TechQuiz extends React.Component {
 
     async submitQuiz() {
         // const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
-        console.log("Inside submitQuiz", this.selectedOptions);
+        // console.log("Inside submitQuiz", this.selectedOptions);
         await fetch("https://adgrecruitments.herokuapp.com/user/technical/submit", {
             method: "POST",
             headers: {
@@ -91,10 +91,10 @@ class TechQuiz extends React.Component {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
+            // console.log(data);
         })
         .catch((error) => {
-            console.log(error.message);
+            // console.log(error.message);
         })
     }
 
@@ -105,14 +105,14 @@ class TechQuiz extends React.Component {
         if(this.selectedOptions.some(option=> option.qid === qid)){
             for(let i=0;i<this.selectedOptions.length;i++){
                 if(this.selectedOptions[i].qid === qid){
-                    console.log("okay match");
+                    // console.log("okay match");
                     this.selectedOptions[i].response=this.optionsArray[response];
                 }
             }
         } else {
             this.selectedOptions.push({qid:qid,response:this.optionsArray[response]})
         }
-        console.log("inside setSelectedOption",this.selectedOptions);
+        // console.log("inside setSelectedOption",this.selectedOptions);
     }
 
     gotoNextQuestion() {

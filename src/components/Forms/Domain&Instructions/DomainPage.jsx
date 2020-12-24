@@ -30,17 +30,17 @@ const DomainPage = (props) => {
     axios
       .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
       .then(function (response) {
-        console.log(response.data);
+        // console.log(response.data);
         setTech(response.data.userDetails.attemptedTechnical);
         setMan(response.data.userDetails.attemptedManagement);
         setDes(response.data.userDetails.attemptedDesign);
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   }, []);
 
-  console.log(props);
+  // console.log(props);
   return (
     <Background>
       <div className='heading'>Choose Domain</div>

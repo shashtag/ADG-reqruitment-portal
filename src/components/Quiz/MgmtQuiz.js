@@ -84,7 +84,7 @@ class MgmtQuiz extends React.Component {
 
     async submitQuiz() {
         // const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
-        console.log("Inside submitQuiz", this.selectedOptions);
+        // console.log("Inside submitQuiz", this.selectedOptions);
         await fetch("https://adgrecruitments.herokuapp.com/user/management/submit", {
             method: "POST",
             headers: {
@@ -97,10 +97,10 @@ class MgmtQuiz extends React.Component {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
+            // console.log(data);
         })
         .catch((error) => {
-            console.log(error.message);
+            // console.log(error.message);
         })
         // this.setState({
         //     inputValue: ""

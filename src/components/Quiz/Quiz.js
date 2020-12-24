@@ -9,7 +9,7 @@ function Quiz(props) {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
-  console.log(props);
+  // console.log(props);
   const [error, setError] = useState(null);
   const [quest, setquest] = useState(null);
   let [time, setTime] = useState(600);

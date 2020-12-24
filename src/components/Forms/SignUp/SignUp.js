@@ -160,12 +160,12 @@ export class SignUp extends Component {
 
       axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data));
+            // console.log(JSON.stringify(response.data));
             a.history.push("/login");
           })
           .catch(function (error) {
             alert(error.response.data.message);
-            console.log(error.success);
+            // console.log(error.success);
           });
   }
 

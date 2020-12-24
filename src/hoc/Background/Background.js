@@ -105,11 +105,11 @@ export class Background extends Component {
       axios
         .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
         .then(function (response) {
-          console.log(response.data);
+          // console.log(response.data);
           t.setState({ data: response.data });
         })
         .catch(function (error) {
-          console.log(error);
+          // console.log(error);
         });
     }
     axios

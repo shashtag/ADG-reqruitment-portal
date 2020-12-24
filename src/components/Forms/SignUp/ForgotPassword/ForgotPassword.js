@@ -31,11 +31,11 @@ export class ForgotPassword extends Component {
     };
     axios(config)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({ firstPage: false });
       })
       .catch((error) => {
-        console.log(error.response.data);
+        // console.log(error.response.data);
         this.setState({ emailErr: error.response.data.message });
       });
   };
@@ -81,11 +81,11 @@ export class ForgotPassword extends Component {
 
     axios(config)
       .then(function (response) {
-        console.log(JSON.stringify(response.data));
+        // console.log(JSON.stringify(response.data));
         a.history.push("/login");
       })
       .catch(function (error) {
-        console.log(error);
+        // console.log(error);
       });
   }
 
