@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Background from "../../../../hoc/Background/Background";
 import axios from "axios";
+import Recaptcha from "react-google-invisible-recaptcha";
+
 
 export class ForgotPassword extends Component {
   state = {
@@ -10,6 +12,8 @@ export class ForgotPassword extends Component {
     otp: "",
     newPassword: "",
     confirmPassword: "",
+    newPasswordErr: "",
+    confirmPasswordErr: "",
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
@@ -26,13 +30,13 @@ export class ForgotPassword extends Component {
       data: data,
     };
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         console.log(response.data);
         this.setState({ firstPage: false });
       })
-      .catch(function (error) {
-        console.log(error);
-        alert("User not found");
+      .catch((error) => {
+        console.log(error.response.data);
+        this.setState({ emailErr: error.response.data.message });
       });
   };
   inputChangeHandler = (e, s) => {
@@ -40,6 +44,26 @@ export class ForgotPassword extends Component {
   };
   formSubmitHandler = (e, a) => {
     e.preventDefault();
+    if (this.state.newPassword.length < 8) {
+      this.setState({
+        newPasswordErr: "Password must be at least 8 characters",
+      });
+      this.recaptcha.reset();
+      return;
+    }
+    if (this.state.newPassword !== this.state.confirmPassword) {
+      this.setState({ confirmPasswordErr: "Passwords must match" });
+      this.recaptcha.reset();
+      return;
+    }
+    else{
+            this.recaptcha.execute();
+
+    }
+    
+  };
+  onResolved=(a)=> {
+    // alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
     const data = JSON.stringify({
       // email: this.state.email,
       otp: this.state.otp,
@@ -63,10 +87,11 @@ export class ForgotPassword extends Component {
       .catch(function (error) {
         console.log(error);
       });
-  };
+  }
 
   render() {
     return (
+      <>
       <Background>
         <form
           onSubmit={(event) => {
@@ -87,7 +112,7 @@ export class ForgotPassword extends Component {
                   }}
                 />
                 {this.state.messageErr !== "" && (
-                  <div className="error">{this.state.messageErr}</div>
+                  <div className="error">{this.state.emailErr}</div>
                 )}
               </div>
               <div
@@ -125,6 +150,9 @@ export class ForgotPassword extends Component {
                     this.inputChangeHandler(event, "newPassword");
                   }}
                 />
+                {this.state.newPasswordErr !== "" && (
+                  <div className="error">{this.state.newPasswordErr}</div>
+                )}
               </div>
               <div className="input-grp">
                 <label>Confirm Password</label>
@@ -137,6 +165,9 @@ export class ForgotPassword extends Component {
                     this.inputChangeHandler(event, "confirmPassword");
                   }}
                 />
+                {this.state.confirmPasswordErr !== "" && (
+                  <div className="error">{this.state.confirmPasswordErr}</div>
+                )}
               </div>
               <div
                 className="sub-btn"
@@ -150,6 +181,16 @@ export class ForgotPassword extends Component {
           )}
         </form>
       </Background>
+      <Recaptcha
+          ref={(ref) => (this.recaptcha = ref)}
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
+          onResolved={()=>this.onResolved(this.props )}
+          onError={() => {
+            alert("Captcha Error : Please refresh site and try again");
+          }}
+        />
+      </>
     );
   }
 }

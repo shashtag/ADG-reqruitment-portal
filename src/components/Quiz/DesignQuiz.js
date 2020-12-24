@@ -165,7 +165,7 @@ class DesignQuiz extends React.Component {
                             <div className="question-count">
                                 <span>Question {this.state.currentQuestionIndex + 1}</span>/{this.state.quizQuestions.length}
                             </div>
-                            <div className="question-text">
+                            <div className="question-text sub-heading">
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].questionDescription}
                             </div>
                             <div className='answer-section'>

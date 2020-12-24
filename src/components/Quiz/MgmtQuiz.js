@@ -1,11 +1,11 @@
 import React from "react";
 import "./Quiz.css";
-import Timer from "./Timer";
+// import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
 
-// let n = 0;
+let n = 0;
 
 class MgmtQuiz extends React.Component {
     responsesArray = [];
@@ -14,7 +14,7 @@ class MgmtQuiz extends React.Component {
         super(props);
         this.state =  {
             quizQuestions: [],
-            // time: 600,
+            time: 600,
             currentQuestionIndex: 0,
             questionId: [],
             showModal:false,
@@ -38,26 +38,26 @@ class MgmtQuiz extends React.Component {
         })
     }
 
-    // getTimer() {
-    //     if (this.state.time > 0) {
-    //         setTimeout(() => {
-    //             this.setState({
-    //                 time: this.state.time - 0.5
-    //             });
-    //         }, 1000);
-    //     }
-    // }
+    getTimer() {
+        if (this.state.time > 0) {
+            setTimeout(() => {
+                this.setState({
+                    time: this.state.time - 0.5
+                });
+            }, 1000);
+        }
+    }
 
-    // getTimer1() {
-    //     n = n + 1;
-    //     if (this.state.time > 0) {
-    //         setTimeout(() => {
-    //             this.setState({
-    //                 time: this.state.time - (0.5 / Math.pow(2, n))
-    //             });
-    //         }, 1000);
-    //     }
-    // }
+    getTimer1() {
+        n = n + 1;
+        if (this.state.time > 0) {
+            setTimeout(() => {
+                this.setState({
+                    time: this.state.time - (0.5 / Math.pow(2, n))
+                });
+            }, 1000);
+        }
+    }
 
     async getQuizQuestions() {
         await fetch("https://adgrecruitments.herokuapp.com/questions/management/get-quiz-questions/web", {
@@ -180,7 +180,7 @@ class MgmtQuiz extends React.Component {
                             <div className="question-count">
                                 <span>Question {this.state.currentQuestionIndex + 1}</span>/{this.state.quizQuestions.length}
                             </div>
-                            <div className="question-text">
+                            <div className="question-text sub-heading">
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].description}
                             </div>
                             <div className='answer-section'>
@@ -201,9 +201,9 @@ class MgmtQuiz extends React.Component {
                                 }
                                 <Modal show={this.state.showModal} onHide={this.hideModal} submitQuiz={ this.submitQuiz } />
                             </div>
-                            <div className="timer">
-                                <Timer  />
-                            </div>
+                            {/* <div className="timer">
+                                <Timer time={this.state.time} />
+                            </div> */}
                         </div>
                     </>
                 }

@@ -95,7 +95,7 @@
 .info-logo {
   width: 35px;
   position: absolute;
-  right: 2.5em;
+  left: 2.5em;
 }
 .fa-info-circle {
   cursor: pointer;
@@ -217,15 +217,15 @@
 @media (min-width: 768px) {
   .heading {
     font-size: 36px;
-    margin-bottom: 2.5vh;
+    margin-bottom: 15px;
   }
   .sub-heading {
     font-size: 18px;
-    margin-bottom: 3vh;
+    margin-bottom: 20px;
   }
   .heading2 {
     font-size: 24px;
-    margin-bottom: 4vh;
+    margin-bottom: 25px;
   }
   .btn {
     cursor: pointer;
@@ -236,6 +236,7 @@
     width: 37%;
   }
 }
+
 /* signup */
 .input-grp {
   display: flex;
@@ -333,6 +334,10 @@ label {
     margin-bottom: 8px;
     width: 55%;
   }
+}
+.disable-btn{
+pointer-events: none;
+/* background:grey; */
 }
 /* domain page */
 .rdio-grp {
@@ -499,7 +504,7 @@ label {
 
 .modal-main {
   color: white;
-  background: #312f31 !important;
+  background: #191919 /*#312f31*/;
   max-width: 700px;
 }
 .modal-main a {
@@ -527,6 +532,7 @@ label {
 }
 
 .forgot-pass {
+    font-family: SF Pro Display;
   display: flex;
   align-items: center;
   justify-content: flex-end;
