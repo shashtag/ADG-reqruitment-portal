@@ -256,7 +256,7 @@ export class SignUp extends Component {
               {this.state.confirmPassError ? (
                 <div className='error'>{this.state.confirmPassError}</div>
               ) : null}
-              <div className='sub-btn' onClick={this.createAccountClickHandler}>
+              <div className='btn btn-blue lgn-btn' onClick={this.createAccountClickHandler}>
                 Next
               </div>
             </div>
@@ -309,7 +309,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.gitError}</div>
               ) : null}
               <div
-                className='sub-btn'
+                className='btn btn-blue lgn-btn'
                 onClick={(event) => {
                   this.formSubmitHandler(event, this.props);
                 }}>
