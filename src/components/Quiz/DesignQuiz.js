@@ -11,7 +11,6 @@ class DesignQuiz extends React.Component {
         super(props);
         this.state =  {
             quizQuestions: [],
-            // time: 600,
             currentQuestionIndex: 0,
             questionId: [],
             showModal:false
@@ -34,16 +33,6 @@ class DesignQuiz extends React.Component {
         })
     }
 
-    // getTimer() {
-    //     if (this.state.time > 0) {
-    //         setTimeout(() => {
-    //             this.setState({
-    //                 time: this.state.time - 0.5
-    //             });
-    //         }, 1000);
-    //     }
-    // }
-
     async getQuizQuestions() {
         await fetch("https://adgrecruitments.herokuapp.com/questions/design/get-quiz-questions/web", {
             method: "GET",
@@ -59,17 +48,13 @@ class DesignQuiz extends React.Component {
             this.setState({
                 quizQuestions: data
             });
-            // console.log(this.state.quizQuestions);
         })
         .catch((error) => {
-            // console.log(error.message);
             alert(error.message);
         })
     }
 
     async submitQuiz() {
-        // const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
-        // console.log("Inside submitQuiz", this.selectedOptions);
         await fetch("https://adgrecruitments.herokuapp.com/user/design/submit", {
             method: "POST",
             headers: {
@@ -85,25 +70,26 @@ class DesignQuiz extends React.Component {
             // console.log(data);
         })
         .catch((error) => {
-            // console.log(error.message);
+            alert(error.message);
         })
     }
 
     optionsArray = ["a", "b", "c", "d"];
 
-    setSelectedOption(qid, response) {
-        // console.log(qid,this.optionsArray[response]);
+    setSelectedOption(qid, response, e) {
         if(this.selectedOptions.some(option=> option.qid === qid)){
             for(let i=0;i<this.selectedOptions.length;i++){
                 if(this.selectedOptions[i].qid === qid){
-                    // console.log("okay match");
                     this.selectedOptions[i].response=this.optionsArray[response];
                 }
             }
         } else {
             this.selectedOptions.push({qid:qid,response:this.optionsArray[response]})
         }
-        // console.log("inside setSelectedOption",this.selectedOptions);
+        if(this.selectedOptions[this.state.currentQuestionIndex].response === e.target.value)
+        this.setState({
+            black: !this.state.black
+        })
     }
 
     gotoNextQuestion() {
@@ -111,10 +97,6 @@ class DesignQuiz extends React.Component {
             this.setState({
                 currentQuestionIndex: this.state.currentQuestionIndex + 1
             })
-            // if(this.state.currentQuestionIndex === 9)
-            //     this.setState({
-            //         nextBtn: "Submit"
-            //     })
         }
         else
             return
@@ -131,14 +113,7 @@ class DesignQuiz extends React.Component {
 
     componentDidMount() {
         this.getQuizQuestions();
-        // console.log(this.state.quizQuestions);
-        // this.getTimer();
     }
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
-    //         this.getTimer();
-    // }
 
     componentWillUnmount() {
         this.submitQuiz();
@@ -150,11 +125,6 @@ class DesignQuiz extends React.Component {
                 <Redirect to="/" />
             )
         }
-        // else if(this.state.time === 0) {
-        //     return(
-        //         <Redirect to="thank-you" />
-        //     )
-        // }
         return(
             <Background>
                 { this.state.quizQuestions.length === 0 ?
@@ -170,14 +140,35 @@ class DesignQuiz extends React.Component {
                             </div>
                             <div className='answer-section'>
                                 {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
-                                    return (
-                                        <div key={index} onClick={()=>this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index)}>
-                                            <button className="options"
-                                                    value={this.optionsArray[index]}>
-                                                    {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                            </button>
-                                        </div>
-                                    )
+                                    if(this.selectedOptions[this.state.currentQuestionIndex]) {
+                                        if(this.selectedOptions[this.state.currentQuestionIndex].response === this.optionsArray[index])
+                                            return (
+                                                <div key={index} onClick={(e)=>{this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index,e)}}>
+                                                    <button className="blueButton"
+                                                            value={this.optionsArray[index]}>
+                                                            {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
+                                                    </button>
+                                                </div>
+                                            )
+                                        else
+                                            return (
+                                                <div key={index} onClick={(e)=>{this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index,e)}}>
+                                                    <button className="blackButton"
+                                                            value={this.optionsArray[index]}>
+                                                            {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
+                                                    </button>
+                                                </div>
+                                            )
+                                    }
+                                    else
+                                        return (
+                                            <div key={index} onClick={(e)=>{this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index,e)}}>
+                                                <button className="blackButton"
+                                                        value={this.optionsArray[index]}>
+                                                        {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
+                                                </button>
+                                            </div>
+                                        )
                                 })}
                             </div>
                             <div className='btn-bottom'>
@@ -185,7 +176,6 @@ class DesignQuiz extends React.Component {
                                     <button disabled={ true } id="disabled-btn">Previous</button> :
                                     <button onClick={ () => { this.gotoPreviousQuestion() } }>Previous</button>
                                 }
-                                {/* <button className={ submitButton } onCLick={ () => { this.showModal1() } }>Submit</button> */}
                                 {this.state.currentQuestionIndex === 9 ? 
                                     <button onClick={ () => { this.showModal1() } }>Submit</button> :
                                     <button onClick={ () => { this.gotoNextQuestion() } }>Next</button>
@@ -195,9 +185,6 @@ class DesignQuiz extends React.Component {
                             <div className="timer">
                                 <Timer />
                             </div>
-                            {/* <div>
-                                <button onClick={ () => { this.submitQuiz } }>Submit</button>
-                            </div> */}
                         </div>
                     </>
                 }
