@@ -25,7 +25,7 @@ const Timer = ()=>{
         useEffect(()=>{
             getTimer();
         })
-        let width=250-((time/60)*250);
+        let width=250-((time/600)*250);
         if (time >= 0 ){
             return(
                     <div className="progress">
