@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Background from "../../../hoc/Background/Background";
+import classes from "./styles.module.css";
+
 
 const Instructions = (props) => {
   if (!sessionStorage.getItem("Token")) {
@@ -20,22 +22,22 @@ const Instructions = (props) => {
       </div>
       <div className='heading2'>Instructions</div>
       <ul style={{ textAlign: "left" }}>
-        <li>The participant can attempt the quiz only ONCE.</li>
-        <li>
+        <li className={classes.li}>The participant can attempt the quiz only ONCE.</li>
+        <li className={classes.li}>
           {props.location.param === "Technical"
             ? "The quiz will have 10 multiple choice questions."
             : props.location.param === "Management"
             ? "The quiz will have 10 Long Answer type questions."
             : "The quiz will have 10 multiple choice questions."}
         </li>
-        <li>
+        <li className={classes.li}>
           {props.location.param === "Technical"
             ? "10 minutes will be provided to complete the quiz."
             : props.location.param === "Management"
             ? "There is no time limit for completing the quiz."
             : "10 minutes will be provided to complete the quiz."}
         </li>
-        <li>
+        <li className={classes.li}>
           In case the participant tries to close the app or go back from the
           quiz, it shall be considered cheating and the quiz will be auto
           submitted.
