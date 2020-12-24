@@ -169,7 +169,7 @@ export class ForgotPassword extends Component {
                   )}
                 </div>
                 <div
-                  className="sub-btn"
+                  className="btn btn-blue lgn-btn"
                   onClick={(event) => {
                     event.preventDefault();
                     this.formSubmitHandler(event, this.props);
