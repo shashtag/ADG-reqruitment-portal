@@ -540,3 +540,22 @@ label {
   /* border-bottom: 1px solid white; */
   text-decoration: underline;
 }
+input[type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  display: inline-block;
+  width: 18.49px;
+  height: 17px;
+  padding: 2px;
+  background-clip: content-box;
+  border: 1px solid #bbbbbb;
+  border-radius: 50%;
+}
+input[type="radio"]:checked{
+  background-color:dodgerblue;
+  border:1px solid dodgerblue;
+}
+input[type="radio"]:focus{
+  outline:none;
+}
