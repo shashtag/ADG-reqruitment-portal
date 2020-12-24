@@ -60,6 +60,13 @@ export class Login extends Component {
   eyeClickHandler = () => {
     this.setState({ showPass: !this.state.showPass });
   };
+
+  // errMsg(error) {
+  //   let regError = "";
+  //   regError=error.response.data.message;
+  //   this.setState({ regError});
+  // }
+
   onResolved=(a)=> {
     // alert("Recaptcha resolved with response: " + this.recaptcha.getResponse());
     const data = JSON.stringify({
@@ -85,6 +92,7 @@ export class Login extends Component {
         })
         .catch(function (error) {
           alert(error.response.data.message);
+
           console.log(error);
         });
   }

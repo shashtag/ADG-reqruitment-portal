@@ -11,7 +11,7 @@ export class SignUp extends Component {
     regno: "",
     email: "",
     phone: "",
-    yearofstudy: 1,
+    yearofstudy: 0,
     password: "",
     confirmPass: "",
     github: "",
@@ -33,7 +33,7 @@ export class SignUp extends Component {
     let passError = "";
     let confirmPassError = "";
     var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
-    var regPatternSoph = /^[1][9][A-Z][A-Z][A-Z]\d{4}$/;
+    var regPatternSoph = /^[1][9][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.name) {
       nameError = "Enter a valid Name";
@@ -47,6 +47,9 @@ export class SignUp extends Component {
 
     if (regPatternSoph.test(this.state.regno)) {
       this.state.yearofstudy = 2;
+    }
+    else {
+      this.state.yearofstudy = 1;
     }
 
     if (!this.state.password) {
@@ -73,6 +76,7 @@ export class SignUp extends Component {
     let emailError = "";
     let phoneError = "";
     let gitError = "";
+    // let val = /^\d+$/;
     var re = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@vitstudent.ac.in$/;
 
     if (!this.state.email) {
@@ -81,14 +85,14 @@ export class SignUp extends Component {
       emailError = "Enter a valid VIT Email ID";
     }
 
-    if (!this.state.phone) {
+    if (!this.state.phone/* || val.test(this.state.phone)*/) {
       phoneError = "Enter a valid Mobile Number";
     }
 
     else if (this.state.phone.length!=10) {
       phoneError = "Mobile Number should be 10 digits long";
     }
-
+console.log(this.state.yearofstudy);
     if (this.state.yearofstudy === 2) {
       if(!this.state.github) {
         gitError = "GitHub Link is mandatory for 2nd year students";
@@ -267,7 +271,7 @@ export class SignUp extends Component {
                 <label>Phone Number</label>
                 <input
                   className='input'
-                  type='text'
+                  type='number'
                   value={this.state.phone}
                   placeholder='Enter Your Phone Number'
                   onChange={(event) => {
