@@ -25,12 +25,12 @@ const Timer = ()=>{
         useEffect(()=>{
             getTimer();
         })
-        let width=250-((time/60)*250);
+        let width=250-((time/600)*250);
         if (time >= 0 ){
             return(
                     <div className="progress">
                         <div className={timerColor} style={{width}}></div>
-                        {seconds >=10 ? `${minutes}:${seconds} mins remaining`  : `${minutes}:0${seconds} mins remaining`  }
+                        <p className="time-p">{seconds >=10 ? `${minutes}:${seconds} mins remaining`  : `${minutes}:0${seconds} mins remaining`}</p>
                     </div>
             )}  else {
                 return(

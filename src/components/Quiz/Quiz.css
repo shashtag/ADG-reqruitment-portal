@@ -191,6 +191,10 @@ body {
 	height: 8px;
 	width: 250px;
 }
+.time-p{
+  margin:0;
+  padding:5px 0 0;
+}
 .progress-done {
 	background: #018CF1;
 	border-radius: 20px;

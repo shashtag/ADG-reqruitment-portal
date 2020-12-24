@@ -53,24 +53,21 @@
   left: -40px;
 }
 .redirectBtn {
-  font-family: "SF Pro Display";
-  color: white;
-  cursor: pointer;
-  border-radius: 8px;
-  padding: 8px 16px;
-  font-size: 20px;
-  margin-bottom: 20px;
-  /*width: 37%;*/
-  background: #027aff;
-  min-width: 125px;
-  border: transparent 2px solid;
-  position: relative;
-  overflow: hidden;
+  height:40px;
+  width:auto;
+  border-radius: 5px;
+  background-color: transparent;
+  border:1px solid dodgerblue;
+  outline:none;
+  font-size: 1em;
+  cursor:pointer;
+  color:dodgerblue;
+  transition: all 250ms ease-in-out;
 }
 .redirectBtn:hover {
-  /*transform: scale(1.10);*/
-  background-color: white;
-  color: black;
+  transform: scale(1.10);
+  background-color: dodgerblue;
+  color: white;
 }
 .wrapper {
   text-align: center;
