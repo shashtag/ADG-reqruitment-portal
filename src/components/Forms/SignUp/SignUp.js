@@ -10,7 +10,7 @@ export class SignUp extends Component {
     regno: "",
     email: "",
     phone: "",
-    yearofstudy: 1,
+    yearofstudy: 0,
     password: "",
     confirmPass: "",
     github: "",
@@ -32,7 +32,7 @@ export class SignUp extends Component {
     let passError = "";
     let confirmPassError = "";
     var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
-    var regPatternSoph = /^[1][9][A-Z][A-Z][A-Z]\d{4}$/;
+    var regPatternSoph = /^[1][9][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.name) {
       nameError = "Enter a valid Name";
@@ -46,6 +46,9 @@ export class SignUp extends Component {
 
     if (regPatternSoph.test(this.state.regno)) {
       this.setState({ yearofstudy: 2 });
+    }
+    else {
+      this.state.yearofstudy = 1;
     }
 
     if (!this.state.password) {
@@ -72,6 +75,7 @@ export class SignUp extends Component {
     let emailError = "";
     let phoneError = "";
     let gitError = "";
+    // let val = /^\d+$/;
     var re = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@vitstudent.ac.in$/;
 
     if (!this.state.email) {
@@ -80,12 +84,12 @@ export class SignUp extends Component {
       emailError = "Enter a valid VIT Email ID";
     }
 
-    if (!this.state.phone) {
+    if (!this.state.phone/* || val.test(this.state.phone)*/) {
       phoneError = "Enter a valid Mobile Number";
     } else if (this.state.phone.length !== 10) {
       phoneError = "Mobile Number should be 10 digits long";
     }
-
+console.log(this.state.yearofstudy);
     if (this.state.yearofstudy === 2) {
       if (!this.state.github) {
         gitError = "GitHub Link is mandatory for 2nd year students";
@@ -313,10 +317,76 @@ export class SignUp extends Component {
                   Sign Up
                 </div>
               </div>
-            )}
-          </form>
-        </Background>
-        <Recaptcha
+
+              {this.state.confirmPassError ? (
+                <div className='error'>{this.state.confirmPassError}</div>
+              ) : null}
+              <div className='sub-btn' onClick={this.createAccountClickHandler}>
+                Next
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className='heading'>Sign Up</div>
+              <div className='input-grp'>
+                <label>Phone Number</label>
+                <input
+                  className='input'
+                  type='number'
+                  value={this.state.phone}
+                  placeholder='Enter Your Phone Number'
+                  onChange={(event) => {
+                    this.inputChangeHandler(event, "phone");
+                  }}
+                />
+              </div>
+              {this.state.phoneError ? (
+                <div className='error'>{this.state.phoneError}</div>
+              ) : null}
+              <div className='input-grp'>
+                <label>VIT Email</label>
+                <input
+                  className='input'
+                  type='text'
+                  value={this.state.email}
+                  placeholder='Enter Your VIT Email'
+                  onChange={(event) => {
+                    this.inputChangeHandler(event, "email");
+                  }}
+                />
+              </div>
+              {this.state.emailError ? (
+                <div className='error'>{this.state.emailError}</div>
+              ) : null}
+              <div className='input-grp'>
+                <label>GitHub Link  (Mandatory for 2nd year students)</label>
+                <input
+                  className='input'
+                  type='text'
+                  value={this.state.github}
+                  placeholder='Enter Your GitHub Handle'
+                  onChange={(event) => {
+                    this.inputChangeHandler(event, "github");
+                  }}
+                />
+              </div>
+              {this.state.gitError ? (
+                <div className='error'>{this.state.gitError}</div>
+              ) : null}
+              <div
+                className='sub-btn'
+                onClick={(event) => {
+                  this.formSubmitHandler(event, this.props);
+                }}>
+                Sign Up
+              </div>
+            </div>
+          )}
+        </form>
+      </Background>
+      <Recaptcha
+
+
           ref={(ref) => (this.recaptcha = ref)}
           sitekey="6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
 "
