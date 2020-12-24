@@ -73,28 +73,28 @@ body {
   margin: 2% 0;
 }
 .blackButton {
-  cursor:pointer;
+  cursor: pointer;
   /* width:60%; */
   width: 100%;
-  background:transparent;
-  outline:none;
-  border:1px solid grey;
-  border-radius:15px;
+  background: transparent;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 15px;
   /* height:45px; */
   margin-bottom: 10px;
-  color:white;
+  color: white;
   text-align: left;
-  padding:10px 15px;
-  font-size:1rem;
+  padding: 10px 15px;
+  font-size: 1rem;
   transition: all 250ms ease-in-out;
 }
 /* .blackButton:first-of-type{
   margin-top: 10px;
 } */
-.blackButton:hover{
+.blackButton:hover {
   background: dodgerblue;
 }
-.blackButton:focus{
+.blackButton:focus {
   background: dodgerblue;
 }
 .blackButton:active {
@@ -107,31 +107,31 @@ body {
   background: dodgerblue;
 }
 .blueButton {
-  cursor:pointer;
+  cursor: pointer;
   /* width:60%; */
   width: 100%;
-  background:dodgerblue;
-  outline:none;
-  border:1px solid grey;
-  border-radius:15px;
+  background: dodgerblue;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 15px;
   /* height:45px; */
   margin-bottom: 10px;
-  color:white;
+  color: white;
   text-align: left;
-  padding:10px 15px;
-  font-size:1rem;
+  padding: 10px 15px;
+  font-size: 1rem;
   transition: all 250ms ease-in-out;
 }
 /* .options{
   cursor:pointer; */
-      /* width:60%; */
-  /* width: 100%;
+/* width:60%; */
+/* width: 100%;
   background:transparent;
   outline:none;
   border:1px solid grey;
   border-radius:15px; */
-      /* height:45px; */
-  /* margin-bottom: 10px;
+/* height:45px; */
+/* margin-bottom: 10px;
   color:white;
   text-align: left;
   padding:10px 15px;
@@ -156,56 +156,60 @@ body {
 .options:visited {
   background: dodgerblue;
 } */
-.btn-bottom{
-  display:flex;
+.btn-bottom {
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   margin-bottom: 15px;
 }
-.btn-bottom>button{
-  flex:1;
+.btn-bottom > button {
+  flex: 1;
   margin: 0 3vw;
-  background:transparent;
-  outline:none;
-  border:1px solid dodgerblue;
+  background: transparent;
+  outline: none;
+  border: 1px solid dodgerblue;
   /* height:30px; */
-  color:dodgerblue;
-  height:40px;
-  font-size:20px;
+  color: dodgerblue;
+  height: 40px;
+  font-size: 20px;
   border-radius: 5px;
   cursor: pointer;
 }
-.btn-bottom>button:hover{
+.btn-bottom > button:hover {
   background: dodgerblue;
-  color:white;
+  color: white;
 }
-.btn-bottom>button:active{
+.btn-bottom > button:active {
   transform: scale(0.9);
 }
 .progress {
-	background-color: #5D5D5D;
-	border-radius: 20px;
-	margin: 15px 0;
-	height: 8px;
-	width: 250px;
+  background-color: #5d5d5d;
+  border-radius: 20px;
+  margin: 15px 0;
+  height: 8px;
+  width: 250px;
+}
+.time-p {
+  margin: 0;
+  padding: 5px 0 0;
 }
 .progress-done {
-	background: #018CF1;
-	border-radius: 20px;
-	color: #fff;
-	height: 100%;
-	/* width: 80%; */
-	transition: 1s ease 0.3s;
+  background: #018cf1;
+  border-radius: 20px;
+  color: #fff;
+  height: 100%;
+  /* width: 80%; */
+  transition: 1s ease 0.3s;
 }
 .progress-done-red {
-	background: red;
-	border-radius: 20px;
-	color: red;
-	height: 100%;
-	/* width: 80%; */
-	transition: 1s ease 0.3s;
+  background: red;
+  border-radius: 20px;
+  color: red;
+  height: 100%;
+  /* width: 80%; */
+  transition: 1s ease 0.3s;
 }
 .timer {
   display: flex;
@@ -223,22 +227,23 @@ body {
   /* width:60%; */
   width: 100%;
   height: 10vh;
-  background:transparent;
-  outline:none;
-  border:1px solid grey;
-  border-radius:15px;
+  background: transparent;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 15px;
   /* height:45px; */
   margin-bottom: 10px;
-  color:white;
+  color: white;
   text-align: left;
-  padding:10px 15px;
-  font-size:1rem;
+  padding: 10px 15px;
+  font-size: 1rem;
   transition: all 250ms ease-in-out;
+  resize: none;
 }
 #disabled-btn {
   cursor: not-allowed;
 }
-#disabled-btn:hover{
+#disabled-btn:hover {
   background-color: inherit;
   color: dodgerblue;
 }

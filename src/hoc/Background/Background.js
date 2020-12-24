@@ -54,8 +54,8 @@ export class Background extends Component {
     const unixEndDate = Number(
       moment(
         `${dateValue} ${timeValue} ${ampmValue}`,
-        "MM-DD-YYYY hh:mm A",
-      ).format("X"),
+        "MM-DD-YYYY hh:mm A"
+      ).format("X")
     );
     this.startCountdown(
       this.renderCountdownDate({
@@ -63,7 +63,7 @@ export class Background extends Component {
         timeValue,
         ampmValue,
         unixEndDate,
-      }),
+      })
     );
     // console.log(dateValue, timeValue, ampmValue, unixEndDate);
   }
@@ -105,17 +105,17 @@ export class Background extends Component {
       axios
         .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
         .then(function (response) {
-          console.log(response.data);
+          // console.log(response.data);
           t.setState({ data: response.data });
         })
         .catch(function (error) {
-          console.log(error);
+          // console.log(error);
         });
     }
     axios
       .get("https://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
+        this.setState({ recruitmentStatus: !recruitmentStatus.data.status })
       );
     this.startCountdown(this.renderCountdownDate());
   }
@@ -131,22 +131,22 @@ export class Background extends Component {
     if (this.state.Token) {
       background = (
         <div>
-          <div id='adglogo-cont2'>
-            <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
-            <div className='flex'></div>
+          <div id="adglogo-cont2">
+            <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
+            <div className="flex"></div>
             {this.state.data ? (
-              <div id='profile-container' className='pf-cr'>
-                <div id='profile-wrapper' className='pf-wr'>
-                  <div className='uinf'>
+              <div id="profile-container" className="pf-cr">
+                <div id="profile-wrapper" className="pf-wr">
+                  <div className="uinf">
                     <div>
-                      <img id='userpic' src={userpic} alt='User pic' />
+                      <img id="userpic" src={userpic} alt="User pic" />
                     </div>
-                    <div id='profile-title' className='usr-det'>
+                    <div id="profile-title" className="usr-det">
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <Link to='/'>
-                    <button id='logout-button' onClick={this.handleLogOut}>
+                  <Link to="/">
+                    <button id="logout-button" onClick={this.handleLogOut}>
                       Logout
                     </button>
                   </Link>
@@ -154,8 +154,8 @@ export class Background extends Component {
               </div>
             ) : null}
           </div>
-          <div className='container'>
-            <div id='cont-box'>
+          <div className="container">
+            <div id="cont-box">
               {/*{this.state.recruitmentStatus ? (*/}
               {/*  this.props.children*/}
               {/*) : (*/}
@@ -169,28 +169,26 @@ export class Background extends Component {
       );
     } else {
       background = (
-        <div id='background'>
-          <div id='adglogo-cont'>
-            <img id='adglogo' src={adglogo} alt='ADG Logo' />
+        <div id="background">
+          <div id="adglogo-cont">
+            <img id="adglogo" src={adglogo} alt="ADG Logo" />
           </div>
-          <div className='container'>
-            <div id='cont-box'>
+          <div className="container">
+            <div id="cont-box">
               {this.state.recruitmentStatus ? (
                 this.props.children
               ) : (
                 <>
-                  <h2 align='center'>Recruitments coming soon</h2>
+                  <h2 align="center">Recruitments coming soon</h2>
                   {this.setEndDate()}
                   {this.state.isCountdownSet ? (
                     <Countdown
                       countdown={this.state.countdown}
-                      unixEndDate={
-                        "\n" + "<Countdown date={'2020-12-23T14:00:00'}"
-                      }
+                      unixEndDate={"\n<Countdown date={'2020-12-23T14:00:00'}"}
                     />
                   ) : (
-                    <p className='message info-message'>
-                      <span className='fa fa-info-circle fa-lg fa-fw'></span>{" "}
+                    <p className="message info-message">
+                      <span className="fa fa-info-circle fa-lg fa-fw"></span>{" "}
                       {this.state.infoMessage}
                     </p>
                   )}

@@ -71,3 +71,38 @@
 .noUn {
   text-decoration: none;
 }
+/* .cross{
+  width:50px;
+  height:50px;
+  background-color: white;
+  color:white;
+} */
+
+.close {
+  float:left;
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+}
+.close:hover {
+  opacity: 1;
+}
+.close:before, .close:after {
+  position: absolute;
+  left: 25px;
+  content: ' ';
+  height: 25px;
+  width: 2px;
+  background-color:white;
+}
+.close:before {
+  transform: rotate(45deg);
+}
+.close:after {
+  transform: rotate(-45deg);
+}
+@media screen and (max-width:350px){
+  .close:before, .close:after {
+    height: 20px;
+  }
+}

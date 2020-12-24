@@ -3,7 +3,6 @@ import Background from "../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
 
-
 export class SignUp extends Component {
   state = {
     firstPage: true,
@@ -46,7 +45,7 @@ export class SignUp extends Component {
     }
 
     if (regPatternSoph.test(this.state.regno)) {
-      this.state.yearofstudy = 2;
+      this.setState({ yearofstudy: 2 });
     }
     else {
       this.state.yearofstudy = 1;
@@ -87,14 +86,12 @@ export class SignUp extends Component {
 
     if (!this.state.phone/* || val.test(this.state.phone)*/) {
       phoneError = "Enter a valid Mobile Number";
-    }
-
-    else if (this.state.phone.length!=10) {
+    } else if (this.state.phone.length !== 10) {
       phoneError = "Mobile Number should be 10 digits long";
     }
 console.log(this.state.yearofstudy);
     if (this.state.yearofstudy === 2) {
-      if(!this.state.github) {
+      if (!this.state.github) {
         gitError = "GitHub Link is mandatory for 2nd year students";
       }
     }
@@ -123,12 +120,10 @@ console.log(this.state.yearofstudy);
 
     // console.log(this.state.yearofstudy);
 
-    if(this.validate2()) {
-            this.recaptcha.execute();
-    }
-    else{
-            this.recaptcha.reset();
-
+    if (this.validate2()) {
+      this.recaptcha.execute();
+    } else {
+      this.recaptcha.reset();
     }
   };
   componentDidMount() {
@@ -142,121 +137,187 @@ console.log(this.state.yearofstudy);
   eyeClickHandlerC = () => {
     this.setState({ showCPass: !this.state.showCPass });
   };
-  onResolved=(a)=> {
+  onResolved = (a) => {
     // alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
     const data = JSON.stringify({
-        name: this.state.name,
-        regno: this.state.regno,
-        email: this.state.email,
-        phone: this.state.phone,
-        yearofstudy: this.state.yearofstudy,
-        password: this.state.password,
-        githubLink: this.state.github,
-      });
-      var config = {
-        method: "post",
-        url: "https://adgrecruitments.herokuapp.com/user/signup",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: data,
-      };
+      name: this.state.name,
+      regno: this.state.regno,
+      email: this.state.email,
+      phone: this.state.phone,
+      yearofstudy: this.state.yearofstudy,
+      password: this.state.password,
+      githubLink: this.state.github,
+    });
+    var config = {
+      method: "post",
+      url: "https://adgrecruitments.herokuapp.com/user/signup",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
 
-      axios(config)
-          .then(function (response) {
-            console.log(JSON.stringify(response.data));
-            a.history.push("/login");
-          })
-          .catch(function (error) {
-            alert(error.response.data.message);
-            console.log(error.success);
-          });
-  }
+    axios(config)
+      .then(function (response) {
+        // console.log(JSON.stringify(response.data));
+        a.history.push("/login");
+      })
+      .catch(function (error) {
+        alert(error.response.data.message);
+        // console.log(error.success);
+      });
+  };
 
   render() {
     return (
       <>
-      <Background>
-        <form autoComplete='false'>
-          {this.state.firstPage ? (
-            <div>
-              <div className='heading'>Sign Up</div>
-              <div className='input-grp'>
-                <label>Name</label>
+        <Background>
+          <form autoComplete="false">
+            {this.state.firstPage ? (
+              <div>
+                <div className="heading">Sign Up</div>
+                <div className="input-grp">
+                  <label>Name</label>
 
-                <input
-                  className='input name-input'
-                  type='text'
-                  value={this.state.name}
-                  placeholder='Enter your name'
-                  onChange={(event) => {
-                    this.inputChangeHandler(event, "name");
-                  }}
-                />
-              </div>
-              {this.state.nameError ? (
-                <div className='error'>{this.state.nameError}</div>
-              ) : null}
-              <div className='input-grp '>
-                <label>Registration Number</label>
-                <input
-                  autoComplete='off'
-                  onFocus={this.onFocus}
-                  className='input t-uc'
-                  value={this.state.regno}
-                  type='text'
-                  placeholder='Enter Registration Number'
-                  onChange={(event) => {
-                    this.inputChangeHandler(event, "regno");
-                  }}
-                />
-              </div>
-              {this.state.regError ? (
-                <div className='error'>{this.state.regError}</div>
-              ) : null}
-              <div className='input-grp'>
-                <label>Password</label>
-                <input
-                  className='input'
-                  type={`${this.state.showPass ? "text" : "password"}`}
-                  style={{ marginBottom: 10, position: "relative" }}
-                  value={this.state.password}
-                  placeholder='Enter Your Password'
-                  onChange={(event) => {
-                    this.inputChangeHandler(event, "password");
-                  }}
-                />
+                  <input
+                    className="input name-input"
+                    type="text"
+                    value={this.state.name}
+                    placeholder="Enter your name"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "name");
+                    }}
+                  />
+                </div>
+                {this.state.nameError ? (
+                  <div className="error">{this.state.nameError}</div>
+                ) : null}
+                <div className="input-grp ">
+                  <label>Registration Number</label>
+                  <input
+                    autoComplete="off"
+                    onFocus={this.onFocus}
+                    className="input t-uc"
+                    value={this.state.regno}
+                    type="text"
+                    placeholder="Enter Registration Number"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "regno");
+                    }}
+                  />
+                </div>
+                {this.state.regError ? (
+                  <div className="error">{this.state.regError}</div>
+                ) : null}
+                <div className="input-grp">
+                  <label>Password</label>
+                  <input
+                    className="input"
+                    type={`${this.state.showPass ? "text" : "password"}`}
+                    style={{ marginBottom: 10, position: "relative" }}
+                    value={this.state.password}
+                    placeholder="Enter Your Password"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "password");
+                    }}
+                  />
+                  <div
+                    className={`lgn-eye ${
+                      this.state.showPass ? "lgn-eye-t" : null
+                    }`}
+                    onClick={this.eyeClickHandler}>
+                    <i className={`fas fa-eye  `}></i>
+                  </div>
+                </div>
+                {this.state.passError ? (
+                  <div className="error">{this.state.passError}</div>
+                ) : null}
+                <div className="input-grp">
+                  <label>Confirm Password</label>
+                  <input
+                    className="input"
+                    type={`${this.state.showCPass ? "text" : "password"}`}
+                    style={{ marginBottom: 10, position: "relative" }}
+                    value={this.state.confirmPass}
+                    placeholder="Confirm Password"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "confirmPass");
+                    }}
+                  />
+                  <div
+                    className={`lgn-eye ${
+                      this.state.showCPass ? "lgn-eye-t" : null
+                    }`}
+                    onClick={this.eyeClickHandlerC}>
+                    <i className={`fas fa-eye  `}></i>
+                  </div>
+                </div>
+                {this.state.confirmPassError ? (
+                  <div className="error">{this.state.confirmPassError}</div>
+                ) : null}
                 <div
-                  className={`lgn-eye ${
-                    this.state.showPass ? "lgn-eye-t" : null
-                  }`}
-                  onClick={this.eyeClickHandler}>
-                  <i className={`fas fa-eye  `}></i>
+                  className="btn btn-blue lgn-btn"
+                  onClick={this.createAccountClickHandler}>
+                  Next
                 </div>
               </div>
-              {this.state.passError ? (
-                <div className='error'>{this.state.passError}</div>
-              ) : null}
-              <div className='input-grp'>
-                <label>Confirm Password</label>
-                <input
-                  className='input'
-                  type={`${this.state.showCPass ? "text" : "password"}`}
-                  style={{ marginBottom: 10, position: "relative" }}
-                  value={this.state.confirmPass}
-                  placeholder='Confirm Password'
-                  onChange={(event) => {
-                    this.inputChangeHandler(event, "confirmPass");
-                  }}
-                />
+            ) : (
+              <div>
+                <div className="heading">Sign Up</div>
+                <div className="input-grp">
+                  <label>Phone Number</label>
+                  <input
+                    className="input"
+                    type="text"
+                    value={this.state.phone}
+                    placeholder="Enter Your Phone Number"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "phone");
+                    }}
+                  />
+                </div>
+                {this.state.phoneError ? (
+                  <div className="error">{this.state.phoneError}</div>
+                ) : null}
+                <div className="input-grp">
+                  <label>VIT Email</label>
+                  <input
+                    className="input"
+                    type="text"
+                    value={this.state.email}
+                    placeholder="Enter Your VIT Email"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "email");
+                    }}
+                  />
+                </div>
+                {this.state.emailError ? (
+                  <div className="error">{this.state.emailError}</div>
+                ) : null}
+                <div className="input-grp">
+                  <label>GitHub Link (Mandatory for 2nd year students)</label>
+                  <input
+                    className="input"
+                    type="text"
+                    value={this.state.github}
+                    placeholder="Enter Your GitHub Handle"
+                    onChange={(event) => {
+                      this.inputChangeHandler(event, "github");
+                    }}
+                  />
+                </div>
+                {this.state.gitError ? (
+                  <div className="error">{this.state.gitError}</div>
+                ) : null}
                 <div
-                  className={`lgn-eye ${
-                    this.state.showCPass ? "lgn-eye-t" : null
-                  }`}
-                  onClick={this.eyeClickHandlerC}>
-                  <i className={`fas fa-eye  `}></i>
+                  className="btn btn-blue lgn-btn"
+                  onClick={(event) => {
+                    this.formSubmitHandler(event, this.props);
+                  }}>
+                  Sign Up
                 </div>
               </div>
+
               {this.state.confirmPassError ? (
                 <div className='error'>{this.state.confirmPassError}</div>
               ) : null}
@@ -324,15 +385,17 @@ console.log(this.state.yearofstudy);
         </form>
       </Background>
       <Recaptcha
+
+
           ref={(ref) => (this.recaptcha = ref)}
-          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
-'
-          onResolved={()=>this.onResolved(this.props )}
+          sitekey="6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+"
+          onResolved={() => this.onResolved(this.props)}
           onError={() => {
             alert("Captcha Error : Please refresh site and try again");
           }}
         />
-        </>
+      </>
     );
   }
 }

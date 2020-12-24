@@ -1,20 +1,15 @@
 import React from "react";
 import "./Quiz.css";
-// import Timer from "./Timer";
 import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
 
-let n = 0;
-
 class MgmtQuiz extends React.Component {
     responsesArray = [];
-    // inputValue = [];
     constructor(props) {
         super(props);
         this.state =  {
             quizQuestions: [],
-            time: 600,
             currentQuestionIndex: 0,
             questionId: [],
             showModal:false,
@@ -38,27 +33,6 @@ class MgmtQuiz extends React.Component {
         })
     }
 
-    getTimer() {
-        if (this.state.time > 0) {
-            setTimeout(() => {
-                this.setState({
-                    time: this.state.time - 0.5
-                });
-            }, 1000);
-        }
-    }
-
-    getTimer1() {
-        n = n + 1;
-        if (this.state.time > 0) {
-            setTimeout(() => {
-                this.setState({
-                    time: this.state.time - (0.5 / Math.pow(2, n))
-                });
-            }, 1000);
-        }
-    }
-
     async getQuizQuestions() {
         await fetch("https://adgrecruitments.herokuapp.com/questions/management/get-quiz-questions/web", {
             method: "GET",
@@ -74,17 +48,13 @@ class MgmtQuiz extends React.Component {
             this.setState({
                 quizQuestions: data
             });
-            // console.log(this.state.quizQuestions);
         })
         .catch((error) => {
-            // console.log(error.message);
             alert(error.message);
         })
     }
 
     async submitQuiz() {
-        // const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
-        console.log("Inside submitQuiz", this.selectedOptions);
         await fetch("https://adgrecruitments.herokuapp.com/user/management/submit", {
             method: "POST",
             headers: {
@@ -97,14 +67,11 @@ class MgmtQuiz extends React.Component {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
+            // console.log(data);
         })
         .catch((error) => {
-            console.log(error.message);
+            alert(error.message);
         })
-        // this.setState({
-        //     inputValue: ""
-        // })
     }
 
 
@@ -118,7 +85,6 @@ class MgmtQuiz extends React.Component {
                     this.responsesArray[i].response = e.target.value; 
                 }
             }
-            // console.log("responsesArray",this.responsesArray);
         } 
         else {
             this.responsesArray.push({qid:qid,response:e.target.value});         
@@ -144,16 +110,7 @@ class MgmtQuiz extends React.Component {
 
     componentDidMount() {
         this.getQuizQuestions();
-        // console.log(this.state.quizQuestions);
-        // this.getTimer();
     }
-
-    // componentDidUpdate(prevProps, prevState) {
-    //     if(prevState.time > 0 && prevState.currentQuestionIndex === this.state.currentQuestionIndex)
-    //         this.getTimer();
-    //     // if(prevState.time > 0 && prevState.responsesArray !== this.responsesArray)
-    //     //     this.getTimer();
-    // }
 
     componentWillUnmount() {
         this.submitQuiz();
@@ -163,11 +120,6 @@ class MgmtQuiz extends React.Component {
         if(!sessionStorage.getItem("Token")) {
             return(
                 <Redirect to="/" />
-            )
-        }
-        else if(this.state.time === 0) {
-            return(
-                <Redirect to="/thank-you" />
             )
         }
         return(
@@ -201,9 +153,6 @@ class MgmtQuiz extends React.Component {
                                 }
                                 <Modal show={this.state.showModal} onHide={this.hideModal} submitQuiz={ this.submitQuiz } />
                             </div>
-                            {/* <div className="timer">
-                                <Timer time={this.state.time} />
-                            </div> */}
                         </div>
                     </>
                 }

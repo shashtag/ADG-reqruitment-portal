@@ -74,7 +74,7 @@ export class Login extends Component {
         password: this.state.password,
       });
 
-      console.log(data);
+      // console.log(data);
       var config = {
         method: "post",
         url: "https://adgrecruitments.herokuapp.com/user/login",
@@ -87,13 +87,13 @@ export class Login extends Component {
       axios(config)
         .then(function (response) {
           sessionStorage.setItem("Token", response.data.Token);
-          console.log(response.data);
+          // console.log(response.data);
           a.history.push("/selection");
         })
         .catch(function (error) {
           alert(error.response.data.message);
 
-          console.log(error);
+          // console.log(error);
         });
   }
   render() {
