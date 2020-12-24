@@ -18,7 +18,7 @@ export class Background extends Component {
       Token: sessionStorage.getItem("Token"),
       data: false,
       recruitmentStatus: false,
-      dateValue: "12-26-2020",
+      dateValue: "12-27-2020",
       timeValue: "02:00",
       ampmValue: "pm",
       countdown: {
@@ -31,7 +31,7 @@ export class Background extends Component {
     };
     this.timer = null;
     this.countDownDate = {
-      dateValue: "12-23-2020",
+      dateValue: "12-27-2020",
       timeValue: "02:00",
       ampmValue: "pm",
       unixEndDate: "",
@@ -48,7 +48,7 @@ export class Background extends Component {
   }
 
   setEndDate() {
-    let dateValue = "12-26-2020";
+    let dateValue = "12-27-2020";
     let timeValue = "02:00";
     let ampmValue = "pm";
     const unixEndDate = Number(
