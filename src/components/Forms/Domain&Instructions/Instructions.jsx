@@ -43,7 +43,7 @@ const Instructions = (props) => {
           submitted.
         </li>
       </ul>
-      <Link to={linkTo} className='btn btn-blue lgn-btn'>
+      <Link  to={linkTo} className='btn btn-blue lgn-btn'>
         Begin
       </Link>
     </Background>

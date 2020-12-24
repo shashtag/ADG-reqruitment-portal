@@ -160,12 +160,12 @@ export class SignUp extends Component {
 
       axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data));
+            // console.log(JSON.stringify(response.data));
             a.history.push("/login");
           })
           .catch(function (error) {
             alert(error.response.data.message);
-            console.log(error.success);
+            // console.log(error.success);
           });
   }
 
@@ -256,7 +256,7 @@ export class SignUp extends Component {
               {this.state.confirmPassError ? (
                 <div className='error'>{this.state.confirmPassError}</div>
               ) : null}
-              <div className='sub-btn' onClick={this.createAccountClickHandler}>
+              <div className='btn btn-blue lgn-btn' onClick={this.createAccountClickHandler}>
                 Next
               </div>
             </div>
@@ -309,7 +309,7 @@ export class SignUp extends Component {
                 <div className='error'>{this.state.gitError}</div>
               ) : null}
               <div
-                className='sub-btn'
+                className='btn btn-blue lgn-btn'
                 onClick={(event) => {
                   this.formSubmitHandler(event, this.props);
                 }}>

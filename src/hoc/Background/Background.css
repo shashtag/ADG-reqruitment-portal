@@ -148,6 +148,7 @@
   line-height: 1.2;
   text-align: center;
   margin-bottom: 3vh;
+  margin-top: 3.5vh;
 }
 .sub-heading {
   font-family: SF Pro Display;
@@ -172,6 +173,7 @@
   border-radius: 8px;
   padding: 8px;
   margin: auto;
+  margin-top: 20px;
   color: #ffffff;
   font-family: SF Pro Display;
   font-style: normal;
@@ -216,6 +218,7 @@
 }
 @media (min-width: 768px) {
   .heading {
+    margin-top: 20px;
     font-size: 36px;
     margin-bottom: 15px;
   }
@@ -267,7 +270,7 @@ label {
   line-height: 1.2;
   margin-bottom: 1.5vh;
 }
-.sub-btn {
+/* .sub-btn {
   font-family: SF Pro Display;
   cursor: pointer;
   display: block;
@@ -283,7 +286,7 @@ label {
   background: #027aff;
   color: #ffffff;
   margin-bottom: 1.7vh;
-}
+} */
 
 @media (min-width: 576px) {
   .input-grp {
@@ -302,7 +305,7 @@ label {
     line-height: 1.2;
     margin-bottom: 10px;
   }
-  .sub-btn {
+  /* .sub-btn {
     padding: 12px;
     border-radius: 10px;
 
@@ -310,7 +313,7 @@ label {
     line-height: 1.2;
 
     margin-bottom: 10px;
-  }
+  } */
 }
 @media (min-width: 768px) {
   .input-grp {
@@ -326,18 +329,18 @@ label {
     line-height: 1.2;
     margin-bottom: 8px;
   }
-  .sub-btn {
+  /* .sub-btn {
     padding: 8px;
     border-radius: 8px;
     font-size: 24px;
     line-height: 1.2;
     margin-bottom: 8px;
     width: 55%;
-  }
+  } */
 }
-.disable-btn{
-pointer-events: none;
-/* background:grey; */
+.disable-btn {
+  pointer-events: none;
+  /* background:grey; */
 }
 /* domain page */
 .rdio-grp {
@@ -436,8 +439,8 @@ pointer-events: none;
   transition: all 0.3s ease-in-out;
 }
 #logout-button {
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 18px;
+  margin-bottom: 18px;
   height: auto;
   width: auto;
   background: #027aff;
@@ -532,7 +535,7 @@ pointer-events: none;
 }
 
 .forgot-pass {
-    font-family: SF Pro Display;
+  font-family: SF Pro Display;
   display: flex;
   align-items: center;
   justify-content: flex-end;
