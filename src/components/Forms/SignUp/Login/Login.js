@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Recaptcha from "react-google-invisible-recaptcha";
+import adggif from "../../../../assets/img/adggif.gif";
 
 export class Login extends Component {
   state = {
@@ -13,6 +14,7 @@ export class Login extends Component {
     showPass: false,
     err: "",
     value: "",
+    loading: false,
   };
 
   validate = () => {
@@ -43,7 +45,7 @@ export class Login extends Component {
   };
   formSubmitHandler = (e, a) => {
     this.validate();
-    this.setState({regError: "", passError: ""})
+    this.setState({ regError: "", passError: "" });
     if (this.validate()) {
       this.recaptcha.execute();
     } else {
@@ -81,18 +83,22 @@ export class Login extends Component {
       },
     };
 
+    this.setState({ loading: true });
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         sessionStorage.setItem("Token", response.data.Token);
         // console.log(response.data);
+        this.setState({ loading: false });
         a.history.push("/selection");
       })
-      .catch(function (error) {
-        alert(error.response.data.message);
+      .catch((error) => {
+        alert(error?.response?.data?.message);
+        this.setState({ loading: false });
         // console.log(error);
       });
   };
   render() {
+    const loader = <img src={adggif} height={50} alt="ADG gif loader" />;
     return (
       <>
         <Background>
@@ -139,7 +145,7 @@ export class Login extends Component {
             onClick={(event) => {
               this.formSubmitHandler(event, this.props);
             }}>
-            Log In
+            {!this.state.loading ? "Log In" : loader}
           </div>
         </Background>
         <Recaptcha
