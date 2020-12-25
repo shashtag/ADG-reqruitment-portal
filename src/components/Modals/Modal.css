@@ -14,18 +14,17 @@
   text-align: center;
   z-index: 25;
   position: fixed;
-  background: rgb(17, 17, 17);
-  width: 45%;
+  /*width: 50%;*/
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border-radius: 15px;
   box-sizing: border-box;
-  padding:5px 15px;
+  padding: 30px 30px 15px 30px;
 }
 .confirm{
-  padding:4%;
+  padding-bottom: 30px;
   width: 90%;
 }
 .submit-heading{
@@ -70,14 +69,13 @@
 .submit-btn {
   text-align: center;
   text-decoration: none;
-  margin: 0 3vw;
+  margin: 0 auto;
   background: transparent;
   outline: none;
   border: 1px solid dodgerblue;
-  /* height:30px; */
   color: dodgerblue;
+  min-width: 150px;
   height: auto;
-  width: auto;
   font-size: 20px;
   border-radius: 5px;
   cursor: pointer;
@@ -100,6 +98,7 @@
 
 .noUn {
   text-decoration: none;
+  width: 100%;
 }
 /* .cross{
   width:50px;
@@ -113,6 +112,7 @@
   width: 20px;
   height: 20px;
   opacity: 1;
+  cursor: pointer;
 }
 .close:hover {
   opacity: 1;
@@ -134,6 +134,8 @@
 }
 .modal-heading{
   color:white;
+  font-size: 2em;
+  margin-block-start: 0em;
 }
 .sub-heading-modal{
   color:white;

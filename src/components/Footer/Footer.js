@@ -6,7 +6,7 @@ const Modal = ({ handleClose, show, children }) => {
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <h2 className="modal-heading">Contact Us</h2>
+        <h1 className="modal-heading">Contact Us</h1>
         <div className='sub-heading'>
           Incase of any queries or discrepancies,please feel free to contact us
           at: {" "} <br ></br>
