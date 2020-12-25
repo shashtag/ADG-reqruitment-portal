@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 
 const Modal = ({ handleClose, show, children }) => {
-  const showHideClassName = show ? "modal display-block" : "modal display-none";
+  const showHideClassName = show ? "modal-contact display-block" : "modal-contact display-none";
 
   return (
     <div className={showHideClassName}>
       <section className='modal-main'>
-        <h2>Contact Us</h2>
+        <h1 className="modal-heading">Contact Us</h1>
         <div className='sub-heading'>
-          Incase of any queries or discrepancies, please feel free to contact us
-          at{" "}
+          Incase of any queries or discrepancies,please feel free to contact us
+          at: {" "} <br ></br>
           <a href='mailto:appledevelopersgroup@gmail.com'>
             appledevelopersgroup@gmail.com
           </a>
