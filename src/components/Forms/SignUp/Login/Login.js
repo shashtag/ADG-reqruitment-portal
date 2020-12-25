@@ -43,7 +43,7 @@ export class Login extends Component {
   };
   formSubmitHandler = (e, a) => {
     this.validate();
-
+    this.setState({regError: "", passError: ""})
     if (this.validate()) {
       this.recaptcha.execute();
 
