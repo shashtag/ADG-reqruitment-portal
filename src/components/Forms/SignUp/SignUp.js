@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Background from "../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
+import adggif from "../../../assets/img/adggif.gif";
 
 export class SignUp extends Component {
   state = {
@@ -24,6 +25,7 @@ export class SignUp extends Component {
     err: "",
     showPass: false,
     showCPass: false,
+    loading: false,
   };
 
   validate = () => {
@@ -153,18 +155,22 @@ export class SignUp extends Component {
       data: data,
     };
 
+    this.setState({ loading: true });
     axios(config)
-      .then(function (response) {
+      .then((response) => {
         // console.log(JSON.stringify(response.data));
+        this.setState({ loading: false });
         a.history.push("/login");
       })
-      .catch(function (error) {
+      .catch((error) => {
         alert(error.response.data.message);
+        this.setState({ loading: false });
         // console.log(error.success);
       });
   };
 
   render() {
+    const loader = <img src={adggif} height={50} alt="ADG gif loader" />;
     return (
       <>
         <Background>
@@ -310,7 +316,7 @@ export class SignUp extends Component {
                   onClick={(event) => {
                     this.formSubmitHandler(event, this.props);
                   }}>
-                  Sign Up
+                  {!this.state.loading ? "Sign Up" : loader}
                 </div>
               </div>
             )}
