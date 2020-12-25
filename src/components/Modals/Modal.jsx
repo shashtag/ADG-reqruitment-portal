@@ -19,11 +19,9 @@ const Modal = (props) => {
   const modalClass = props.show ? "modal" : "modal display-none";
   return (
     <div className={modalClass}>
-      <div className="modal-main" ref={modalRef}>
-        {/* <img src={cross} alt="Close" className="cross"/> */}
+      <div className="modal-main confirm" ref={modalRef}>
         <div className="close" onClick={props.onHide}></div>
-        {/* <FontAwesomeIcon icon={ faTimes } className="times" /> */}
-        <h2>Confirm Submission</h2>
+        <h2 className="submit-heading">Confirm Submission</h2>
         <div className="sub-heading">
           You won't be able to re-attempt or change your answers!
         </div>
