@@ -127,6 +127,9 @@ export class Login extends Component {
         {this.state.passError ? (
           <div className='error'>{this.state.passError}</div>
         ) : null}
+        <div className='forgot-pass'>
+          <Link to='/forgotPassword'>Forgot Password?</Link>
+        </div>
         <div
           className='btn btn-blue lgn-btn'
           onClick={(event) => {
@@ -135,9 +138,6 @@ export class Login extends Component {
           Log In
         </div>
         
-        <div className='forgot-pass'>
-          <Link to='/forgotPassword'>Forgot Password?</Link>
-        </div>
       </Background>
       <Recaptcha
           ref={(ref) => (this.recaptcha = ref)}

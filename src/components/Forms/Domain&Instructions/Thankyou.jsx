@@ -12,7 +12,7 @@ const ThankYou = () => {
           You can attempt quiz from other domains if you haven't
         </div>
         <Link to="/selection">
-          <button className={classes.redirectBtn}>Attempt other quizzes</button>
+          <button className={classes.redirectBtn}>Attempt another quiz</button>
         </Link>
       </div>
     </Background>
