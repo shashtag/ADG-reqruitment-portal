@@ -46,8 +46,6 @@ export class Login extends Component {
 
     if (this.validate()) {
       this.recaptcha.execute();
-
-      
     } else {
       this.recaptcha.reset();
     }
@@ -60,95 +58,100 @@ export class Login extends Component {
   eyeClickHandler = () => {
     this.setState({ showPass: !this.state.showPass });
   };
-  onResolved=(a)=> {
+  onResolved = (a) => {
     // alert("Recaptcha resolved with response: " + this.recaptcha.getResponse());
     const data = JSON.stringify({
-        regno: this.state.regno,
-        password: this.state.password,
+      regno: this.state.regno,
+      password: this.state.password,
+    });
+
+    // console.log(data);
+    var config = {
+      method: "post",
+      url: "https://adgrecruitments.herokuapp.com/user/login",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+      onUploadProgress: function (progressEvent) {
+        let percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        // console.log("onUploadProgress", percentCompleted);
+      },
+    };
+
+    axios(config)
+      .then(function (response) {
+        sessionStorage.setItem("Token", response.data.Token);
+        // console.log(response.data);
+        a.history.push("/selection");
+      })
+      .catch(function (error) {
+        alert(error.response.data.message);
+        // console.log(error);
       });
-
-      // console.log(data);
-      var config = {
-        method: "post",
-        url: "https://adgrecruitments.herokuapp.com/user/login",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: data,
-      };
-
-      axios(config)
-        .then(function (response) {
-          sessionStorage.setItem("Token", response.data.Token);
-          // console.log(response.data);
-          a.history.push("/selection");
-        })
-        .catch(function (error) {
-          alert(error.response.data.message);
-          // console.log(error);
-        });
-  }
+  };
   render() {
     return (
       <>
-      <Background>
-        <div className='heading'>Log In</div>
-        <div className='input-grp'>
-          <label id='p2'>Registration Number</label>
-          <input
-            className='input t-uc'
-            type='text'
-            placeholder='Enter Registration Number'
-            onChange={(event) => {
-              this.inputChangeHandler(event, "regno");
-            }}
-          />
-        </div>
-        {this.state.regError ? (
-          <div className='error'>{this.state.regError}</div>
-        ) : null}
-        <div className='input-grp'>
-          <label id='p1'>Password</label>
-          <input
-            className='input'
-            type={`${this.state.showPass ? "text" : "password"}`}
-            placeholder='Enter Your Password'
-            style={{ marginBottom: 10, position: "relative" }}
-            onChange={(event) => {
-              this.inputChangeHandler(event, "password");
-            }}
-          />
-          <div
-            className={`lgn-eye ${this.state.showPass ? "lgn-eye-t" : null}`}
-            onClick={this.eyeClickHandler}>
-            <i className={`fas fa-eye  `}></i>
+        <Background>
+          <div className="heading">Log In</div>
+          <div className="input-grp">
+            <label id="p2">Registration Number</label>
+            <input
+              className="input t-uc"
+              type="text"
+              placeholder="Enter Registration Number"
+              onChange={(event) => {
+                this.inputChangeHandler(event, "regno");
+              }}
+            />
           </div>
-        </div>
-        {this.state.passError ? (
-          <div className='error'>{this.state.passError}</div>
-        ) : null}
-        <div className='forgot-pass'>
-          <Link to='/forgotPassword'>Forgot Password?</Link>
-        </div>
-        <div
-          className='btn btn-blue lgn-btn'
-          onClick={(event) => {
-            this.formSubmitHandler(event, this.props);
-          }}>
-          Log In
-        </div>
-        
-      </Background>
-      <Recaptcha
+          {this.state.regError ? (
+            <div className="error">{this.state.regError}</div>
+          ) : null}
+          <div className="input-grp">
+            <label id="p1">Password</label>
+            <input
+              className="input"
+              type={`${this.state.showPass ? "text" : "password"}`}
+              placeholder="Enter Your Password"
+              style={{ marginBottom: 10, position: "relative" }}
+              onChange={(event) => {
+                this.inputChangeHandler(event, "password");
+              }}
+            />
+            <div
+              className={`lgn-eye ${this.state.showPass ? "lgn-eye-t" : null}`}
+              onClick={this.eyeClickHandler}>
+              <i className={`fas fa-eye  `}></i>
+            </div>
+          </div>
+          {this.state.passError ? (
+            <div className="error">{this.state.passError}</div>
+          ) : null}
+          <div className="forgot-pass">
+            <Link to="/forgotPassword">Forgot Password?</Link>
+          </div>
+          <div
+            className="btn btn-blue lgn-btn"
+            onClick={(event) => {
+              this.formSubmitHandler(event, this.props);
+            }}>
+            Log In
+          </div>
+        </Background>
+        <Recaptcha
           ref={(ref) => (this.recaptcha = ref)}
-          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
-'
-          onResolved={()=>this.onResolved(this.props )}
+          sitekey="6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+"
+          onResolved={() => this.onResolved(this.props)}
           onError={() => {
             alert("Captcha Error : Please refresh site and try again");
           }}
         />
-        </>
+      </>
     );
   }
 }
