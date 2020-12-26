@@ -3,6 +3,8 @@ import Background from "../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
 import adggif from "../../../assets/img/adggif.gif";
+import {Link} from "react-router-dom";
+import VerificationPage from "./verification";
 
 export class SignUp extends Component {
   state = {
@@ -26,6 +28,8 @@ export class SignUp extends Component {
     showPass: false,
     showCPass: false,
     loading: false,
+    verificationPage: false,
+
   };
 
   validate = () => {
@@ -105,9 +109,8 @@ export class SignUp extends Component {
   createAccountClickHandler = (event) => {
     event.preventDefault();
     this.validate();
-
     if (this.validate()) {
-      this.setState({ firstPage: false });
+      this.setState({ firstPage: false, nameError: "", confirmPassError: "",  passError: "", regError: ""  });
     }
   };
   inputChangeHandler = (e, s) => {
@@ -120,9 +123,12 @@ export class SignUp extends Component {
 
     if (this.validate2()) {
       this.recaptcha.execute();
+      this.setState({verificationPage: true});
     } else {
       this.recaptcha.reset();
     }
+    this.setState({verificationPage: true});
+
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
@@ -328,7 +334,7 @@ export class SignUp extends Component {
                   </div>
                   <div
                     className="btn btn-blue lgn-btn"
-                    onClick={() => this.setState({ firstPage: true })}>
+                    onClick={() => this.setState({ firstPage: true, emailError: "", phoneError: "", gitError: "", })}>
                     {/* <i
                       className="fas fa-arrow-left"
                       style={{ marginRight: "0.5em" }}></i> */}
@@ -337,6 +343,11 @@ export class SignUp extends Component {
                 </div>
               </div>
             )}
+            {this.state.verificationPage ? (
+                <VerificationPage
+                  email={this.state.email}
+                />
+            ) : null}
           </form>
         </Background>
         <Recaptcha
