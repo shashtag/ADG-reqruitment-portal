@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 import moment from "moment";
 import Countdown from "../../components/Countdown/Countdown";
 import { Link } from "react-router-dom";
+import adggif from "../../assets/img/adggif.gif";
 
 export class Background extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ export class Background extends Component {
         secs: "",
       },
       isCountdownSet: true,
+      loading: false,
     };
     this.timer = null;
     this.countDownDate = {
@@ -54,8 +56,8 @@ export class Background extends Component {
     const unixEndDate = Number(
       moment(
         `${dateValue} ${timeValue} ${ampmValue}`,
-        "MM-DD-YYYY hh:mm A"
-      ).format("X")
+        "MM-DD-YYYY hh:mm A",
+      ).format("X"),
     );
     this.startCountdown(
       this.renderCountdownDate({
@@ -63,7 +65,7 @@ export class Background extends Component {
         timeValue,
         ampmValue,
         unixEndDate,
-      })
+      }),
     );
     // console.log(dateValue, timeValue, ampmValue, unixEndDate);
   }
@@ -102,6 +104,7 @@ export class Background extends Component {
           "auth-token": this.state.Token,
         },
       };
+      this.setState({ loading: true });
       axios
         .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
         .then(function (response) {
@@ -110,16 +113,19 @@ export class Background extends Component {
         })
         .catch(function (error) {
           // console.log(error);
-        });
+        })
+        .finally(() => this.setState({ loading: false }));
     }
+    this.setState({ loading: true });
     axios
       .get("https://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: !recruitmentStatus.data.status })
-      );
+        this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
+      )
+      .finally(() => this.setState({ loading: false }));
     this.startCountdown(this.renderCountdownDate());
   }
-
+  componentWillUnmount() {}
   handleLogOut = () => {
     sessionStorage.clear();
   };
@@ -127,26 +133,29 @@ export class Background extends Component {
   render() {
     let background;
     // let profile = null;
+    const loader = <img src={adggif} alt='ADG gif loader' />;
 
     if (this.state.Token) {
       background = (
         <div>
-          <div id="adglogo-cont2">
-            <img id="adglogo2" src={adglogo2} alt="ADG Logo" />
-            <div className="flex"></div>
+          <div id='adglogo-cont2'>
+            <a href='/'>
+              <img id='adglogo2' src={adglogo2} alt='ADG Logo' />
+            </a>
+            <div className='flex'></div>
             {this.state.data ? (
-              <div id="profile-container" className="pf-cr">
-                <div id="profile-wrapper" className="pf-wr">
-                  <div className="uinf">
+              <div id='profile-container' className='pf-cr'>
+                <div id='profile-wrapper' className='pf-wr'>
+                  <div className='uinf'>
                     <div>
-                      <img id="userpic" src={userpic} alt="User pic" />
+                      <img id='userpic' src={userpic} alt='User pic' />
                     </div>
-                    <div id="profile-title" className="usr-det">
+                    <div id='profile-title' className='usr-det'>
                       {this.state.data.userDetails.name}
                     </div>
                   </div>
-                  <Link to="/">
-                    <button id="logout-button" onClick={this.handleLogOut}>
+                  <Link to='/'>
+                    <button id='logout-button' onClick={this.handleLogOut}>
                       Logout
                     </button>
                   </Link>
@@ -154,14 +163,14 @@ export class Background extends Component {
               </div>
             ) : null}
           </div>
-          <div className="container">
-            <div id="cont-box">
+          <div className='container'>
+            <div id='cont-box'>
               {/*{this.state.recruitmentStatus ? (*/}
               {/*  this.props.children*/}
               {/*) : (*/}
               {/*  <h2 align='center'>Recruitments coming soon</h2>*/}
               {/*)}*/}
-              {this.props.children}
+              {!this.state.loading ? this.props.children : loader}
             </div>
           </div>
           <Footer />
@@ -169,17 +178,23 @@ export class Background extends Component {
       );
     } else {
       background = (
-        <div id="background">
-          <div id="adglogo-cont">
-            <img id="adglogo" src={adglogo} alt="ADG Logo" />
+        <div id='background'>
+          <div id='adglogo-cont'>
+            <a href='/'>
+              <img id='adglogo' src={adglogo} alt='ADG Logo' />
+            </a>
           </div>
-          <div className="container">
-            <div id="cont-box">
+          <div className='container'>
+            <div id='cont-box'>
               {this.state.recruitmentStatus ? (
-                this.props.children
+                !this.state.loading ? (
+                  this.props.children
+                ) : (
+                  loader
+                )
               ) : (
                 <>
-                  <h2 align="center">Recruitments coming soon</h2>
+                  <h2 align='center'>Recruitments coming soon</h2>
                   {this.setEndDate()}
                   {this.state.isCountdownSet ? (
                     <Countdown
@@ -187,8 +202,8 @@ export class Background extends Component {
                       unixEndDate={"\n<Countdown date={'2020-12-23T14:00:00'}"}
                     />
                   ) : (
-                    <p className="message info-message">
-                      <span className="fa fa-info-circle fa-lg fa-fw"></span>{" "}
+                    <p className='message info-message'>
+                      <span className='fa fa-info-circle fa-lg fa-fw'></span>{" "}
                       {this.state.infoMessage}
                     </p>
                   )}

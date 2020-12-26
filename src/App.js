@@ -9,6 +9,7 @@ import Instructions from "./components/Forms/Domain&Instructions/Instructions";
 import TechQuiz from "./components/Quiz/TechQuiz";
 import MgmtQuiz from "./components/Quiz/MgmtQuiz";
 import DesignQuiz from "./components/Quiz/DesignQuiz";
+import TechQuiz2ndYear from "./components/Quiz/TechQuiz2ndYear";
 
 import React, { Component } from "react";
 import ThankYou from "./components/Forms/Domain&Instructions/Thankyou";
@@ -35,21 +36,22 @@ export class App extends Component {
   // }
   render() {
     return (
-      <div className='App'>
+      <div className="App">
         {/* {this.state.Token ? (
             <Route path='/' exact component={DomainPage} />
           ) : ( */}
-        <Route path='/' exact component={Landing} />
+        <Route path="/" exact component={Landing} />
         {/* )} */}
-        <Route path='/signup' component={SignUp} />
-        <Route path='/login' component={Login} />
-        <Route path='/forgotPassword' component={ForgotPassword} />
-        <Route path='/selection' component={DomainPage} />
-        <Route path='/instructions' component={Instructions} />
+        <Route path="/signup" component={SignUp} />
+        <Route path="/login" component={Login} />
+        <Route path="/forgotPassword" component={ForgotPassword} />
+        <Route path="/selection" component={DomainPage} />
+        <Route path="/instructions" component={Instructions} />
         {/* <Route path="/quiz" component={Quiz} /> */}
-        <Route path='/Technical' component={TechQuiz} />
-        <Route path='/Management' component={MgmtQuiz} />
-        <Route path='/Design' component={DesignQuiz} />
+        <Route path="/Technical" component={TechQuiz} />
+        <Route path="/Technical2" component={TechQuiz2ndYear} />
+        <Route path="/Management" component={MgmtQuiz} />
+        <Route path="/Design" component={DesignQuiz} />
         <Route path="/thank-you" component={ThankYou} />
       </div>
     );

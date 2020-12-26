@@ -9,10 +9,12 @@ export class ForgotPassword extends Component {
     email: "",
     emailErr: "",
     otp: "",
+    otpErr: "",
     newPassword: "",
     newPasswordErr: "",
     confirmPassword: "",
     confirmPasswordErr: "",
+    err: "",
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
@@ -46,6 +48,17 @@ export class ForgotPassword extends Component {
   };
   formSubmitHandler = (e, a) => {
     e.preventDefault();
+
+    this.setState({
+      otpErr: "",
+    });
+
+    if (!this.state.otp) {
+      this.setState({
+        otpErr: "Enter valid OTP",
+      });
+    }
+
     if (this.state.newPassword.length < 8) {
       this.setState({
         newPasswordErr: "Password must be at least 8 characters",
@@ -85,6 +98,7 @@ export class ForgotPassword extends Component {
       })
       .catch(function (error) {
         // console.log(error);
+        alert(error.response.data.message);
       });
   };
 
@@ -130,13 +144,16 @@ export class ForgotPassword extends Component {
                   <label>OTP</label>
                   <input
                     className="input"
-                    type="text"
+                    type="number"
                     placeholder="Enter OTP"
                     value={this.state.otp}
                     onChange={(event) => {
                       this.inputChangeHandler(event, "otp");
                     }}
                   />
+                  {this.state.otpErr !== "" && (
+                      <div className="error">{this.state.otpErr}</div>
+                  )}
                 </div>
                 <div className="input-grp">
                   <label>New Password</label>
@@ -169,7 +186,7 @@ export class ForgotPassword extends Component {
                   )}
                 </div>
                 <div
-                  className="sub-btn"
+                  className="btn btn-blue lgn-btn"
                   onClick={(event) => {
                     event.preventDefault();
                     this.formSubmitHandler(event, this.props);
