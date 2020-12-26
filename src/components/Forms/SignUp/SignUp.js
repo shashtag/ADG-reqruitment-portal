@@ -135,6 +135,10 @@ export class SignUp extends Component {
   eyeClickHandlerC = () => {
     this.setState({ showCPass: !this.state.showCPass });
   };
+  goBack() {
+    this.setState({firstPage: true});
+    console.log(this.state.firstPage);
+  }
   onResolved = (a) => {
     // alert( 'Recaptcha resolved with response: ' + this.recaptcha.getResponse() );
     const data = JSON.stringify({
@@ -318,12 +322,17 @@ export class SignUp extends Component {
                 {this.state.gitError ? (
                   <div className='error'>{this.state.gitError}</div>
                 ) : null}
-                <div
-                  className='btn btn-blue lgn-btn'
-                  onClick={(event) => {
-                    this.formSubmitHandler(event, this.props);
-                  }}>
-                  Sign Up
+                <div style={{display: 'flex'}}>
+                  <div
+                      className='btn btn-blue lgn-btn'
+                      onClick={(event) => {
+                        this.formSubmitHandler(event, this.props);
+                      }}>
+                    Sign Up
+                  </div>
+                  <div className='btn btn-blue lgn-btn'>
+                    <i className="fas fa-arrow-left" onClick={this.goBack}></i>
+                  </div>
                 </div>
               </div>
             )}
