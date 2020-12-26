@@ -3,7 +3,7 @@ import Background from "../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
 import adggif from "../../../assets/img/adggif.gif";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import VerificationPage from "./verification";
 
 export class SignUp extends Component {
@@ -29,7 +29,7 @@ export class SignUp extends Component {
     showCPass: false,
     loading: false,
     verificationPage: false,
-
+    cooldown: 60,
   };
 
   validate = () => {
@@ -41,11 +41,11 @@ export class SignUp extends Component {
     var regPatternSoph = /^[1][9][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.name) {
-      nameError = "Enter a valid Name";
+      nameError = "Name cannot be left empty";
     }
 
     if (!this.state.regno) {
-      regError = "Registration number cannot be left empty";
+      regError = "Registration Number cannot be left empty";
     } else if (!regPattern.test(this.state.regno)) {
       regError = "Enter a valid Registration Number";
     }
@@ -55,13 +55,13 @@ export class SignUp extends Component {
     }
 
     if (!this.state.password) {
-      passError = "Enter Password";
+      passError = "Password cannot be left empty";
     } else if (this.state.password.length < 8) {
       passError = "Password length must be greater than 8 characters";
     }
 
     if (this.state.password && !this.state.confirmPass) {
-      confirmPassError = "Confirm Password";
+      confirmPassError = "Confirm Password cannot be left empty";
     } else if (this.state.password !== this.state.confirmPass) {
       confirmPassError = "The entered passwords do not match";
     }
@@ -110,7 +110,13 @@ export class SignUp extends Component {
     event.preventDefault();
     this.validate();
     if (this.validate()) {
-      this.setState({ firstPage: false, nameError: "", confirmPassError: "",  passError: "", regError: ""  });
+      this.setState({
+        firstPage: false,
+        nameError: "",
+        confirmPassError: "",
+        passError: "",
+        regError: "",
+      });
     }
   };
   inputChangeHandler = (e, s) => {
@@ -123,12 +129,10 @@ export class SignUp extends Component {
 
     if (this.validate2()) {
       this.recaptcha.execute();
-      this.setState({verificationPage: true});
+      this.setState({ verificationPage: true });
     } else {
       this.recaptcha.reset();
     }
-    this.setState({verificationPage: true});
-
   };
   componentDidMount() {
     if (sessionStorage.getItem("Token")) {
@@ -166,13 +170,46 @@ export class SignUp extends Component {
       .then((response) => {
         // console.log(JSON.stringify(response.data));
         this.setState({ loading: false });
-        a.history.push("/login");
+        // a.history.push("/login");
       })
       .catch((error) => {
         alert(error.response.data.message);
         this.setState({ loading: false });
         // console.log(error.success);
       });
+  };
+
+  resendVerification = () => {
+    const data = JSON.stringify({
+      email: this.state.email,
+    });
+    var config = {
+      method: "post",
+      url: "https://adgrecruitments.herokuapp.com/user/resendverification",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.message);
+        // console.log(error.success);
+      });
+  };
+
+  countdown = () => {
+    let cooldownTimer = setInterval(() => {
+      this.setState({ cooldown: this.state.cooldown - 1 });
+      if (this.state.cooldown <= 0) {
+        this.setState({ cooldown: 0 });
+        clearInterval(cooldownTimer);
+      }
+    }, 1000);
   };
 
   render() {
@@ -329,12 +366,20 @@ export class SignUp extends Component {
                     className="btn btn-blue lgn-btn"
                     onClick={(event) => {
                       this.formSubmitHandler(event, this.props);
+                      this.setState({ cooldown: 0 });
                     }}>
                     Sign Up
                   </div>
                   <div
                     className="btn btn-blue lgn-btn"
-                    onClick={() => this.setState({ firstPage: true, emailError: "", phoneError: "", gitError: "", })}>
+                    onClick={() =>
+                      this.setState({
+                        firstPage: true,
+                        emailError: "",
+                        phoneError: "",
+                        gitError: "",
+                      })
+                    }>
                     {/* <i
                       className="fas fa-arrow-left"
                       style={{ marginRight: "0.5em" }}></i> */}
@@ -344,9 +389,28 @@ export class SignUp extends Component {
               </div>
             )}
             {this.state.verificationPage ? (
-                <VerificationPage
-                  email={this.state.email}
-                />
+              <div>
+                <div className="heading">You are all set</div>
+                <div className="sub-heading">Verification mail sent</div>
+                <div style={{ display: "flex" }}>
+                  <button
+                    disabled={!!this.state.cooldown}
+                    type="button"
+                    className="btn btn-blue lgn-btn"
+                    onClick={(event) => {
+                      this.setState({ cooldown: 60 });
+                      this.resendVerification();
+                      this.countdown();
+                    }}>
+                    {this.state.cooldown > 0
+                      ? this.state.cooldown
+                      : "Resend mail"}
+                  </button>
+                  <Link to="/login" className="btn btn-blue lgn-btn">
+                    Log In
+                  </Link>
+                </div>
+              </div>
             ) : null}
           </form>
         </Background>
