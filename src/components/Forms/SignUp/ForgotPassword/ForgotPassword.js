@@ -21,8 +21,13 @@ export class ForgotPassword extends Component {
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
+    var re = /^[a-zA-Z0-9.!#$%&'+=?^_`{|}~-]+@vitstudent.ac.in$/;
+
     if (this.state.email === "") {
-      this.setState({ emailErr: "Please enter your email id" });
+      this.setState({ emailErr: "Please enter your Email ID" });
+      return;
+    } else if (!re.test(this.state.email)) {
+      this.setState({ emailErr: "Enter a valid Email ID" });
       return;
     }
     const data = JSON.stringify({
