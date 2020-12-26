@@ -75,12 +75,12 @@ export class Login extends Component {
         "Content-Type": "application/json",
       },
       data: data,
-      onUploadProgress: function (progressEvent) {
-        let percentCompleted = Math.round(
-          (progressEvent.loaded * 100) / progressEvent.total
-        );
-        // console.log("onUploadProgress", percentCompleted);
-      },
+      // onUploadProgress: function (progressEvent) {
+      //   // let percentCompleted = Math.round(
+      //   //   (progressEvent.loaded * 100) / progressEvent.total
+      //   // );
+      //   // console.log("onUploadProgress", percentCompleted);
+      // },
     };
 
     this.setState({ loading: true });
@@ -98,31 +98,34 @@ export class Login extends Component {
       });
   };
   render() {
-    const loader = <img src={adggif} height={50} alt="ADG gif loader" />;
+    const loader = <img src={adggif} height={375} alt='ADG gif loader' />;
+    if (this.state.loading) {
+      return <Background>{loader}</Background>;
+    }
     return (
       <>
         <Background>
-          <div className="heading">Log In</div>
-          <div className="input-grp">
-            <label id="p2">Registration Number</label>
+          <div className='heading'>Log In</div>
+          <div className='input-grp'>
+            <label id='p2'>Registration Number</label>
             <input
-              className="input t-uc"
-              type="text"
-              placeholder="Enter Registration Number"
+              className='input t-uc'
+              type='text'
+              placeholder='Enter Registration Number'
               onChange={(event) => {
                 this.inputChangeHandler(event, "regno");
               }}
             />
           </div>
           {this.state.regError ? (
-            <div className="error">{this.state.regError}</div>
+            <div className='error'>{this.state.regError}</div>
           ) : null}
-          <div className="input-grp">
-            <label id="p1">Password</label>
+          <div className='input-grp'>
+            <label id='p1'>Password</label>
             <input
-              className="input"
+              className='input'
               type={`${this.state.showPass ? "text" : "password"}`}
-              placeholder="Enter Your Password"
+              placeholder='Enter Your Password'
               style={{ marginBottom: 10, position: "relative" }}
               onChange={(event) => {
                 this.inputChangeHandler(event, "password");
@@ -135,23 +138,23 @@ export class Login extends Component {
             </div>
           </div>
           {this.state.passError ? (
-            <div className="error">{this.state.passError}</div>
+            <div className='error'>{this.state.passError}</div>
           ) : null}
-          <div className="forgot-pass">
-            <Link to="/forgotPassword">Forgot Password?</Link>
+          <div className='forgot-pass'>
+            <Link to='/forgotPassword'>Forgot Password?</Link>
           </div>
           <div
-            className="btn btn-blue lgn-btn"
+            className='btn btn-blue lgn-btn'
             onClick={(event) => {
               this.formSubmitHandler(event, this.props);
             }}>
-            {!this.state.loading ? "Log In" : loader}
+            Log In
           </div>
         </Background>
         <Recaptcha
           ref={(ref) => (this.recaptcha = ref)}
-          sitekey="6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
-"
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
           onResolved={() => this.onResolved(this.props)}
           onError={() => {
             alert("Captcha Error : Please refresh site and try again");

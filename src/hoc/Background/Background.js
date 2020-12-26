@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import adggif from "../../assets/img/adggif.gif";
 
 export class Background extends Component {
+  
   constructor(props) {
     super(props);
     this.background = null;
@@ -125,7 +126,9 @@ export class Background extends Component {
       .finally(() => this.setState({ loading: false }));
     this.startCountdown(this.renderCountdownDate());
   }
+componentWillUnmount(){
 
+}
   handleLogOut = () => {
     sessionStorage.clear();
   };
