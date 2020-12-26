@@ -133,8 +133,11 @@ export class Background extends Component {
   render() {
     let background;
     // let profile = null;
-    const loader = <img src={adggif} alt='ADG gif loader' />;
-
+    const loader = (
+      <div style={{ margin: "150px auto" }}>
+        <img src={adggif} height={100} alt='ADG gif loader' />
+      </div>
+    );
     if (this.state.Token) {
       background = (
         <div>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Background from "../../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
+import adggif from "../../../../assets/img/adggif.gif";
 
 export class ForgotPassword extends Component {
   state = {
@@ -16,6 +17,7 @@ export class ForgotPassword extends Component {
     confirmPasswordErr: "",
     err: "",
     cooldown: 60,
+    loading: false,
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
@@ -34,13 +36,17 @@ export class ForgotPassword extends Component {
       },
       data: data,
     };
+    this.setState({ loading: true });
+
     axios(config)
       .then((response) => {
         // console.log(response.data);
         this.setState({ firstPage: false });
+        this.setState({ loading: false });
       })
       .catch((error) => {
         // console.log(error.response.data);
+        this.setState({ loading: false });
         this.setState({ emailErr: error.response.data.message });
       });
   };
@@ -114,6 +120,14 @@ export class ForgotPassword extends Component {
   };
 
   render() {
+    const loader = (
+      <div style={{ margin: "65px auto" }}>
+        <img src={adggif} height={105} alt='ADG gif loader' />
+      </div>
+    );
+    if (this.state.loading) {
+      return <Background>{loader}</Background>;
+    }
     return (
       <>
         <Background>
@@ -123,24 +137,24 @@ export class ForgotPassword extends Component {
             }}>
             {this.state.firstPage ? (
               <div>
-                <div className="heading">Forgot Password</div>
-                <div className="input-grp">
+                <div className='heading'>Forgot Password</div>
+                <div className='input-grp'>
                   <label>Email</label>
                   <input
-                    className="input"
-                    type="text"
-                    placeholder="Enter Email"
+                    className='input'
+                    type='text'
+                    placeholder='Enter Email'
                     value={this.state.email}
                     onChange={(event) => {
                       this.inputChangeHandler(event, "email");
                     }}
                   />
                   {this.state.messageErr !== "" && (
-                    <div className="error">{this.state.emailErr}</div>
+                    <div className='error'>{this.state.emailErr}</div>
                   )}
                 </div>
                 <div
-                  className="btn btn-blue lgn-btn"
+                  className='btn btn-blue lgn-btn'
                   onClick={(event) => {
                     event.preventDefault();
                     this.forgotPasswordClickHandler(event);
@@ -152,55 +166,55 @@ export class ForgotPassword extends Component {
               </div>
             ) : (
               <div>
-                <div className="heading">Change Password</div>
-                <div className="input-grp">
+                <div className='heading'>Change Password</div>
+                <div className='input-grp'>
                   <label>OTP</label>
                   <input
-                    className="input"
-                    type="number"
-                    placeholder="Enter OTP"
+                    className='input'
+                    type='number'
+                    placeholder='Enter OTP'
                     value={this.state.otp}
                     onChange={(event) => {
                       this.inputChangeHandler(event, "otp");
                     }}
                   />
                   {this.state.otpErr !== "" && (
-                    <div className="error">{this.state.otpErr}</div>
+                    <div className='error'>{this.state.otpErr}</div>
                   )}
                 </div>
-                <div className="input-grp">
+                <div className='input-grp'>
                   <label>New Password</label>
                   <input
-                    className="input"
-                    type="password"
-                    placeholder="Enter Password"
+                    className='input'
+                    type='password'
+                    placeholder='Enter Password'
                     value={this.state.newPassword}
                     onChange={(event) => {
                       this.inputChangeHandler(event, "newPassword");
                     }}
                   />
                   {this.state.newPasswordErr !== "" && (
-                    <div className="error">{this.state.newPasswordErr}</div>
+                    <div className='error'>{this.state.newPasswordErr}</div>
                   )}
                 </div>
-                <div className="input-grp">
+                <div className='input-grp'>
                   <label>Confirm Password</label>
                   <input
-                    className="input"
-                    type="password"
-                    placeholder="Confirm Password"
+                    className='input'
+                    type='password'
+                    placeholder='Confirm Password'
                     value={this.state.confirmPassword}
                     onChange={(event) => {
                       this.inputChangeHandler(event, "confirmPassword");
                     }}
                   />
                   {this.state.confirmPasswordErr !== "" && (
-                    <div className="error">{this.state.confirmPasswordErr}</div>
+                    <div className='error'>{this.state.confirmPasswordErr}</div>
                   )}
                 </div>
                 <div style={{ display: "flex" }}>
                   <div
-                    className="btn btn-blue lgn-btn"
+                    className='btn btn-blue lgn-btn'
                     onClick={(event) => {
                       event.preventDefault();
                       this.formSubmitHandler(event, this.props);
@@ -209,7 +223,7 @@ export class ForgotPassword extends Component {
                   </div>
                   <button
                     disabled={!!this.state.cooldown}
-                    className="btn btn-blue lgn-btn"
+                    className='btn btn-blue lgn-btn'
                     onClick={(event) => {
                       event.preventDefault();
                       this.setState({ cooldown: 60 });
@@ -227,8 +241,8 @@ export class ForgotPassword extends Component {
         </Background>
         <Recaptcha
           ref={(ref) => (this.recaptcha = ref)}
-          sitekey="6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
-"
+          sitekey='6LerFBIaAAAAAPrLv6zWVFAZ7VQYGE8DfbUXyt8r
+'
           onResolved={() => this.onResolved(this.props)}
           onError={() => {
             alert("Captcha Error : Please refresh site and try again");
