@@ -98,7 +98,11 @@ export class Login extends Component {
       });
   };
   render() {
-    const loader = <img src={adggif} height={375} alt='ADG gif loader' />;
+    const loader = (
+      <div style={{ margin: "135px auto" }}>
+        <img src={adggif} height={105} alt='ADG gif loader' />
+      </div>
+    );
     if (this.state.loading) {
       return <Background>{loader}</Background>;
     }
