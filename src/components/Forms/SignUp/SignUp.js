@@ -34,7 +34,7 @@ export class SignUp extends Component {
     let passError = "";
     let confirmPassError = "";
     var regPattern = /^[12][09][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
-    var regPatternSoph = /^[1][9][A-Z][A-Z][A-Z]\d{4}$/;
+    var regPatternSoph = /^[1][9][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.name) {
       nameError = "Enter a valid Name";
