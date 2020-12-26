@@ -49,7 +49,7 @@ export class App extends Component {
         <Route path="/instructions" component={Instructions} />
         {/* <Route path="/quiz" component={Quiz} /> */}
         <Route path="/Technical" component={TechQuiz} />
-        <Route path="/Technical2ndYear" component={TechQuiz2ndYear} />
+        <Route path="/Technical2" component={TechQuiz2ndYear} />
         <Route path="/Management" component={MgmtQuiz} />
         <Route path="/Design" component={DesignQuiz} />
         <Route path="/thank-you" component={ThankYou} />

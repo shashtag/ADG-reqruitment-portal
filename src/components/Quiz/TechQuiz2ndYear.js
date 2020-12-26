@@ -92,29 +92,22 @@ class TechQuiz2ndYear extends React.Component {
               />
             </div>
             <div className="btn-bottom">
-              <Modal
-                show={this.state.showModal}
-                onHide={this.hideModal}
-                submitQuiz={this.submitQuiz}
-              />
-            </div>
-            <div className="btn-bottom">
               <button
                 onClick={() => {
                   this.showModal1();
                 }}>
                 Submit
               </button>
-              <Modal
-                show={this.state.showModal}
-                onHide={this.hideModal}
-                submitQuiz={this.submitQuiz}
-              />
             </div>
             {/* <div className="timer">
                 <Timer />
               </div> */}
           </div>
+          <Modal
+            show={this.state.showModal}
+            onHide={this.hideModal}
+            submitQuiz={this.submitQuiz}
+          />
         </>
       </Background>
     );
