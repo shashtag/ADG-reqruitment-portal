@@ -170,7 +170,11 @@ export class SignUp extends Component {
   };
 
   render() {
-    const loader = <img src={adggif} height={400} alt='ADG gif loader' />;
+    const loader = (
+      <div style={{ margin: "150px auto" }}>
+        <img src={adggif} height={100} alt='ADG gif loader' />
+      </div>
+    );
     if (this.state.loading) {
       return <Background>{loader}</Background>;
     }
