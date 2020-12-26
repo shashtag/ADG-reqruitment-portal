@@ -43,7 +43,11 @@ class TechQuiz extends React.Component {
           "Content-Type": "application/json",
           "auth-token": sessionStorage.getItem("Token"),
         },
+<<<<<<< HEAD
       },
+=======
+      }
+>>>>>>> 8cfced795bce2384b64c546af638029adb8fb64f
     )
       .then((response) => {
         return response.json();
@@ -126,34 +130,35 @@ class TechQuiz extends React.Component {
 
   componentWillUnmount() {
     this.submitQuiz();
+    window.location.href = "/";
   }
 
   render() {
     if (!sessionStorage.getItem("Token")) {
-      return <Redirect to='/' />;
+      return <Redirect to="/" />;
     }
     return (
       <Background>
         {this.state.quizQuestions.length === 0 ? (
-          <div className='loading'>Loading...</div>
+          <div className="loading">Loading...</div>
         ) : (
           <>
-            <div className='heading'>Technical Quiz</div>
-            <div className='question-section'>
-              <div className='question-count'>
+            <div className="heading">Technical Quiz</div>
+            <div className="question-section">
+              <div className="question-count">
                 <span>Question {this.state.currentQuestionIndex + 1}</span>/
                 {this.state.quizQuestions.length}
               </div>
-              <div className='question-text sub-heading'>
+              <div className="question-text sub-heading">
                 {
                   this.state.quizQuestions[this.state.currentQuestionIndex]
                     .questionDescription
                 }
               </div>
-              <div className='answer-section'>
+              <div className="answer-section">
                 {Object.keys(
                   this.state.quizQuestions[this.state.currentQuestionIndex]
-                    .options,
+                    .options
                 ).map((key, index) => {
                   if (this.selectedOptions[this.state.currentQuestionIndex]) {
                     if (
@@ -169,11 +174,11 @@ class TechQuiz extends React.Component {
                                 this.state.currentQuestionIndex
                               ]._id,
                               index,
-                              e,
+                              e
                             );
                           }}>
                           <button
-                            className='blueButton'
+                            className="blueButton"
                             value={this.optionsArray[index]}>
                             {this.optionsArray[index]}.{" "}
                             {
@@ -194,11 +199,11 @@ class TechQuiz extends React.Component {
                                 this.state.currentQuestionIndex
                               ]._id,
                               index,
-                              e,
+                              e
                             );
                           }}>
                           <button
-                            className='blackButton'
+                            className="blackButton"
                             value={this.optionsArray[index]}>
                             {this.optionsArray[index]}.{" "}
                             {
@@ -219,11 +224,11 @@ class TechQuiz extends React.Component {
                               this.state.currentQuestionIndex
                             ]._id,
                             index,
-                            e,
+                            e
                           );
                         }}>
                         <button
-                          className='blackButton'
+                          className="blackButton"
                           value={this.optionsArray[index]}>
                           {this.optionsArray[index]}.{" "}
                           {
@@ -236,9 +241,9 @@ class TechQuiz extends React.Component {
                     );
                 })}
               </div>
-              <div className='btn-bottom'>
+              <div className="btn-bottom">
                 {this.state.currentQuestionIndex === 0 ? (
-                  <button disabled={true} id='disabled-btn'>
+                  <button disabled={true} id="disabled-btn">
                     Previous
                   </button>
                 ) : (
@@ -271,7 +276,7 @@ class TechQuiz extends React.Component {
                   submitQuiz={this.submitQuiz}
                 />
               </div>
-              <div className='timer'>
+              <div className="timer">
                 <Timer />
               </div>
             </div>
