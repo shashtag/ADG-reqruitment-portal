@@ -8,12 +8,16 @@ const DomainPage = (props) => {
   if (!sessionStorage.getItem("Token")) {
     props.history.replace("/");
   }
+  const [userDetails,setUserDetails]=useState("");
   const [domain, setDomain] = useState(false);
   const [tech, setTech] = useState(true);
   const [man, setMan] = useState(true);
   const [des, setDes] = useState(true);
 
   let domainValue = (event) => {
+    if(userDetails['userDetails']['regno'].charAt(0)==="1" && event.target.value==='Technical'){
+      setDomain("Technical2");
+    } else 
     setDomain(event.target.value);
   };
 
@@ -31,6 +35,7 @@ const DomainPage = (props) => {
       .get("https://adgrecruitments.herokuapp.com/user/getuser", config)
       .then(function (response) {
         // console.log(response.data);
+        setUserDetails(response.data);
         setTech(response.data.userDetails.attemptedTechnical);
         setMan(response.data.userDetails.attemptedManagement);
         setDes(response.data.userDetails.attemptedDesign);
