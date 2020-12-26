@@ -16,7 +16,7 @@ const Instructions = (props) => {
   };
   return (
     <Background>
-      <div className='heading'>{props.location.param} Quiz</div>
+      <div className='heading'>{props.location.param==='Technical2' ?  "Technical" : props.location.param} Quiz</div>
       <div className='sub-heading'>
         Please read the instructions carefully before attempting the quiz
       </div>
@@ -27,7 +27,7 @@ const Instructions = (props) => {
           {props.location.param === "Technical"
             ? "The quiz will have 10 multiple choice questions."
             : props.location.param === "Management"
-            ? "The quiz will have 10 Long Answer type questions."
+            ? "The quiz will have 5 Long Answer type questions."
             : "The quiz will have 10 multiple choice questions."}
         </li>
         <li className={classes.li}>
