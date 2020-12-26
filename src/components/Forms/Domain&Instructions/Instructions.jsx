@@ -38,8 +38,8 @@ const Instructions = (props) => {
             : "10 minutes will be provided to complete the quiz."}
         </li>
         <li className={classes.li}>
-          In case the participant tries to close the app or go back from the
-          quiz, it shall be considered cheating and the quiz will be auto
+          In case the participant tries to close the web portal or go back from the
+          quiz, it shall be considered a case of malpractice and the quiz will be auto
           submitted.
         </li>
       </ul>
