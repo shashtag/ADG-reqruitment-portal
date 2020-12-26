@@ -15,6 +15,7 @@ export class ForgotPassword extends Component {
     confirmPassword: "",
     confirmPasswordErr: "",
     err: "",
+    cooldown: 60,
   };
   forgotPasswordClickHandler = (event) => {
     event.preventDefault();
@@ -102,6 +103,16 @@ export class ForgotPassword extends Component {
       });
   };
 
+  countdown = () => {
+    let cooldownTimer = setInterval(() => {
+      this.setState({ cooldown: this.state.cooldown - 1 });
+      if (this.state.cooldown <= 0) {
+        this.setState({ cooldown: 0 });
+        clearInterval(cooldownTimer);
+      }
+    }, 1000);
+  };
+
   render() {
     return (
       <>
@@ -133,6 +144,8 @@ export class ForgotPassword extends Component {
                   onClick={(event) => {
                     event.preventDefault();
                     this.forgotPasswordClickHandler(event);
+                    this.countdown();
+                    this.setState({ cooldown: 0 });
                   }}>
                   Send OTP
                 </div>
@@ -152,7 +165,7 @@ export class ForgotPassword extends Component {
                     }}
                   />
                   {this.state.otpErr !== "" && (
-                      <div className="error">{this.state.otpErr}</div>
+                    <div className="error">{this.state.otpErr}</div>
                   )}
                 </div>
                 <div className="input-grp">
@@ -185,13 +198,28 @@ export class ForgotPassword extends Component {
                     <div className="error">{this.state.confirmPasswordErr}</div>
                   )}
                 </div>
-                <div
-                  className="btn btn-blue lgn-btn"
-                  onClick={(event) => {
-                    event.preventDefault();
-                    this.formSubmitHandler(event, this.props);
-                  }}>
-                  Change Password
+                <div style={{ display: "flex" }}>
+                  <div
+                    className="btn btn-blue lgn-btn"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      this.formSubmitHandler(event, this.props);
+                    }}>
+                    Change Password
+                  </div>
+                  <button
+                    disabled={!!this.state.cooldown}
+                    className="btn btn-blue lgn-btn"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      this.setState({ cooldown: 60 });
+                      this.forgotPasswordClickHandler(event);
+                      this.countdown();
+                    }}>
+                    {this.state.cooldown > 0
+                      ? this.state.cooldown
+                      : "Resend OTP"}
+                  </button>
                 </div>
               </div>
             )}
