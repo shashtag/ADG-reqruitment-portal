@@ -4,7 +4,6 @@ import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
 import adggif from "../../../assets/img/adggif.gif";
 import { Link } from "react-router-dom";
-import VerificationPage from "./verification";
 
 export class SignUp extends Component {
   state = {
