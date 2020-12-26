@@ -28,7 +28,7 @@ const Modal = (props) => {
         <div className="sub-btns">
           <Link className="noUn" to="/thank-you">
             <button
-              onCLick={props.submitQuiz}
+              onClick={props.submitQuiz}
               className="btn submit-btn mod-btn">
               Confirm
             </button>
