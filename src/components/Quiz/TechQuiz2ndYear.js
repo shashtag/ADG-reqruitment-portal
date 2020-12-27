@@ -88,7 +88,7 @@ class TechQuiz2ndYear extends React.Component {
           <div className="heading">Technical Quiz</div>
           <div className="question-section">
             <div className="answer-section">
-              <div className="question-text sub-heading">
+              <div className="tech2-quiz">
                 Please enter a brief description about yourself
               </div>
               <textarea
@@ -99,7 +99,7 @@ class TechQuiz2ndYear extends React.Component {
                   this.setState({ brief: e.target.value });
                 }}
               />
-              <div className="question-text sub-heading">
+              <div className="tech2-quiz">
                 Please enter some links which you think that we should know about
               </div>
               <textarea
