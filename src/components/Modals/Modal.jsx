@@ -19,20 +19,16 @@ const Modal = (props) => {
   const modalClass = props.show ? "modal" : "modal display-none";
   return (
     <div className={modalClass}>
-      <div className="modal-main confirm" ref={modalRef}>
-        <div className="close" onClick={props.onHide}></div>
-        <h1 className="submit-heading">Confirm Submission</h1>
-        <div className="sub-heading">
+      <div className='modal-main confirm' ref={modalRef}>
+        <div className='close' onClick={props.onHide}></div>
+        <h1 className='submit-heading'>Confirm Submission</h1>
+        <div className='sub-heading'>
           You won't be able to re-attempt or change your answers!
         </div>
-        <div className="sub-btns">
-          <Link className="noUn" to="/thank-you">
-            <button
-              onClick={props.submitQuiz}
-              className="btn submit-btn mod-btn">
-              Confirm
-            </button>
-          </Link>
+        <div className='sub-btns'>
+          <button onClick={props.submitQuiz} className='btn submit-btn mod-btn'>
+            Confirm
+          </button>
           {/* <button className='btn submit-btn mod-btn' onClick={props.onHide}>Close</button> */}
         </div>
       </div>

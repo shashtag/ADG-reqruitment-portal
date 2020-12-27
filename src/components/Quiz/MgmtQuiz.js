@@ -58,8 +58,9 @@ class MgmtQuiz extends React.Component {
       });
   }
 
-  submitQuiz(e) {
-    e.preventDefault();
+  submitQuiz() {
+    // console.log(e);
+    // e.preventDefault();
     const data = JSON.stringify(this.responsesArray);
 
     var config = {
@@ -74,7 +75,7 @@ class MgmtQuiz extends React.Component {
     this.setState({ loading: true });
     axios(config)
       .then((response) => {
-        this.state.history.push("thank-you");
+        this.props.history.push("thank-you");
       })
       .catch((error) => {
         alert(error.message);
@@ -207,9 +208,7 @@ class MgmtQuiz extends React.Component {
                 <Modal
                   show={this.state.showModal}
                   onHide={this.hideModal}
-                  submitQuiz={(e) => {
-                    this.submitQuiz(e);
-                  }}
+                  submitQuiz={this.submitQuiz}
                 />
               </div>
             </div>
