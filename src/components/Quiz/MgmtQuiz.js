@@ -42,7 +42,7 @@ class MgmtQuiz extends React.Component {
           "Content-Type": "application/json",
           "auth-token": sessionStorage.getItem("Token"),
         },
-      },
+      }
     )
       .then((response) => {
         return response.json();
@@ -68,7 +68,7 @@ class MgmtQuiz extends React.Component {
           "auth-token": sessionStorage.getItem("Token"),
         },
         body: JSON.stringify(this.responsesArray),
-      },
+      }
     )
       .then((response) => {
         return response.json();
@@ -117,34 +117,35 @@ class MgmtQuiz extends React.Component {
 
   componentWillUnmount() {
     this.submitQuiz();
+    window.location.href = "/";
   }
 
   render() {
     if (!sessionStorage.getItem("Token")) {
-      return <Redirect to='/' />;
+      return <Redirect to="/" />;
     }
     return (
       <Background>
         {this.state.quizQuestions.length === 0 ? (
-          <div className='loading'>Loading...</div>
+          <div className="loading">Loading...</div>
         ) : (
           <>
-            <div className='heading'>Management Quiz</div>
-            <div className='question-section'>
-              <div className='question-count'>
+            <div className="heading">Management Quiz</div>
+            <div className="question-section">
+              <div className="question-count">
                 <span>Question {this.state.currentQuestionIndex + 1}</span>/
                 {this.state.quizQuestions.length}
               </div>
-              <div className='question-text sub-heading'>
+              <div className="question-text sub-heading">
                 {
                   this.state.quizQuestions[this.state.currentQuestionIndex]
                     .description
                 }
               </div>
-              <div className='answer-section'>
+              <div className="answer-section">
                 <textarea
-                  className='mgmt-answer'
-                  placeholder='Enter your answer...'
+                  className="mgmt-answer"
+                  placeholder="Enter your answer..."
                   value={
                     this.state.inputValues[this.state.currentQuestionIndex]
                   }
@@ -152,14 +153,14 @@ class MgmtQuiz extends React.Component {
                     this.setResponsesArray(
                       this.state.quizQuestions[this.state.currentQuestionIndex]
                         ._id,
-                      e,
+                      e
                     );
                   }}
                 />
               </div>
-              <div className='btn-bottom'>
+              <div className="btn-bottom">
                 {this.state.currentQuestionIndex === 0 ? (
-                  <button disabled={true} id='disabled-btn'>
+                  <button disabled={true} id="disabled-btn">
                     Previous
                   </button>
                 ) : (
