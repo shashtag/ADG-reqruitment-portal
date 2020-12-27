@@ -73,7 +73,9 @@ class MgmtQuiz extends React.Component {
     };
     this.setState({ loading: true });
     axios(config)
-      .then((response) => {})
+      .then((response) => {
+        this.state.history.push("thank-you");
+      })
       .catch((error) => {
         alert(error.message);
       });
