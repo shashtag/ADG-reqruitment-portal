@@ -43,11 +43,7 @@ class TechQuiz extends React.Component {
           "Content-Type": "application/json",
           "auth-token": sessionStorage.getItem("Token"),
         },
-<<<<<<< HEAD
-      },
-=======
       }
->>>>>>> 8cfced795bce2384b64c546af638029adb8fb64f
     )
       .then((response) => {
         return response.json();
