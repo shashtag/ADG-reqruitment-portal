@@ -66,7 +66,7 @@ class DesignQuiz extends React.Component {
                 "Content-Type": "application/json",
                 "auth-token": sessionStorage.getItem("Token"),
             },
-            body: JSON.stringify(this.selectedOptions),
+            body: JSON.stringify(this.state.finalResponse),
         })
         .then((response) => {
             return response.json();
@@ -153,7 +153,7 @@ class DesignQuiz extends React.Component {
                             <div className="question-count">
                                 <span>Question {this.state.currentQuestionIndex + 1}</span>/{this.state.quizQuestions.length}
                             </div>
-                            <div className="question-text sub-heading">
+                            <div className="design-quiz">
                                 {this.state.quizQuestions[this.state.currentQuestionIndex].questionDescription}
                             </div>
                             <div className='answer-section'>
