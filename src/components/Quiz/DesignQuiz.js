@@ -5,7 +5,7 @@ import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
 
-class TechQuiz extends React.Component {
+class DesignQuiz extends React.Component {
     selectedOptions = [];
     constructor(props) {
         super(props);
@@ -309,4 +309,4 @@ class TechQuiz extends React.Component {
     }
 }
 
-export default TechQuiz;
+export default DesignQuiz;
