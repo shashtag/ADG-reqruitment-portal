@@ -79,6 +79,7 @@ body {
   margin-bottom: 5vh;
 }
 
+.management-quiz,
 .design-quiz{
   display: flex;
   flex-direction: column;

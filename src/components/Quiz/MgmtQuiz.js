@@ -136,7 +136,7 @@ class MgmtQuiz extends React.Component {
                 <span>Question {this.state.currentQuestionIndex + 1}</span>/
                 {this.state.quizQuestions.length}
               </div>
-              <div className="question-text sub-heading">
+              <div className="management-quiz">
                 {
                   this.state.quizQuestions[this.state.currentQuestionIndex]
                     .description
