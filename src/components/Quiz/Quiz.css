@@ -79,6 +79,22 @@ body {
   margin-bottom: 5vh;
 }
 
+.design-quiz{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 2% 0;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  font-family: SF Pro Display;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.2;
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
 .question-count {
   text-align: center;
   font-size: 24px;

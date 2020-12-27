@@ -66,7 +66,7 @@ class TechQuiz extends React.Component {
                 "Content-Type": "application/json",
                 "auth-token": sessionStorage.getItem("Token"),
             },
-            body: JSON.stringify(this.selectedOptions),
+            body: JSON.stringify(this.state.finalResponse),
         })
         .then((response) => {
             return response.json();
