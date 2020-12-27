@@ -13,12 +13,12 @@ const DomainPage = (props) => {
   }
   const [userDetails,setUserDetails]=useState("");
   const [domain, setDomain] = useState(false);
-  const [tech, setTech] = useState(true);
-  const [man, setMan] = useState(true);
-  const [des, setDes] = useState(true);
+  const [tech, setTech] = useState(false);
+  const [man, setMan] = useState(false);
+  const [des, setDes] = useState(false);
 
   let domainValue = (event) => {
-    if(userDetails['userDetails']['regno'].charAt(0)==="1" && event.target.value==='Technical'){
+    if(userDetails['userDetails']['yearofstudy'] === 2 && event.target.value==='Technical'){
       setDomain("Technical2");
     } else 
     setDomain(event.target.value);
