@@ -60,6 +60,11 @@ body {
   text-align: center;
 }
 
+.social-url{
+  color: white; 
+  text-decoration: none;
+}
+
 .tech-quiz{
   display: flex;
   flex-direction: column;
@@ -79,6 +84,7 @@ body {
   margin-bottom: 5vh;
 }
 
+.tech2-quiz,
 .management-quiz,
 .design-quiz{
   display: flex;

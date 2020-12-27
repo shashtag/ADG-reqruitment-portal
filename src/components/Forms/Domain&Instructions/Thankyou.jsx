@@ -3,6 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
+import '../../Quiz/Quiz.css'
 import Background from "../../../hoc/Background/Background";
 import instagram from '../../../assets/img/instagram.png';
 
@@ -32,15 +33,15 @@ const ThankYou = () => {
     return(
       <Background>
       <div className={classes.wrapper}>
-        <h2>Your responses have been saved!</h2>
+        <h2>You have attempted all the tests</h2>
         <div className="sub-heading">
-          Our team will contact you soon
+          Stay connected to know your result
         </div>
         <hr></hr>
         <div className={classes.iconContainer}>
         <p>For regular updates, follow us on:</p> 
         <img src={instagram} alt="instagram"  className={classes.icons}/>
-        <p>@adgvit</p>
+        <a className="social-url" target="_blank" href="https://www.instagram.com/adgvit"><p>@adgvit</p></a>
         </div>
         </div>
         </Background>
