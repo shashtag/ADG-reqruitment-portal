@@ -16,6 +16,9 @@ const DomainPage = (props) => {
   const [tech, setTech] = useState(true);
   const [man, setMan] = useState(true);
   const [des, setDes] = useState(true);
+  const [tech2, setTech2] = useState(false);
+  const [man2, setMan2] = useState(false);
+  const [des2, setDes2] = useState(false);
 
   let domainValue = (event) => {
     if(userDetails['userDetails']['regno'].charAt(0)==="1" && event.target.value==='Technical'){
@@ -44,6 +47,9 @@ const DomainPage = (props) => {
         setTech(response.data.userDetails.attemptedTechnical);
         setMan(response.data.userDetails.attemptedManagement);
         setDes(response.data.userDetails.attemptedDesign);
+        setTech2(response.data.userDetails.attemptedTechnical);
+        setMan2(response.data.userDetails.attemptedManagement);
+        setDes2(response.data.userDetails.attemptedDesign);
       })
       .catch(function (error) {
         // console.log(error);
@@ -51,7 +57,7 @@ const DomainPage = (props) => {
   }, []);
 
   // console.log(props);
-  if(tech && man && des ){
+  if(tech2 && man2 && des2 ){
     return(
       <Redirect to="/thank-you" />
     )
