@@ -34,6 +34,25 @@ class TechQuiz2ndYear extends React.Component {
   async submitQuiz() {
     // const quizResponse = {qid: this.state.questionId, response: this.state.selectedOptions }
     // console.log("Inside submitQuiz", this.selectedOptions);
+    await fetch (
+        "https://adgrecruitments.herokuapp.com/questions/technical/get-quiz-questions/2/web",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "auth-token": sessionStorage.getItem("Token"),
+          },
+        }
+    )
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          // console.log(data);
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     await fetch(
       "https://adgrecruitments.herokuapp.com/user/technical2/submit",
       {
@@ -42,7 +61,8 @@ class TechQuiz2ndYear extends React.Component {
           "Content-Type": "application/json",
           "auth-token": sessionStorage.getItem("Token"),
         },
-        body: JSON.stringify({ brief: this.brief, projects: this.projects }),
+        body: JSON.stringify({ brief: this.state.brief, projects: this.state.projects }),
+
       }
     )
       .then((response) => {
