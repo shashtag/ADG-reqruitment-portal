@@ -69,7 +69,7 @@ class TechQuiz2ndYear extends React.Component {
           <div className="question-section">
             <div className="answer-section">
               <div className="question-text sub-heading">
-                Projects [Brief description, Tech (Stack), Link]
+                Please enter a brief description about yourself
               </div>
               <textarea
                 className="mgmt-answer"
@@ -80,7 +80,7 @@ class TechQuiz2ndYear extends React.Component {
                 }}
               />
               <div className="question-text sub-heading">
-                Brief about yourself
+                Please enter some links which you think that we should know about
               </div>
               <textarea
                 className="mgmt-answer"

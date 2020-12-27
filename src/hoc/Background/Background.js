@@ -19,8 +19,8 @@ export class Background extends Component {
       Token: sessionStorage.getItem("Token"),
       data: false,
       recruitmentStatus: false,
-      dateValue: "12-27-2020",
-      timeValue: "02:00",
+      dateValue: "12-28-2020",
+      timeValue: "12:00",
       ampmValue: "pm",
       countdown: {
         days: "",
@@ -33,8 +33,8 @@ export class Background extends Component {
     };
     this.timer = null;
     this.countDownDate = {
-      dateValue: "12-27-2020",
-      timeValue: "02:00",
+      dateValue: "12-28-2020",
+      timeValue: "12:00",
       ampmValue: "pm",
       unixEndDate: "",
     };
@@ -50,8 +50,8 @@ export class Background extends Component {
   }
 
   setEndDate() {
-    let dateValue = "12-27-2020";
-    let timeValue = "02:00";
+    let dateValue = "12-28-2020";
+    let timeValue = "12:00";
     let ampmValue = "pm";
     const unixEndDate = Number(
       moment(
@@ -133,8 +133,11 @@ export class Background extends Component {
   render() {
     let background;
     // let profile = null;
-    const loader = <img src={adggif} alt='ADG gif loader' />;
-
+    const loader = (
+      <div style={{ margin: "150px auto" }}>
+        <img src={adggif} height={100} alt='ADG gif loader' />
+      </div>
+    );
     if (this.state.Token) {
       background = (
         <div>

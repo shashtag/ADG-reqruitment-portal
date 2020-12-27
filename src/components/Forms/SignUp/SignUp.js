@@ -3,6 +3,7 @@ import Background from "../../../hoc/Background/Background";
 import axios from "axios";
 import Recaptcha from "react-google-invisible-recaptcha";
 import adggif from "../../../assets/img/adggif.gif";
+import { Link } from "react-router-dom";
 
 export class SignUp extends Component {
   state = {
@@ -26,6 +27,8 @@ export class SignUp extends Component {
     showPass: false,
     showCPass: false,
     loading: false,
+    verificationPage: false,
+    cooldown: 60,
   };
 
   validate = () => {
@@ -37,11 +40,11 @@ export class SignUp extends Component {
     var regPatternSoph = /^[1][9][A-Za-z][A-Za-z][A-Za-z]\d{4}$/;
 
     if (!this.state.name) {
-      nameError = "Enter a valid Name";
+      nameError = "Name cannot be left empty";
     }
 
     if (!this.state.regno) {
-      regError = "Registration number cannot be left empty";
+      regError = "Registration Number cannot be left empty";
     } else if (!regPattern.test(this.state.regno)) {
       regError = "Enter a valid Registration Number";
     }
@@ -51,13 +54,13 @@ export class SignUp extends Component {
     }
 
     if (!this.state.password) {
-      passError = "Enter Password";
+      passError = "Password cannot be left empty";
     } else if (this.state.password.length < 8) {
       passError = "Password length must be greater than 8 characters";
     }
 
     if (this.state.password && !this.state.confirmPass) {
-      confirmPassError = "Confirm Password";
+      confirmPassError = "Confirm Password cannot be left empty";
     } else if (this.state.password !== this.state.confirmPass) {
       confirmPassError = "The entered passwords do not match";
     }
@@ -105,9 +108,14 @@ export class SignUp extends Component {
   createAccountClickHandler = (event) => {
     event.preventDefault();
     this.validate();
-
     if (this.validate()) {
-      this.setState({ firstPage: false });
+      this.setState({
+        firstPage: false,
+        nameError: "",
+        confirmPassError: "",
+        passError: "",
+        regError: "",
+      });
     }
   };
   inputChangeHandler = (e, s) => {
@@ -120,6 +128,7 @@ export class SignUp extends Component {
 
     if (this.validate2()) {
       this.recaptcha.execute();
+      this.setState({ verificationPage: true });
     } else {
       this.recaptcha.reset();
     }
@@ -160,13 +169,46 @@ export class SignUp extends Component {
       .then((response) => {
         // console.log(JSON.stringify(response.data));
         this.setState({ loading: false });
-        a.history.push("/login");
+        // a.history.push("/login");
       })
       .catch((error) => {
         alert(error.response.data.message);
         this.setState({ loading: false });
         // console.log(error.success);
       });
+  };
+
+  resendVerification = () => {
+    const data = JSON.stringify({
+      email: this.state.email,
+    });
+    var config = {
+      method: "post",
+      url: "https://adgrecruitments.herokuapp.com/user/resendverification",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+
+    axios(config)
+      .then((response) => {
+        // console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        alert(error?.response?.data?.message);
+        // console.log(error.success);
+      });
+  };
+
+  countdown = () => {
+    let cooldownTimer = setInterval(() => {
+      this.setState({ cooldown: this.state.cooldown - 1 });
+      if (this.state.cooldown <= 0) {
+        this.setState({ cooldown: 0 });
+        clearInterval(cooldownTimer);
+      }
+    }, 1000);
   };
 
   render() {
@@ -182,158 +224,191 @@ export class SignUp extends Component {
       <>
         <Background>
           <form autoComplete="false">
-            {this.state.firstPage ? (
-              <div>
-                <div className="heading">Sign Up</div>
-                <div className="input-grp">
-                  <label>Name</label>
+            {!this.state.verificationPage ? (
+              this.state.firstPage ? (
+                <div>
+                  <div className="heading">Sign Up</div>
+                  <div className="input-grp">
+                    <label>Name</label>
 
-                  <input
-                    className="input name-input"
-                    type="text"
-                    value={this.state.name}
-                    placeholder="Enter your name"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "name");
-                    }}
-                  />
-                </div>
-                {this.state.nameError ? (
-                  <div className="error">{this.state.nameError}</div>
-                ) : null}
-                <div className="input-grp ">
-                  <label>Registration Number</label>
-                  <input
-                    autoComplete="off"
-                    onFocus={this.onFocus}
-                    className="input t-uc"
-                    value={this.state.regno}
-                    type="text"
-                    placeholder="Enter Registration Number"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "regno");
-                    }}
-                  />
-                </div>
-                {this.state.regError ? (
-                  <div className="error">{this.state.regError}</div>
-                ) : null}
-                <div className="input-grp">
-                  <label>Password</label>
-                  <input
-                    className="input"
-                    type={`${this.state.showPass ? "text" : "password"}`}
-                    style={{ marginBottom: 10, position: "relative" }}
-                    value={this.state.password}
-                    placeholder="Enter Your Password"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "password");
-                    }}
-                  />
-                  <div
-                    className={`lgn-eye ${
-                      this.state.showPass ? "lgn-eye-t" : null
-                    }`}
-                    onClick={this.eyeClickHandler}>
-                    <i className={`fas fa-eye  `}></i>
+                    <input
+                      className="input name-input"
+                      type="text"
+                      value={this.state.name}
+                      placeholder="Enter your name"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "name");
+                      }}
+                    />
                   </div>
-                </div>
-                {this.state.passError ? (
-                  <div className="error">{this.state.passError}</div>
-                ) : null}
-                <div className="input-grp">
-                  <label>Confirm Password</label>
-                  <input
-                    className="input"
-                    type={`${this.state.showCPass ? "text" : "password"}`}
-                    style={{ marginBottom: 10, position: "relative" }}
-                    value={this.state.confirmPass}
-                    placeholder="Confirm Password"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "confirmPass");
-                    }}
-                  />
-                  <div
-                    className={`lgn-eye ${
-                      this.state.showCPass ? "lgn-eye-t" : null
-                    }`}
-                    onClick={this.eyeClickHandlerC}>
-                    <i className={`fas fa-eye  `}></i>
+                  {this.state.nameError ? (
+                    <div className="error">{this.state.nameError}</div>
+                  ) : null}
+                  <div className="input-grp ">
+                    <label>Registration Number</label>
+                    <input
+                      autoComplete="off"
+                      onFocus={this.onFocus}
+                      className="input t-uc"
+                      value={this.state.regno}
+                      type="text"
+                      placeholder="Enter Registration Number"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "regno");
+                      }}
+                    />
                   </div>
-                </div>
-                {this.state.confirmPassError ? (
-                  <div className="error">{this.state.confirmPassError}</div>
-                ) : null}
-                <div
-                  className="btn btn-blue lgn-btn"
-                  onClick={this.createAccountClickHandler}>
-                  Next
-                </div>
-              </div>
-            ) : (
-              <div>
-                <div className="heading">Sign Up</div>
-                <div className="input-grp">
-                  <label>Phone Number</label>
-                  <input
-                    className="input"
-                    type="text"
-                    value={this.state.phone}
-                    placeholder="Enter Your Phone Number"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "phone");
-                    }}
-                  />
-                </div>
-                {this.state.phoneError ? (
-                  <div className="error">{this.state.phoneError}</div>
-                ) : null}
-                <div className="input-grp">
-                  <label>VIT Email</label>
-                  <input
-                    className="input"
-                    type="text"
-                    value={this.state.email}
-                    placeholder="Enter Your VIT Email"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "email");
-                    }}
-                  />
-                </div>
-                {this.state.emailError ? (
-                  <div className="error">{this.state.emailError}</div>
-                ) : null}
-                <div className="input-grp">
-                  <label>GitHub Link (Mandatory for 2nd year students)</label>
-                  <input
-                    className="input"
-                    type="text"
-                    value={this.state.github}
-                    placeholder="Enter Your GitHub Handle"
-                    onChange={(event) => {
-                      this.inputChangeHandler(event, "github");
-                    }}
-                  />
-                </div>
-                {this.state.gitError ? (
-                  <div className="error">{this.state.gitError}</div>
-                ) : null}
-                <div style={{ display: "flex" }}>
+                  {this.state.regError ? (
+                    <div className="error">{this.state.regError}</div>
+                  ) : null}
+                  <div className="input-grp">
+                    <label>Password</label>
+                    <input
+                      className="input"
+                      type={`${this.state.showPass ? "text" : "password"}`}
+                      style={{ marginBottom: 10, position: "relative" }}
+                      value={this.state.password}
+                      placeholder="Enter Your Password"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "password");
+                      }}
+                    />
+                    <div
+                      className={`lgn-eye ${
+                        this.state.showPass ? "lgn-eye-t" : null
+                      }`}
+                      onClick={this.eyeClickHandler}>
+                      <i className={`fas fa-eye  `}></i>
+                    </div>
+                  </div>
+                  {this.state.passError ? (
+                    <div className="error">{this.state.passError}</div>
+                  ) : null}
+                  <div className="input-grp">
+                    <label>Confirm Password</label>
+                    <input
+                      className="input"
+                      type={`${this.state.showCPass ? "text" : "password"}`}
+                      style={{ marginBottom: 10, position: "relative" }}
+                      value={this.state.confirmPass}
+                      placeholder="Confirm Password"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "confirmPass");
+                      }}
+                    />
+                    <div
+                      className={`lgn-eye ${
+                        this.state.showCPass ? "lgn-eye-t" : null
+                      }`}
+                      onClick={this.eyeClickHandlerC}>
+                      <i className={`fas fa-eye  `}></i>
+                    </div>
+                  </div>
+                  {this.state.confirmPassError ? (
+                    <div className="error">{this.state.confirmPassError}</div>
+                  ) : null}
                   <div
                     className="btn btn-blue lgn-btn"
-                    onClick={(event) => {
-                      this.formSubmitHandler(event, this.props);
-                    }}>
-                    Sign Up
+                    onClick={this.createAccountClickHandler}>
+                    Next
                   </div>
-                  <div
-                    className="btn btn-blue lgn-btn"
-                    onClick={() => this.setState({ firstPage: true })}>
-                    {/* <i
+                </div>
+              ) : (
+                <div>
+                  <div className="heading">Sign Up</div>
+                  <div className="input-grp">
+                    <label>Phone Number</label>
+                    <input
+                      className="input"
+                      type="text"
+                      value={this.state.phone}
+                      placeholder="Enter Your Phone Number"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "phone");
+                      }}
+                    />
+                  </div>
+                  {this.state.phoneError ? (
+                    <div className="error">{this.state.phoneError}</div>
+                  ) : null}
+                  <div className="input-grp">
+                    <label>VIT Email</label>
+                    <input
+                      className="input"
+                      type="text"
+                      value={this.state.email}
+                      placeholder="Enter Your VIT Email"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "email");
+                      }}
+                    />
+                  </div>
+                  {this.state.emailError ? (
+                    <div className="error">{this.state.emailError}</div>
+                  ) : null}
+                  <div className="input-grp">
+                    <label>GitHub Link (Mandatory for 2nd year students)</label>
+                    <input
+                      className="input"
+                      type="text"
+                      value={this.state.github}
+                      placeholder="Enter Your GitHub Handle"
+                      onChange={(event) => {
+                        this.inputChangeHandler(event, "github");
+                      }}
+                    />
+                  </div>
+                  {this.state.gitError ? (
+                    <div className="error">{this.state.gitError}</div>
+                  ) : null}
+                  <div style={{ display: "flex" }}>
+                    <div
+                      className="btn btn-blue lgn-btn"
+                      onClick={(event) => {
+                        this.formSubmitHandler(event, this.props);
+                        this.setState({ cooldown: 0 });
+                      }}>
+                      Sign Up
+                    </div>
+                    <div
+                      className="btn btn-blue lgn-btn"
+                      onClick={() =>
+                        this.setState({
+                          firstPage: true,
+                          emailError: "",
+                          phoneError: "",
+                          gitError: "",
+                        })
+                      }>
+                      {/* <i
                       className="fas fa-arrow-left"
                       style={{ marginRight: "0.5em" }}></i> */}
-                    Go Back
+                      Go Back
+                    </div>
                   </div>
+                </div>
+              )
+            ) : (
+              <div>
+                <div className="heading">You are all set</div>
+                <div className="sub-heading">Verification mail sent</div>
+                <div style={{ display: "flex" }}>
+                  <button
+                    disabled={!!this.state.cooldown}
+                    type="button"
+                    className="btn btn-blue lgn-btn"
+                    onClick={(event) => {
+                      this.setState({ cooldown: 60 });
+                      this.resendVerification();
+                      this.countdown();
+                    }}>
+                    {this.state.cooldown > 0
+                      ? this.state.cooldown
+                      : "Resend mail"}
+                  </button>
+                  <Link to="/login" className="btn btn-blue lgn-btn">
+                    Log In
+                  </Link>
                 </div>
               </div>
             )}
