@@ -5,7 +5,7 @@ import Background from "../../hoc/Background/Background";
 import { Redirect } from "react-router-dom";
 import Modal from "../Modals/Modal";
 
-class TechQuiz extends React.Component {
+class DesignQuiz extends React.Component {
     selectedOptions = [];
     constructor(props) {
         super(props);
@@ -13,14 +13,12 @@ class TechQuiz extends React.Component {
             quizQuestions: [],
             currentQuestionIndex: 0,
             questionId: [],
-            // black: true,
             finalResponse: [],
-            optionsIndex1: ["d", "d", "d", "e", "e", "e", "e", "e", "e", "e"],
-            optionsIndex: ["9", "9", "9", "9", "9", "9", "9", "9", "9", "9"],
-            showModal:false
+            showModal:false,
+            blueButton:"blueButton",
+            blackButton:"blackButton",
         };
         this.submitQuiz = this.submitQuiz.bind(this);
-        // this.setSelectedOption = this.setSelectedOption.bind(this);
         this.showModal1 = this.showModal1.bind(this);
         this.hideModal = this.hideModal.bind(this);
     }
@@ -83,55 +81,16 @@ class TechQuiz extends React.Component {
 
     optionsArray = ["a", "b", "c", "d"];
 
-    // setSelectedOption(qid, response, e) {
-    //     console.log("A");
-    //     // var res = [...this.state.optionsIndex1];
-    //     // res[this.state.currentQuestionIndex] = this.optionsArray[response];        
-    //     // // var currentOption = this.optionsArray[response];
-    //     // this.setState({
-    //     //     optionsIndex1: res
-    //     // })
-    //     // if(this.selectedOptions.some(option=> option.qid === qid)){
-    //     //     for(let i=0;i<this.selectedOptions.length;i++){
-    //     //         if(this.selectedOptions[i].qid === qid){
-    //     //             this.selectedOptions[i].response=this.optionsArray[response];
-    //     //             this.setState({
-    //     //                 optionsIndex: res
-    //     //             })
-    //     //         }
-    //     //     }
-    //     // } else {
-    //     //     this.selectedOptions.push({qid:qid,response:this.optionsArray[response]});
-    //     //     this.setState({
-    //     //         optionsIndex: res
-    //     //     })
-    //     // }
-    //     // console.log(this.state.optionsIndex1);
-    //     // // if(this.selectedOptions[this.state.currentQuestionIndex].response === e.target.value)
-    //     // //     this.setState({
-    //     // //         black: !this.state.black
-    //     // // })
-    // }
-
-    getResponse() {
-        return this.state.finalResponse[this.state.currentQuestionIndex]
-        // this.state.finalResponse.forEach(question => {
-        //     // console.log(question.qid, this.state.quizQuestions[this.state.currentQuestionIndex]._id);
-        //     if(question.qid === this.state.quizQuestions[this.state.currentQuestionIndex]._id) {
-        //         // console.log(question.response);
-        //         return question.response
-        //     }
-        // })
-        // console.log(this.state.finalResponse);
-    }
-
     updateOption(qid, index) {
         this.state.finalResponse.forEach(question => {
             if(question.qid === qid) {
                 question.response = this.optionsArray[index];
+                this.setState({
+                    blueButton:'blackButton'
+                })
             }
         })
-        // console.log(this.state.finalResponse);
+        // console.log("update",this.state.finalResponse);
     }
 
     generateResponse() {
@@ -142,7 +101,7 @@ class TechQuiz extends React.Component {
             }
             this.state.finalResponse.push(temp);
         })
-        // console.log(this.state.finalResponse);
+        // console.log("generate",this.state.finalResponse);
     }
 
     returnQuestionID() {
@@ -152,7 +111,8 @@ class TechQuiz extends React.Component {
     gotoNextQuestion() {
         if(this.state.currentQuestionIndex < this.state.quizQuestions.length - 1) {
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex + 1
+                currentQuestionIndex: this.state.currentQuestionIndex + 1,
+                blueButton:'blueButton'
             })
         }
         else
@@ -162,7 +122,8 @@ class TechQuiz extends React.Component {
     gotoPreviousQuestion() {
         if(this.state.currentQuestionIndex > 0)
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex - 1
+                currentQuestionIndex: this.state.currentQuestionIndex - 1,
+                blueButton:'blueButton'
             })
         else
             return
@@ -197,11 +158,10 @@ class TechQuiz extends React.Component {
                             </div>
                             <div className='answer-section'>
                                 {Object.keys(this.state.quizQuestions[this.state.currentQuestionIndex].options).map((key, index) => {
-                                  // console.log(this.getResponse())
                                   if(this.state.finalResponse[this.state.currentQuestionIndex] === undefined){
                                     return (
                                       <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                          <button className="blackButton"
+                                          <button className={this.state.blackButton}
                                                   value={this.optionsArray[index]}>
                                                   {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                           </button>
@@ -211,7 +171,7 @@ class TechQuiz extends React.Component {
                                     if(this.state.finalResponse[this.state.currentQuestionIndex].response === this.optionsArray[index]){
                                       return (
                                         <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                            <button className="blueButton"
+                                            <button className={this.state.blueButton} 
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
@@ -220,70 +180,13 @@ class TechQuiz extends React.Component {
                                     }else{
                                       return (
                                         <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                            <button className="blackButton"
+                                            <button className={this.state.blackButton}
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
                                         </div>
-                                    )
-                                    }
-
-                                    
+                                    )}   
                                   }
-                                    // if(this.state.finalResponse === undefined)
-                                    //     return (
-                                    //         <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                    //             <button className="blackButton"
-                                    //                     value={this.optionsArray[index]}>
-                                    //                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                    //             </button>
-                                    //         </div>
-                                    //     )
-                                    // else {
-                                    //         if(this.state.finalResponse[this.state.currentQuestionIndex]['response'] === this.optionsArray[index]) {
-                                    //             return (
-                                    //                 <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                    //                     <button className="blueButton"
-                                    //                         value={this.optionsArray[index]}>
-                                    //                         {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                    //                     </button>
-                                    //                 </div>
-                                    //             )
-                                    //         }
-                                    //         else
-                                    //             return (
-                                    //                 <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                    //                     <button className="blackButton"
-                                    //                             value={this.optionsArray[index]}>
-                                    //                             {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                    //                     </button>
-                                    //                 </div>
-                                    //             )
-                                    //     // else
-                                    // // if()
-                                    //         return (
-                                    //             // this.getResponse(this.returnQuestionID())
-                                    //             <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                    //                 {/* {a = await this.returnQuestionID()}
-                                    //                 {console.log(this.getResponse())}
-                                    //                 {console.log(this.state.currentQuestionIndex)} */}
-                                    //                 <button className="blackButton"
-                                    //                         value={this.optionsArray[index]}>
-                                    //                         {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                    //                 </button>
-                                    //             </div>
-                                    //         )
-                                    // }
-                                //     else
-                                //         return (
-                                //             <div key={index} onClick={(e)=>{this.setSelectedOption(this.state.quizQuestions[this.state.currentQuestionIndex]._id,index,e)}}>
-                                //                 <button className="blackButton"
-                                //                         value={this.optionsArray[index]}>
-                                //                         {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
-                                //                 </button>
-                                //             </div>
-                                //         )
-                                // }
                                 })}
                             </div>
                             <div className='btn-bottom'>
@@ -309,4 +212,4 @@ class TechQuiz extends React.Component {
     }
 }
 
-export default TechQuiz;
+export default DesignQuiz;

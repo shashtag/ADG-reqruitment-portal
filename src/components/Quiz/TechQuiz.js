@@ -17,7 +17,9 @@ class TechQuiz extends React.Component {
             finalResponse: [],
             optionsIndex1: ["d", "d", "d", "e", "e", "e", "e", "e", "e", "e"],
             optionsIndex: ["9", "9", "9", "9", "9", "9", "9", "9", "9", "9"],
-            showModal:false
+            showModal:false,
+            blueButton:"blueButton",
+            blackButton:"blackButton",
         };
         this.submitQuiz = this.submitQuiz.bind(this);
         // this.setSelectedOption = this.setSelectedOption.bind(this);
@@ -129,6 +131,9 @@ class TechQuiz extends React.Component {
         this.state.finalResponse.forEach(question => {
             if(question.qid === qid) {
                 question.response = this.optionsArray[index];
+                this.setState({
+                    blueButton:'blackButton'
+                })
             }
         })
         // console.log(this.state.finalResponse);
@@ -152,7 +157,8 @@ class TechQuiz extends React.Component {
     gotoNextQuestion() {
         if(this.state.currentQuestionIndex < this.state.quizQuestions.length - 1) {
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex + 1
+                currentQuestionIndex: this.state.currentQuestionIndex + 1,
+                blueButton:'blueButton'
             })
         }
         else
@@ -162,7 +168,8 @@ class TechQuiz extends React.Component {
     gotoPreviousQuestion() {
         if(this.state.currentQuestionIndex > 0)
             this.setState({
-                currentQuestionIndex: this.state.currentQuestionIndex - 1
+                currentQuestionIndex: this.state.currentQuestionIndex - 1,
+                blueButton:'blueButton'
             })
         else
             return
@@ -201,7 +208,7 @@ class TechQuiz extends React.Component {
                                   if(this.state.finalResponse[this.state.currentQuestionIndex] === undefined){
                                     return (
                                       <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                          <button className="blackButton"
+                                          <button className={this.state.blackButton}
                                                   value={this.optionsArray[index]}>
                                                   {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                           </button>
@@ -211,7 +218,7 @@ class TechQuiz extends React.Component {
                                     if(this.state.finalResponse[this.state.currentQuestionIndex].response === this.optionsArray[index]){
                                       return (
                                         <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                            <button className="blueButton"
+                                            <button className={this.state.blueButton}
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
@@ -220,7 +227,7 @@ class TechQuiz extends React.Component {
                                     }else{
                                       return (
                                         <div key={index} onClick={()=>{this.updateOption(this.returnQuestionID(), index)}}>
-                                            <button className="blackButton"
+                                            <button className={this.state.blackButton}
                                                     value={this.optionsArray[index]}>
                                                     {this.optionsArray[index]}. {this.state.quizQuestions[this.state.currentQuestionIndex].options[key]}
                                             </button>
