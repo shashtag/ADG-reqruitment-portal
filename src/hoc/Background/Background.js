@@ -120,7 +120,7 @@ export class Background extends Component {
     axios
       .get("https://adgrecruitments.herokuapp.com/user/recruitmentstatus")
       .then((recruitmentStatus) =>
-        this.setState({ recruitmentStatus: !recruitmentStatus.data.status }),
+        this.setState({ recruitmentStatus: recruitmentStatus.data.status }),
       )
       .finally(() => this.setState({ loading: false }));
     this.startCountdown(this.renderCountdownDate());
