@@ -68,6 +68,8 @@ function Quiz(props) {
     axios(config)
       .then(function (response) {
         setquest(response.data);
+        this.props.history.push("thank-you");
+
       })
       .catch(function (error) {
         setError(error);

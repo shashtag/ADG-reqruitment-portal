@@ -1,11 +1,11 @@
-import React,{ useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import classes from "./styles.module.css";
-import '../../Quiz/Quiz.css'
+import "../../Quiz/Quiz.css";
 import Background from "../../../hoc/Background/Background";
-import instagram from '../../../assets/img/instagram.png';
+import instagram from "../../../assets/img/instagram.png";
 
 const ThankYou = () => {
   const [tech, setTech] = useState(true);
@@ -29,33 +29,39 @@ const ThankYou = () => {
         // console.log(error);
       });
   }, []);
-  if(tech && man && des ){
-    return(
+  if (tech && man && des) {
+    return (
       <Background>
-      <div className={classes.wrapper}>
-        <h2>You have attempted all the tests</h2>
-        <div className="sub-heading">
-          Stay connected to know your result
+        <div className={classes.wrapper}>
+          <h2>You have attempted all the tests</h2>
+          <div className='sub-heading'>Stay connected to know your result</div>
+          <hr></hr>
+          <div className={classes.iconContainer}>
+            <p>For regular updates, follow us on:</p>
+            <img src={instagram} alt='instagram' className={classes.icons} />
+            <a
+              className='social-url'
+              rel='noreferrer'
+              target='_blank'
+              href='https://www.instagram.com/adgvit'>
+              <p>@adgvit</p>
+            </a>
+          </div>
         </div>
-        <hr></hr>
-        <div className={classes.iconContainer}>
-        <p>For regular updates, follow us on:</p> 
-        <img src={instagram} alt="instagram"  className={classes.icons}/>
-        <a className="social-url" target="_blank" href="https://www.instagram.com/adgvit"><p>@adgvit</p></a>
-        </div>
-        </div>
-        </Background>
-    )
+      </Background>
+    );
   } else {
     return (
       <Background>
         <div className={classes.wrapper}>
           <h2>Your responses have been saved!</h2>
-          <div className="sub-heading">
+          <div className='sub-heading'>
             You can attempt a quiz from other domains if you haven't
           </div>
-          <Link to="/selection">
-            <button className={classes.redirectBtn}>Attempt another quiz</button>
+          <Link to='/selection'>
+            <button className={classes.redirectBtn}>
+              Attempt another quiz
+            </button>
           </Link>
         </div>
       </Background>

@@ -1,6 +1,5 @@
 import React from "react";
 import { useRef } from "react";
-import { Link } from "react-router-dom";
 // import cross from "../../assets/img/cross.svg";
 // import { faTimes } from "@fortawesome/free-brands-svg-icons";
 import "./Modal.css";
