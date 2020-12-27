@@ -75,3 +75,34 @@
 .li{
   line-height:1.5;
 }
+hr{
+  margin-top:30px;
+  border: 0.1px solid #747474;
+  height: 0.1px;
+  width:90%;
+}
+.iconContainer{
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color:#cccaca;
+}
+.iconContainer>p{
+  font-size:0.85rem;
+}
+.iconContainer>img{
+  width:20px;
+  height:20px;
+  margin:0 5px 0;
+}
+@media screen and (max-width:430px){
+  .iconContainer>p{
+    font-size:0.75rem;
+  }
+}
+@media screen and (max-width:270px){
+  .iconContainer>p{
+    font-size: 0.6rem;
+  }
+}
