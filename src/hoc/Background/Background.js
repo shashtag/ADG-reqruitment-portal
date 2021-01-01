@@ -197,7 +197,7 @@ export class Background extends Component {
                 )
               ) : (
                 <>
-                  <h2 align='center'>Recruitments coming soon</h2>
+                  {/* <h2 align='center'>Recruitments coming soon</h2>
                   {this.setEndDate()}
                   {this.state.isCountdownSet ? (
                     <Countdown
@@ -209,7 +209,34 @@ export class Background extends Component {
                       <span className='fa fa-info-circle fa-lg fa-fw'></span>{" "}
                       {this.state.infoMessage}
                     </p>
-                  )}
+                  )} */}
+                  <div className='heading'>Recruitments like never before</div>
+                  <div className='heading2'>
+                    Round one results to be declared soon.
+                    <br />
+                    Stay tuned on ADG's social handles <br />
+                  </div>
+                  <div style={{ marginTop: "-10px", marginBottom: "10px" }}>
+                    <a
+                      style={{
+                        padding: "10px",
+                        color: "white",
+                        fontSize: "32px",
+                      }}
+                      href='https://www.instagram.com/adgvit/'>
+                      <i class='fab fa-instagram-square'></i>
+                    </a>
+                    <a
+                      style={{
+                        padding: "10px",
+                        color: "white",
+                        fontSize: "32px",
+                      }}
+                      href='https://www.facebook.com/vitios'>
+                      <i class='fab fa-facebook-square'></i>
+                    </a>
+                  </div>
+                  <div className='sub-heading'>Thanks for participating</div>
                 </>
               )}
               {/*{this.props.children}*/}
